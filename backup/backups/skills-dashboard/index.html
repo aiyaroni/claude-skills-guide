@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YARONI STUDIO · Claude Skills Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Heebo:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c12;
+    --surface: #0d1520;
+    --surface-hover: #111d2e;
+    --border: #162030;
+    --text: #e8e8e8;
+    --text-body: #c8c8c8;
+    --text-dim: #9ca3af;
+    --lime: #C5F206;
+    --lime-dim: rgba(197,242,6,0.1);
+    --fuchsia: #f72585;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    overflow: hidden;
+    direction: rtl;
+  }
+
+  /* STATUS BAR */
+  .status-bar {
+    height: 40px;
+    background: #060a10;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-shrink: 0;
+  }
+  .status-bar .brand { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; }
+  .status-bar .stats { font-size: 12px; color: var(--text-dim); }
+  .status-bar .clock { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--lime); }
+
+  /* APP SHELL — RTL: order 0 = rightmost */
+  .app { display: flex; height: calc(100vh - 40px); overflow: hidden; }
+
+  /* SIDEBAR — RIGHT (order:0 in RTL) */
+  .sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    order: 0;
+  }
+  .sidebar-logo { padding: 20px 16px 16px; border-bottom: 1px solid var(--border); }
+  .sidebar-logo .studio-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--lime);
+    letter-spacing: 0.08em;
+  }
+  .sidebar-logo .tagline { font-size: 13px; color: var(--text-dim); margin-top: 3px; }
+
+  .sidebar-search { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .sidebar-search input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .sidebar-search input::placeholder { color: var(--text-dim); }
+  .sidebar-search input:focus { border-color: var(--lime); }
+
+  .sidebar-section { padding: 16px 16px 8px; }
+  .sidebar-section-header {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--lime);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-bottom: 2px;
+  }
+  .category-item:hover, .category-item.active { background: var(--surface-hover); }
+  .cat-left { display: flex; align-items: center; gap: 8px; }
+  .category-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .cat-name { font-size: 13px; color: var(--text-body); }
+  .cat-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    background: var(--border);
+    border-radius: 10px;
+    padding: 1px 6px;
+  }
+
+  /* Sidebar stats */
+  .sidebar-stats {
+    margin-top: auto;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+  .stat-label { font-size: 12px; color: var(--text-dim); }
+  .stat-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text); }
+
+  /* MAIN — CENTER (order:1) */
+  .main { flex: 1; overflow-y: auto; padding: 24px; order: 1; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .count-badge {
+    background: var(--lime);
+    color: #000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+
+  /* Pipeline cards (browse mode) */
+  .pipelines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .pipeline-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .pipeline-card:hover { border-color: rgba(197,242,6,0.3); background: var(--surface-hover); }
+  .pipeline-card.active { border-color: rgba(197,242,6,0.5); background: var(--surface-hover); }
+  .pc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .pc-emoji { font-size: 18px; }
+  .pc-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+  .pc-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; margin-bottom: 10px; }
+  .pc-steps { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--lime); }
+
+  /* Section divider */
+  .main-divider { height: 1px; background: var(--border); margin: 0 0 24px; }
+
+  /* Pipeline active banner */
+  .pipeline-banner {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border: 1px solid rgba(197,242,6,0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+  }
+  .pipeline-banner.active { display: flex; }
+  .banner-left { display: flex; align-items: center; gap: 10px; }
+  .banner-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--lime); }
+  .banner-desc { font-size: 13px; color: var(--text-dim); }
+  .exit-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Heebo', sans-serif;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .exit-btn:hover { border-color: var(--fuchsia); color: var(--fuchsia); }
+
+  /* Skill cards */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .skill-card:hover { border-color: rgba(197,242,6,0.3); background: var(--surface-hover); }
+  .step-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--lime-dim);
+    border: 1px solid rgba(197,242,6,0.2);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .card-cmd { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); }
+  .card-cat { display: flex; align-items: center; gap: 5px; font-size: 11px; }
+  .card-cat-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .card-desc { font-size: 13px; color: var(--text-body); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 14px; }
+  .card-context { font-size: 12px; font-style: italic; color: var(--lime); margin-bottom: 12px; line-height: 1.4; }
+  .card-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .type-badge { font-size: 11px; color: var(--text-dim); background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; }
+  .detail-link { font-size: 12px; color: var(--text-dim); }
+
+  /* DETAIL PANEL — LEFT (order:2 in RTL) */
+  .detail-panel {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.25s ease;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+    order: 2;
+  }
+  .detail-panel.open { width: 480px; }
+  .detail-inner { width: 480px; padding: 24px; overflow-y: auto; height: 100%; }
+
+  .detail-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+  .detail-cmd { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3; word-break: break-all; }
+  .detail-cat-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; border-radius: 4px; padding: 3px 8px; margin-top: 6px; }
+  .detail-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .detail-close:hover { border-color: var(--fuchsia); color: var(--fuchsia); }
+  .divider { height: 1px; background: var(--border); margin: 16px 0; }
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--lime);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .detail-text { font-size: 14px; color: var(--text-body); line-height: 1.7; margin-bottom: 18px; }
+
+  /* Pipeline detail sections (no tracker) */
+  .pipeline-section { margin-bottom: 16px; }
+  .ps-write { font-size: 13px; font-style: italic; color: var(--lime); line-height: 1.6; background: var(--lime-dim); border-radius: 6px; padding: 10px 12px; border-right: 2px solid var(--lime); }
+  .ps-text { font-size: 13px; color: var(--text-body); line-height: 1.6; }
+
+  /* Copy block */
+  .copy-block { display: flex; align-items: center; gap: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; }
+  .copy-cmd { flex: 1; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); word-break: break-all; }
+  .copy-btn {
+    background: var(--lime);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  .copy-btn:hover { opacity: 0.85; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(60px);
+    background: var(--lime);
+    color: #000;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<div class="status-bar">
+  <span class="brand">YARONI STUDIO · CLAUDE SKILLS</span>
+  <span class="stats" id="status-stats">50 סקילים · 3 פייפליינים</span>
+  <span class="clock" id="clock">--:--:--</span>
+</div>
+
+<div class="app">
+
+  <!-- SIDEBAR (right) -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="studio-name">YARONI STUDIO</div>
+      <div class="tagline">Claude Skills Dashboard</div>
+    </div>
+    <div class="sidebar-search">
+      <input type="text" id="search-input" placeholder="חפש סקיל...">
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-header">Categories</div>
+      <div id="categories-list"></div>
+    </div>
+    <div class="sidebar-stats">
+      <div class="stat-row">
+        <span class="stat-label">סקילים</span>
+        <span class="stat-val" id="stat-skills">10</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">חיבורי MCP</span>
+        <span class="stat-val" id="stat-mcp">2</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">פייפליינים</span>
+        <span class="stat-val">3</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN (center) -->
+  <main class="main" id="main">
+
+    <!-- Browse mode: pipelines + skills -->
+    <div id="browse-view">
+      <div class="section-header">
+        <h2>פייפליינים</h2>
+        <span class="count-badge">3</span>
+      </div>
+      <div class="pipelines-grid" id="pipelines-grid"></div>
+      <div class="main-divider"></div>
+      <div class="section-header">
+        <h2 id="skills-title">כל הסקילים</h2>
+        <span class="count-badge" id="count-badge">10</span>
+      </div>
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+
+    <!-- Pipeline mode: banner + step cards -->
+    <div id="pipeline-view" style="display:none">
+      <div class="pipeline-banner active" id="pipeline-banner">
+        <div class="banner-left">
+          <span id="banner-emoji" style="font-size:18px"></span>
+          <div>
+            <div class="banner-name" id="banner-name"></div>
+            <div class="banner-desc" id="banner-desc"></div>
+          </div>
+        </div>
+        <button class="exit-btn" id="exit-btn">× יציאה</button>
+      </div>
+      <div class="section-header">
+        <h2 id="pipeline-steps-title">שלבים</h2>
+        <span class="count-badge" id="pipeline-count-badge">0</span>
+      </div>
+      <div class="cards-grid" id="pipeline-cards-grid"></div>
+    </div>
+
+  </main>
+
+  <!-- DETAIL PANEL (left) -->
+  <aside class="detail-panel" id="detail-panel">
+    <div class="detail-inner" id="detail-inner"></div>
+  </aside>
+
+</div>
+
+<div class="toast" id="toast">הועתק ✓</div>
+
+<script>
+const CAT_LABELS = { post:'פוסטים', agency:'סוכנות', dev:'פיתוח', content:'תוכן', build:'בניה', automation:'אוטומציה', telegram:'טלגרם', mcp:'MCP' };
+const CAT_COLORS = { post:'#e879f9', agency:'#60a5fa', dev:'#34d399', content:'#fbbf24', build:'#a78bfa', automation:'#fb923c', telegram:'#38bdf8', mcp:'#06b6d4' };
+const TYPE_LABELS = { auto:'⚡ אוטומטי', mcp:'🔌 MCP', slash:'/ slash' };
+
+const SKILLS = [
+  { cmd:'business-analyst', cat:'agency', desc:'ניתוח KPIs, מודלים פרדיקטיביים, המלצות אסטרטגיות', detail:'הופך Claude לאנליסט עסקי בכיר. מנתח נתונים, בונה מדדי הצלחה, מזהה טרנדים ומחזיר המלצות מבוססות מספרים.', invoke:'business-analyst', type:'auto' },
+  { cmd:'carousel', cat:'content', desc:'בונה קרוסלה לאינסטגרם — 7 שקופיות PNG מוכנות', detail:'יוצר קרוסלה שיווקית מלאה עם מבנה פסיכולוגי, קופי, ועיצוב. מייצא PNG מוכן לעלייה.', invoke:'carousel', type:'auto' },
+  { cmd:'MCP · n8n', cat:'automation', desc:'יצירת automation workflows ישירות ב-n8n', detail:'מחובר ישירות ל-n8n. בונה workflows, מגדיר triggers, מחבר APIs — הכל בשיחה.', invoke:'אוטומטי', type:'mcp' },
+  { cmd:'/post:post-instagram', cat:'post', desc:'קפשן + hashtags לאינסטגרם בסגנון ירוני', detail:'כותב קפשן בקול של ירוני — hook חזק, CTA ברור, 30 hashtags רלוונטיים.', invoke:'/post:post-instagram', type:'slash' },
+  { cmd:'humanizer', cat:'content', desc:'מסיר סממני AI — נשמע כמו בן אדם', detail:'עובר על הטקסט ומחליף ביטויים רובוטיים בשפה טבעית ואנושית. שומר על המשמעות.', invoke:'humanizer', type:'auto' },
+  { cmd:'copywriting', cat:'content', desc:'קופי שיווקי ממיר — ads, landing page, emails', detail:'כותב קופי מבוסס פסיכולוגיה שיווקית. מתאים לטון המותג ולקהל היעד.', invoke:'copywriting', type:'auto' },
+  { cmd:'creative-brief', cat:'build', desc:'ברייף → Imagen AI → פרומפטים ל-Kling', detail:'פייפליין מלא: קולט ברייף → מייצר קריאייטיבים עם Imagen 3 → מכין פרומפטים להנפשה ב-Kling.', invoke:'creative-brief', type:'auto' },
+  { cmd:'landing-page-copywriter', cat:'build', desc:'קופי ממיר לדף נחיתה — headline, sub, CTA', detail:'בונה את כל שכבות הקופי לדף נחיתה: כותרת, תת-כותרת, USPs, FAQs, ו-CTA.', invoke:'landing-page-copywriter', type:'auto' },
+  { cmd:'MCP · Notion', cat:'automation', desc:'יצירה ועדכון דפים ב-Notion מהשיחה', detail:'מחובר ישירות ל-Notion. יוצר דפים, מעדכן תוכן, בונה מבנה — ללא פתיחת Notion.', invoke:'אוטומטי', type:'mcp' },
+  { cmd:'webapp-testing', cat:'dev', desc:'בדיקות אוטומטיות לאפליקציה — Playwright', detail:'כותב ומריץ בדיקות E2E עם Playwright. בודק accessibility, UI, ו-user flows.', invoke:'webapp-testing', type:'auto' }
+];
+
+const PIPELINES = [
+  { id:'automation', name:'אוטומציה לעסק', emoji:'⚡', desc:'מיפוי תהליך → בניית workflow ב-n8n',
+    steps:[
+      { cmd:'business-analyst', label:'מיפוי תהליך', invoke:'business-analyst', write:'"כל בוקר אני פותח Gmail ומעתיק לידים לגיליון גוגל..."', asks:'Claude ישאל: כמה פעמים? מה מפעיל? לאן המידע הולך?', gets:'מפת תהליך מפורטת + זיהוי מה ניתן לאוטמט', cat:'agency', type:'auto' },
+      { cmd:'MCP · n8n', label:'בניית workflow', invoke:'פועל אוטומטית', write:'"תבנה workflow שמחבר Gmail לגיליון"', asks:'Claude ישאל: איזה טריגר? כל שעה? כשמגיע מייל?', gets:'workflow מוכן ב-n8n עם כל הצמתים והחיבורים', cat:'automation', type:'mcp', detail:'מחובר ישירות ל-n8n. בונה workflows, מגדיר triggers, מחבר APIs — הכל בשיחה.' },
+      { cmd:'MCP · Notion', label:'תיעוד ללקוח', invoke:'פועל אוטומטית', write:'"תכין דף Notion עם הוראות הפעלה ללא ידע טכני"', asks:'Claude ישאל: יש Notion workspace ללקוח? מה שם הפרויקט?', gets:'דף Notion מסודר מוכן למסירה ללקוח', cat:'automation', type:'mcp', detail:'מחובר ישירות ל-Notion. יוצר דפים, מעדכן תוכן, בונה מבנה — ללא פתיחת Notion.' }
+    ]},
+  { id:'reel', name:'ריל לאינסטגרם', emoji:'🎬', desc:'תמונות AI → קפשן מוכן',
+    steps:[
+      { cmd:'imagen-creative', label:'תמונות AI', invoke:'imagen-creative', write:'"מוצר: שמן ארגן. פלטפורמה: ריל. 5 קריאייטיבים"', asks:'Claude ישאל: מה הסגנון? אור טבעי / סטודיו / דרמטי?', gets:'5 תמונות PNG בתיקיית creative-pipeline/product-[name]/', cat:'build', type:'auto', detail:'מייצר קריאייטיבים מקצועיים עם Imagen 3. שולט בסגנון, תאורה, קומפוזיציה.' },
+      { cmd:'/post:post-instagram', label:'קפשן + hashtags', invoke:'/post:post-instagram', write:'"כתוב קפשן לריל על שמן ארגן"', asks:'Claude ישאל: מה ה-hook? מה ה-CTA?', gets:'קפשן מוכן בסגנון ירוני + 30 hashtags', cat:'post', type:'slash', detail:'כותב קפשן בקול של ירוני — hook חזק, CTA ברור, 30 hashtags רלוונטיים.' }
+    ]},
+  { id:'carousel', name:'קרוסלה לאינסטגרם', emoji:'📸', desc:'מחקר → קרוסלה → קפשן',
+    steps:[
+      { cmd:'last30days', label:'מחקר טרנדים', invoke:'last30days', write:'"מה הטרנדים בתחום AI לעסקים החודש?"', asks:'Claude ישאל: לאיזה קהל? תחום ספציפי?', gets:'10 נושאים עם פוטנציאל ויראלי + זווית ייחודית לכל אחד', cat:'content', type:'auto', detail:'סורק Reddit, Twitter, LinkedIn ו-10+ מקורות נוספים ל-30 הימים האחרונים.' },
+      { cmd:'carousel', label:'בניית קרוסלה', invoke:'carousel', write:'"בנה קרוסלה 7 שקופיות: AI שחוסך 3 שעות ביום"', asks:'Claude ישאל: מי הקהל? מה הפרופיל? מה הבעיה שפותרים?', gets:'7 שקופיות PNG מוכנות + structure מוכן לעלייה', cat:'content', type:'auto', detail:'יוצר קרוסלה שיווקית מלאה עם מבנה פסיכולוגי, קופי, ועיצוב.' },
+      { cmd:'/post:post-instagram', label:'קפשן', invoke:'/post:post-instagram', write:'"קפשן לקרוסלה על AI"', asks:'Claude ישאל: מה בשקופית הראשונה?', gets:'קפשן בסגנון ירוני + hashtags', cat:'post', type:'slash', detail:'כותב קפשן בקול של ירוני — hook חזק, CTA ברור, 30 hashtags רלוונטיים.' }
+    ]}
+];
+
+const CATEGORIES = [
+  { id:'agency', label:'סוכנות', count:1 },
+  { id:'content', label:'תוכן', count:3 },
+  { id:'automation', label:'אוטומציה', count:2 },
+  { id:'dev', label:'פיתוח', count:1 },
+  { id:'build', label:'בניה', count:2 },
+  { id:'post', label:'פוסטים', count:1 }
+];
+
+const state = { activePipeline: null, filter: null, search: '' };
+
+// ── Helpers ──
+function makeEl(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+// ── Clock ──
+function updateClock() {
+  const d = new Date(), p = n => String(n).padStart(2,'0');
+  document.getElementById('clock').textContent = `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── Sidebar ──
+function renderSidebar() {
+  const cl = document.getElementById('categories-list');
+  cl.textContent = '';
+
+  // All
+  const allItem = makeEl('div', 'category-item' + (!state.filter ? ' active' : ''));
+  const allLeft = makeEl('div', 'cat-left');
+  const allDot = makeEl('span', 'category-dot');
+  allDot.style.background = '#445';
+  allLeft.appendChild(allDot);
+  const allLabel = makeEl('span', 'cat-name', 'הכל');
+  allLabel.style.color = 'var(--text-dim)';
+  allLeft.appendChild(allLabel);
+  allItem.appendChild(allLeft);
+  allItem.addEventListener('click', () => filterByCategory(null));
+  cl.appendChild(allItem);
+
+  CATEGORIES.forEach(c => {
+    const item = makeEl('div', 'category-item' + (state.filter === c.id ? ' active' : ''));
+    const left = makeEl('div', 'cat-left');
+    const dot = makeEl('span', 'category-dot');
+    dot.style.background = CAT_COLORS[c.id] || '#888';
+    left.appendChild(dot);
+    left.appendChild(makeEl('span', 'cat-name', c.label));
+    item.appendChild(left);
+    item.appendChild(makeEl('span', 'cat-count', String(c.count)));
+    item.addEventListener('click', () => filterByCategory(c.id));
+    cl.appendChild(item);
+  });
+
+  // Stats
+  const mcpCount = SKILLS.filter(s => s.type === 'mcp').length;
+  document.getElementById('stat-skills').textContent = String(SKILLS.length);
+  document.getElementById('stat-mcp').textContent = String(mcpCount);
+}
+
+// ── Pipeline Cards (browse) ──
+function renderPipelineCards() {
+  const grid = document.getElementById('pipelines-grid');
+  grid.textContent = '';
+  PIPELINES.forEach(p => {
+    const card = makeEl('div', 'pipeline-card' + (state.activePipeline === p.id ? ' active' : ''));
+    const top = makeEl('div', 'pc-top');
+    top.appendChild(makeEl('span', 'pc-emoji', p.emoji));
+    top.appendChild(makeEl('span', 'pc-name', p.name));
+    card.appendChild(top);
+    card.appendChild(makeEl('div', 'pc-desc', p.desc));
+    card.appendChild(makeEl('div', 'pc-steps', p.steps.length + ' שלבים'));
+    card.addEventListener('click', () => activatePipeline(p.id));
+    grid.appendChild(card);
+  });
+}
+
+// ── Skill Cards ──
+function getVisibleSkills() {
+  return SKILLS.filter(s => {
+    if (state.filter && s.cat !== state.filter) return false;
+    if (state.search) {
+      const q = state.search.toLowerCase();
+      return s.cmd.toLowerCase().includes(q) || s.desc.includes(q);
+    }
+    return true;
+  });
+}
+
+function renderSkillCards() {
+  const grid = document.getElementById('cards-grid');
+  grid.textContent = '';
+  const skills = getVisibleSkills();
+
+  skills.forEach(skill => {
+    const color = CAT_COLORS[skill.cat] || '#888';
+    const card = makeEl('div', 'skill-card');
+
+    const top = makeEl('div', 'card-top');
+    top.appendChild(makeEl('span', 'card-cmd', skill.cmd));
+    const catEl = makeEl('span', 'card-cat');
+    const dot = makeEl('span', 'card-cat-dot');
+    dot.style.background = color;
+    const catLabel = makeEl('span');
+    catLabel.textContent = CAT_LABELS[skill.cat] || skill.cat;
+    catLabel.style.color = color;
+    catEl.appendChild(dot);
+    catEl.appendChild(catLabel);
+    top.appendChild(catEl);
+    card.appendChild(top);
+    card.appendChild(makeEl('div', 'card-desc', skill.desc));
+
+    const bottom = makeEl('div', 'card-bottom');
+    bottom.appendChild(makeEl('span', 'type-badge', TYPE_LABELS[skill.type] || ''));
+    bottom.appendChild(makeEl('span', 'detail-link', 'לפרטים ←'));
+    card.appendChild(bottom);
+
+    card.addEventListener('click', () => openDetail(skill, null));
+    grid.appendChild(card);
+  });
+
+  document.getElementById('count-badge').textContent = String(skills.length);
+  document.getElementById('skills-title').textContent = state.filter ? CAT_LABELS[state.filter] : 'כל הסקילים';
+}
+
+// ── Pipeline step cards ──
+function renderPipelineStepCards(pipeline) {
+  const grid = document.getElementById('pipeline-cards-grid');
+  grid.textContent = '';
+
+  pipeline.steps.forEach((step, i) => {
+    const color = CAT_COLORS[step.cat] || '#888';
+    const card = makeEl('div', 'skill-card');
+    card.appendChild(makeEl('div', 'step-badge', `STEP ${String(i+1).padStart(2,'0')} · ${step.label}`));
+
+    const top = makeEl('div', 'card-top');
+    top.appendChild(makeEl('span', 'card-cmd', step.cmd));
+    const catEl = makeEl('span', 'card-cat');
+    const dot = makeEl('span', 'card-cat-dot');
+    dot.style.background = color;
+    const catLabel = makeEl('span');
+    catLabel.textContent = CAT_LABELS[step.cat] || step.cat;
+    catLabel.style.color = color;
+    catEl.appendChild(dot);
+    catEl.appendChild(catLabel);
+    top.appendChild(catEl);
+    card.appendChild(top);
+    card.appendChild(makeEl('div', 'card-desc', step.desc || (SKILLS.find(s => s.cmd === step.cmd) || {}).desc || ''));
+
+    const ctx = makeEl('div', 'card-context', '💬 ' + step.write);
+    card.appendChild(ctx);
+
+    const bottom = makeEl('div', 'card-bottom');
+    bottom.appendChild(makeEl('span', 'type-badge', TYPE_LABELS[step.type] || ''));
+    bottom.appendChild(makeEl('span', 'detail-link', 'לפרטים ←'));
+    card.appendChild(bottom);
+
+    card.addEventListener('click', () => openDetail(step, pipeline));
+    grid.appendChild(card);
+  });
+
+  document.getElementById('pipeline-count-badge').textContent = String(pipeline.steps.length);
+  document.getElementById('pipeline-steps-title').textContent = pipeline.name;
+}
+
+// ── Detail Panel ──
+function openDetail(skill, pipeline) {
+  const panel = document.getElementById('detail-panel');
+  const inner = document.getElementById('detail-inner');
+  inner.textContent = '';
+
+  const color = CAT_COLORS[skill.cat] || '#888';
+  const catLabel = CAT_LABELS[skill.cat] || skill.cat || '';
+  const invoke = skill.invoke || skill.cmd;
+  const detail = skill.detail || (SKILLS.find(s => s.cmd === skill.cmd) || {}).detail || skill.desc || '';
+
+  // Header
+  const header = makeEl('div', 'detail-header');
+  const hLeft = makeEl('div');
+  hLeft.appendChild(makeEl('div', 'detail-cmd', skill.cmd));
+  const badge = makeEl('div', 'detail-cat-badge');
+  badge.style.background = color + '22';
+  badge.style.color = color;
+  const bdot = makeEl('span');
+  Object.assign(bdot.style, { width:'6px', height:'6px', borderRadius:'50%', background:color, display:'inline-block' });
+  badge.appendChild(bdot);
+  badge.appendChild(document.createTextNode(' ' + catLabel));
+  hLeft.appendChild(badge);
+  header.appendChild(hLeft);
+  const closeBtn = makeEl('button', 'detail-close', '×');
+  closeBtn.addEventListener('click', closeDetail);
+  header.appendChild(closeBtn);
+  inner.appendChild(header);
+  inner.appendChild(makeEl('div', 'divider'));
+
+  // Pipeline-specific sections (no tracker)
+  if (pipeline && skill.write) {
+    inner.appendChild(makeEl('div', 'section-label', 'מה לכתוב ל-Claude'));
+    const writeEl = makeEl('div', 'ps-write', skill.write);
+    inner.appendChild(writeEl);
+    inner.appendChild(makeEl('div', 'divider'));
+
+    if (skill.gets) {
+      inner.appendChild(makeEl('div', 'section-label', 'מה מקבלים'));
+      inner.appendChild(makeEl('div', 'detail-text', skill.gets));
+    }
+  }
+
+  // Detail text
+  inner.appendChild(makeEl('div', 'section-label', 'מה זה עושה בפועל'));
+  inner.appendChild(makeEl('div', 'detail-text', detail));
+
+  // Copy block
+  inner.appendChild(makeEl('div', 'section-label', 'פקודה להפעלה'));
+  const copyBlock = makeEl('div', 'copy-block');
+  copyBlock.appendChild(makeEl('span', 'copy-cmd', invoke));
+  const copyBtn = makeEl('button', 'copy-btn', '📋 העתק');
+  copyBtn.addEventListener('click', () => copyText(invoke));
+  copyBlock.appendChild(copyBtn);
+  inner.appendChild(copyBlock);
+
+  panel.classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
+}
+
+// ── Pipeline ──
+function activatePipeline(id) {
+  const p = PIPELINES.find(p => p.id === id);
+  if (!p) return;
+  state.activePipeline = id;
+  closeDetail();
+
+  document.getElementById('browse-view').style.display = 'none';
+  document.getElementById('pipeline-view').style.display = 'block';
+  document.getElementById('banner-emoji').textContent = p.emoji;
+  document.getElementById('banner-name').textContent = p.name;
+  document.getElementById('banner-desc').textContent = p.desc;
+
+  renderPipelineStepCards(p);
+  renderSidebar();
+}
+
+function exitPipeline() {
+  state.activePipeline = null;
+  closeDetail();
+  document.getElementById('pipeline-view').style.display = 'none';
+  document.getElementById('browse-view').style.display = 'block';
+  renderPipelineCards();
+  renderSkillCards();
+  renderSidebar();
+}
+
+// ── Filter ──
+function filterByCategory(cat) {
+  state.filter = cat;
+  if (state.activePipeline) exitPipeline();
+  renderSkillCards();
+  renderSidebar();
+}
+
+// ── Copy ──
+function copyText(text) {
+  navigator.clipboard.writeText(text).catch(() => {});
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// ── Init ──
+document.getElementById('search-input').addEventListener('input', function() {
+  state.search = this.value;
+  renderSkillCards();
+});
+document.getElementById('exit-btn').addEventListener('click', exitPipeline);
+
+renderSidebar();
+renderPipelineCards();
+renderSkillCards();
+</script>
+</body>
+</html>
