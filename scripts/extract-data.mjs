@@ -10,7 +10,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const SRC = join(__dirname, '../../claude-skills-guide/claude-skills-guide.html')
+const SRC = join(__dirname, '../backup/claude-skills-guide.html')
 const OUT = join(__dirname, '../src/data')
 const TMP = join(__dirname, '../src/data/_tmp_extract.mjs')
 

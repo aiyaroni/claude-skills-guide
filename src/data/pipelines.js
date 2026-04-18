@@ -58,7 +58,7 @@ export const PIPELINES = [
    desc:'נושא → עיצוב → אישור → 7 תמונות PNG',
    skills:[
      {cmd:'last30days',stepLabel:'מחקר נושא'},
-     {cmd:'instagram-carousel',stepLabel:'בניית קרוסלה'},
+     {cmd:'carousel',stepLabel:'בניית קרוסלה'},
      {cmd:'/post:post-instagram',stepLabel:'קפשן + hashtags'}
    ]
   },
@@ -73,7 +73,7 @@ export const PIPELINES = [
    desc:'סקיל → מדריך מעוצב → PDF מוכן לשיתוף',
    skills:[
      {cmd:'skill-pdf-guide',stepLabel:'יצירת המדריך'},
-     {cmd:'instagram-carousel',stepLabel:'קרוסלה מקדימה'},
+     {cmd:'carousel',stepLabel:'קרוסלה מקדימה'},
      {cmd:'/post:post-instagram',stepLabel:'פוסט השקה'}
    ]
   },
@@ -330,51 +330,6 @@ export const PIPELINES = [
        howto:'כתוב "/design-audit", בחר "5" (cheap), צרף צילום מסך — מתאים גם כנקודת כניסה ראשונה',
        expect:'Pro tip: שלב 5 נותן את הבעיה הראשית מהר. שלבים 1-4 מתקנים כל שכבה בשיטתיות'
      }}
-   ]
-  },
-  {
-   id:'koala-financial-pipeline', group:'ops', name:'KOALA — ניתוח פיננסי אישי', emoji:'🐨',
-   desc:'שאלון בירור → ניתוח דוחות → מפת נכסים → תוכנית פעולה',
-   skills:[
-     {cmd:'koala-financial-advisor', stepLabel:'① בירור + העלאת דוחות', context:{
-       short:'KOALA שואל שאלות ממוקדות ואוסף את הנתונים האישיים שלך',
-       what:'שאלון 8 קטגוריות: פרטים אישיים, תעסוקה, נכסים, פנסיה, ביטוחים, מטרות. העלאת דוחות מסלקה ופוליסות.',
-       howto:'הפעל koala-financial-advisor, ענה על השאלות, העלה דוחות',
-       expect:'תמונת מצב בסיסית + אישור שהנתונים נקלטו'
-     }},
-     {cmd:'koala-financial-advisor', stepLabel:'② מפת נכסים', context:{
-       short:'טבלה אחת של כל הנכסים הפנסיוניים והביטוחיים',
-       what:'קרנות פנסיה, ביטוח מנהלים, קרנות השתלמות, ביטוחי חיים/נכות/דירה — עם דמי ניהול ויתרות',
-       howto:'KOALA בונה את הטבלה מהדוחות שהעלית',
-       expect:'טבלת Markdown מרוכזת עם כל המוצרים'
-     }},
-     {cmd:'israeli-pension-advisor', stepLabel:'③ סימולציית פנסיה', context:{
-       short:'חישוב קצבה צפויה + השוואת תרחישים',
-       what:'לפי גיל, שכר, דמי ניהול נוכחיים — מה תקבל בפרישה? ומה אחרי ייעול?',
-       howto:'הפעל israeli-pension-advisor עם הנתונים שקיבלת משלב ①',
-       expect:'קצבה חודשית צפויה + כמה שקלים שווה הפחתת דמי ניהול'
-     }},
-     {cmd:'israeli-insurance-comparator', stepLabel:'④ בדיקת ביטוחים', context:{
-       short:'זיהוי כפילויות + חורים בכיסוי',
-       what:'כפל ביטוח חיים, חסר ביטוח נכות, ערך כינון בביטוח דירה — מה מיותר ומה חסר',
-       howto:'הפעל israeli-insurance-comparator עם רשימת הביטוחים מהשלב הקודם',
-       expect:'רשימת כפילויות + חורים + כמה חוסכים על כל תיקון'
-     }},
-     {cmd:'koala-financial-advisor', stepLabel:'⑤ תוכנית פעולה', context:{
-       short:'צעדים ממוספרים עם נוסח מוכן לפנייה',
-       what:'לא "שקול לבדוק" — כן "התקשר ל-X, בקש Y, אמור את הנוסח הזה בדיוק". לפי סדר עדיפות: חיסכון > הגנה > ייעול.',
-       howto:'KOALA מרכז את כל הממצאים לתוכנית פעולה ממוספרת',
-       expect:'3-7 המלצות ממוספרות + נוסח מוכן לכל פנייה + דיסקליימר'
-     }}
-   ]
-  },
-  {id:'video-production',group:'product',name:'סרטון שיווקי',emoji:'🎬',
-   desc:'URL לאתר → ניתוח מותג → תסריט → סרטון מוכן',
-   skills:[
-     {cmd:'website-to-hyperframes',stepLabel:'לכידת אתר + תסריט'},
-     {cmd:'hyperframes',stepLabel:'בניית הסרטון'},
-     {cmd:'hyperframes-registry',stepLabel:'רכיבים מוכנים'},
-     {cmd:'hyperframes-cli',stepLabel:'ייצוא MP4'}
    ]
   }
 ]

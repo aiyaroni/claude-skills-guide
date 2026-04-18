@@ -58,7 +58,6 @@ export const MCP_SKILLS = [
   {
     "cmd": "MCP · Gmail",
     "cat": "mcp",
-    "uc": ["automation", "content"],
     "triggers": [
       "מופעל אוטומטית בשיחה"
     ],
@@ -83,7 +82,6 @@ export const MCP_SKILLS = [
   {
     "cmd": "MCP · Google Calendar",
     "cat": "mcp",
-    "uc": ["automation"],
     "triggers": [
       "מופעל אוטומטית בשיחה"
     ],
@@ -108,7 +106,6 @@ export const MCP_SKILLS = [
   {
     "cmd": "MCP · Notion",
     "cat": "mcp",
-    "uc": ["automation", "analysis"],
     "triggers": [
       "מופעל אוטומטית בשיחה"
     ],
