@@ -367,5 +367,14 @@ export const PIPELINES = [
        expect:'3-7 המלצות ממוספרות + נוסח מוכן לכל פנייה + דיסקליימר'
      }}
    ]
+  },
+  {id:'video-production',group:'product',name:'סרטון שיווקי',emoji:'🎬',
+   desc:'URL לאתר → ניתוח מותג → תסריט → סרטון מוכן',
+   skills:[
+     {cmd:'website-to-hyperframes',stepLabel:'לכידת אתר + תסריט'},
+     {cmd:'hyperframes',stepLabel:'בניית הסרטון'},
+     {cmd:'hyperframes-registry',stepLabel:'רכיבים מוכנים'},
+     {cmd:'hyperframes-cli',stepLabel:'ייצוא MP4'}
+   ]
   }
 ]
