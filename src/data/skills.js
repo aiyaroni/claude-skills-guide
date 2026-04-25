@@ -2788,7 +2788,7 @@ export const SKILLS = [
   },
   {
     "cmd": "agent-sdk-dev:new-sdk-app",
-    "cat": "dev",
+    "cat": "plugins",
     "uc": ["dev", "automation"],
     "triggers": [
       "/agent-sdk-dev:new-sdk-app",
@@ -2819,7 +2819,7 @@ export const SKILLS = [
   },
   {
     "cmd": "agent-sdk-dev:agent-sdk-verifier-py",
-    "cat": "dev",
+    "cat": "plugins",
     "uc": ["dev", "qa"],
     "triggers": [
       "/agent-sdk-dev:agent-sdk-verifier-py",
@@ -2848,7 +2848,7 @@ export const SKILLS = [
   },
   {
     "cmd": "agent-sdk-dev:agent-sdk-verifier-ts",
-    "cat": "dev",
+    "cat": "plugins",
     "uc": ["dev", "qa"],
     "triggers": [
       "/agent-sdk-dev:agent-sdk-verifier-ts",
