@@ -1861,6 +1861,41 @@ export const SKILLS = [
     "usage": "\"צור לי קרוסלה על [נושא]\""
   },
   {
+    "cmd": "carousel-agent",
+    "cat": "automation",
+    "uc": [
+      "content",
+      "design"
+    ],
+    "triggers": [
+      "carousel agent",
+      "סוכן קרוסלה",
+      "צור קרוסלה עם הסוכן",
+      "multi-agent carousel",
+      "קרוסלה עם בידוד",
+      "קרוסלה עם סוכנים",
+      "pipeline קרוסלה",
+      "יצירת קרוסלה אוטומטית"
+    ],
+    "desc": "יוצר קרוסלה אינסטגרם עם בידוד קוגנטיבי אמיתי — 5 סוכנים מבודדים, 2 gates לאישור אנושי",
+    "detail": "גרסה מתקדמת של קרוסלה — כל שלב מתבצע על ידי סוכן נפרד שלא יודע מה קרה לפניו. כתיבת קופי, ניקוי שפה, בניית HTML, בדיקת QA וכתיבת קפשן — כל אחד מבודד.\n\n⚠️ חשוב: לפני הפעלה הסוכן קורא את voice-reference.md כדי להטמיע את הקול של ירוני בסוכני התוכן והקפשן.\n\nמתי carousel-agent ולא carousel?\n• carousel — סקיל רגיל, Claude כותב הכל בהקשר אחד\n• carousel-agent — 5 סוכנים מבודדים, אישור קופי לפני בנייה, QA אוטומטי\n\nמה הפייפליין עושה:\n• סוכן content — כותב קופי 7 שקפים לפי voice-reference (לא יודע על HTML)\n• Gate 1 — מציג קופי, ממתין לאישורך לפני המשך\n• סוכן humanizer — מנקה AI-patterns מהקופי (לא יודע על הנושא)\n• סוכן html — בונה HTML מהתבנית (לא יודע על הקופי המקורי)\n• סוכן qa — בודק 10 פרמטרים ומחזיר PASS/FAIL (לא יודע מה קרה לפניו)\n• Gate 2 — פותח דפדפן, ממתין לאישור לפני ייצוא\n• Bash export — Playwright מצלם 7 PNG בדיוק 1080x1080\n• סוכן caption — כותב קפשן מוכן לאינסטגרם לפי voice-reference\n\nדוגמאות:\n• carousel agent MCPs\n• סוכן קרוסלה — Claude Code ו-hooks\n• carousel agent productivity tools for creators\n• סוכן קרוסלה — יתרון לא הוגן עם AI\n• carousel agent n8n automations\n\nמה מקבלים:\n• קובץ HTML + 7 תמונות PNG 1080x1080 + קפשן מוכן לאינסטגרם",
+    "steps": [
+      {
+        "t": "כתוב את הטריגר + הנושא:",
+        "c": "carousel agent [נושא]"
+      },
+      {
+        "t": "Gate 1: Claude מציג קופי 7 שקפים — אשר או ערוך",
+        "c": "כן"
+      },
+      {
+        "t": "Gate 2: Claude פותח דפדפן — אשר ייצוא PNG",
+        "c": "כן"
+      }
+    ],
+    "usage": "\"carousel agent [נושא]\""
+  },
+  {
     "cmd": "remotion-best-practices",
     "cat": "build",
     "uc": [
