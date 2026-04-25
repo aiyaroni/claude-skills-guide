@@ -2785,5 +2785,94 @@ export const SKILLS = [
       }
     ],
     "usage": "\"/prompt-mastermind\" → תאר מה אתה צריך → ענה שאלות → פרומפט מוכן"
+  },
+  {
+    "cmd": "agent-sdk-dev:new-sdk-app",
+    "cat": "dev",
+    "uc": ["dev", "automation"],
+    "triggers": [
+      "/agent-sdk-dev:new-sdk-app",
+      "new-sdk-app",
+      "צור אפליקציית Agent SDK",
+      "בנה agent sdk",
+      "Claude Agent SDK",
+      "agent sdk app",
+      "new sdk app"
+    ],
+    "desc": "יוצר אפליקציית Claude Agent SDK חדשה — TypeScript או Python — כולל הגדרה מלאה ו-verification",
+    "detail": "רוצה לבנות אפליקציה עם Claude Agent SDK? הסקיל מוביל אותך שלב אחר שלב — מבחירת שפה ועד קוד עובד מאומת.\n\nהסקיל שואל שאלות אחת-אחת: TypeScript או Python, שם הפרויקט, סוג הסוכן (coding / business / custom), ונקודת התחלה (Hello World / basic / use-case). בסוף — מפעיל אוטומטית את ה-verifier המתאים.\n\n⚠️ חשוב: הסקיל תמיד מוריד את הגרסאות העדכניות ביותר מ-npm/PyPI לפני ההתקנה, ומריץ type-check (TypeScript) לפני שמסמן as done.\n\nמה הסקיל מגדיר:\n• TypeScript: package.json עם type:module, tsconfig.json, index.ts עם imports נכונים\n• Python: requirements.txt, main.py עם imports נכונים\n• .env.example עם ANTHROPIC_API_KEY\n• .gitignore עם .env\n• אפשרות ל-.claude/ directory עם subagents ו-commands\n\nדוגמאות:\n• \"new-sdk-app my-agent\" — [יתחיל עם שם my-agent]\n• סוכן TypeScript לביקורת קוד — [יבנה coding agent]\n• סוכן Python לתמיכת לקוחות — [יבנה business agent]\n\nמה מקבלים:\n• פרויקט מלא עובד עם קוד מאומת\n• הוראות הרצה ברורות\n• קישורים לדוקументציה הרשמית",
+    "steps": [
+      {
+        "t": "כתוב את הפקודה (אפשר עם שם הפרויקט)",
+        "c": "/agent-sdk-dev:new-sdk-app my-agent"
+      },
+      {
+        "t": "ענה על 5 שאלות אחת-אחת: שפה, שם, סוג סוכן, נקודת התחלה, package manager",
+        "c": "\"TypeScript\" → \"my-agent\" → \"coding agent לביקורת קוד\" → \"basic\" → \"npm\""
+      },
+      {
+        "t": "קבל פרויקט מלא עם קוד מאומת + הוראות הרצה",
+        "c": null
+      }
+    ],
+    "usage": "\"/agent-sdk-dev:new-sdk-app [שם]\" → ענה שאלות → פרויקט מוכן"
+  },
+  {
+    "cmd": "agent-sdk-dev:agent-sdk-verifier-py",
+    "cat": "dev",
+    "uc": ["dev", "qa"],
+    "triggers": [
+      "/agent-sdk-dev:agent-sdk-verifier-py",
+      "agent-sdk-verifier-py",
+      "בדוק Python Agent SDK",
+      "verify python sdk",
+      "python agent sdk verification"
+    ],
+    "desc": "מוודא ש-Python Agent SDK app מוגדר נכון לפי הדוקументציה הרשמית של Anthropic",
+    "detail": "סיימת לבנות Python Agent SDK app? הסוכן הזה בודק שהכל מוגדר נכון לפני deploy או testing.\n\nהסוכן בודק את הקוד מול הדוקументציה הרשמית בזמן אמת — לא רק syntax, אלא האם ה-patterns תואמים את ה-SDK docs.\n\nמה נבדק:\n• התקנה: האם claude-agent-sdk מותקן ועדכני\n• Imports: ייבוא נכון מ-claude_agent_sdk\n• SDK patterns: initialization, system prompts, models, permissions\n• Response handling: streaming vs single mode\n• אבטחה: .env.example, .gitignore, ללא hardcoded API keys\n• MCP integration אם קיים\n• תיעוד ו-README\n\nמה מקבלים:\n• דוח עם סטטוס: PASS / PASS WITH WARNINGS / FAIL\n• Critical Issues — בעיות שמונעות פעולה\n• Warnings — שימוש suboptimal\n• Passed Checks — מה עובד נכון\n• המלצות ספציפיות עם קישורים לדוקументציה",
+    "steps": [
+      {
+        "t": "הפעל את הסוכן לאחר יצירה או שינוי של Python Agent SDK app",
+        "c": "/agent-sdk-dev:agent-sdk-verifier-py"
+      },
+      {
+        "t": "הסוכן קורא את הקבצים ובודק מול docs.claude.com",
+        "c": null
+      },
+      {
+        "t": "קבל דוח PASS/FAIL עם בעיות ספציפיות והמלצות",
+        "c": null
+      }
+    ],
+    "usage": "הפעל אחרי יצירת Python Agent SDK app לקבלת דוח verification"
+  },
+  {
+    "cmd": "agent-sdk-dev:agent-sdk-verifier-ts",
+    "cat": "dev",
+    "uc": ["dev", "qa"],
+    "triggers": [
+      "/agent-sdk-dev:agent-sdk-verifier-ts",
+      "agent-sdk-verifier-ts",
+      "בדוק TypeScript Agent SDK",
+      "verify typescript sdk",
+      "typescript agent sdk verification"
+    ],
+    "desc": "מוודא ש-TypeScript Agent SDK app מוגדר נכון — כולל type checking ובדיקה מול הדוקументציה הרשמית",
+    "detail": "סיימת לבנות TypeScript Agent SDK app? הסוכן הזה בודק שהכל מוגדר נכון לפני deploy או testing.\n\nהסוכן בודק את הקוד מול הדוקументציה הרשמית בזמן אמת ומריץ type checking אמיתי.\n\nמה נבדק:\n• התקנה: האם @anthropic-ai/claude-agent-sdk מותקן ועדכני\n• package.json: type:\"module\", scripts (build/start/typecheck)\n• tsconfig.json: הגדרות נכונות ל-ES modules\n• Imports: ייבוא נכון מ-@anthropic-ai/claude-agent-sdk\n• SDK patterns: initialization, system prompts, models, permissions\n• Type checking: מריץ npx tsc --noEmit ומדווח שגיאות\n• אבטחה: .env.example, .gitignore, ללא hardcoded API keys\n• MCP integration אם קיים\n\nמה מקבלים:\n• דוח עם סטטוס: PASS / PASS WITH WARNINGS / FAIL\n• Critical Issues — type errors, שגיאות compilation, בעיות SDK\n• Warnings — שימוש suboptimal\n• Passed Checks — מה עובד נכון\n• המלצות ספציפיות עם קישורים לדוקументציה",
+    "steps": [
+      {
+        "t": "הפעל את הסוכן לאחר יצירה או שינוי של TypeScript Agent SDK app",
+        "c": "/agent-sdk-dev:agent-sdk-verifier-ts"
+      },
+      {
+        "t": "הסוכן קורא קבצים, מריץ type check, ובודק מול docs.claude.com",
+        "c": null
+      },
+      {
+        "t": "קבל דוח PASS/FAIL עם בעיות ספציפיות והמלצות",
+        "c": null
+      }
+    ],
+    "usage": "הפעל אחרי יצירת TypeScript Agent SDK app לקבלת דוח verification"
   }
 ]
