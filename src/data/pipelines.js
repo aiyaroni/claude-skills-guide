@@ -113,15 +113,6 @@ export const PIPELINES = [
      {cmd:'webapp-testing',stepLabel:'בדיקות'}
    ]
   },
-  {id:'whatsapp-bot',group:'product',name:'בוט שיחתי ללקוח',emoji:'🤖',
-   desc:'הגדרה → בנייה → deploy → WhatsApp / Telegram / ווב',
-   skills:[
-     {cmd:'business-analyst',stepLabel:'מפרט דרישות'},
-     {cmd:'build-agent',stepLabel:'בניית הבוט'},
-     {cmd:'claude-api',stepLabel:'כיוון Claude'},
-     {cmd:'frontend-design:frontend-design',stepLabel:'ממשק ווב (אופציה)'}
-   ]
-  },
   {id:'presentation',group:'product',name:'מצגת ודוח',emoji:'📊',
    desc:'תכנון → עיצוב → קובץ מוכן',
    skills:[
