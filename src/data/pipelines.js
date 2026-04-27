@@ -125,7 +125,9 @@ export const PIPELINES = [
    desc:'feature → review → commit → PR',
    skills:[
      {cmd:'/feature-dev:feature-dev',stepLabel:'פיתוח feature'},
-     {cmd:'/code-review:code-review',stepLabel:'ביקורת קוד'},
+     {cmd:'caveman-review',stepLabel:'ביקורת קצרה'},
+     {cmd:'/code-review:code-review',stepLabel:'ביקורת מלאה'},
+     {cmd:'caveman-commit',stepLabel:'commit מדויק'},
      {cmd:'/commit-commands:commit-push-pr',stepLabel:'push + PR'},
      {cmd:'/pr-review-toolkit:review-pr',stepLabel:'review מקיף'}
    ]
@@ -336,6 +338,15 @@ export const PIPELINES = [
        howto:'כתוב "/design-audit", בחר "5" (cheap), צרף צילום מסך — מתאים גם כנקודת כניסה ראשונה',
        expect:'Pro tip: שלב 5 נותן את הבעיה הראשית מהר. שלבים 1-4 מתקנים כל שכבה בשיטתיות'
      }}
+   ]
+  },
+  {id:'hyperframes-video',group:'product',name:'וידאו מאתר',emoji:'🎥',
+   desc:'צלם אתר → בנה קומפוזיציה → ייצא לוידאו',
+   skills:[
+     {cmd:'website-to-hyperframes',stepLabel:'צלם אתר'},
+     {cmd:'hyperframes',stepLabel:'בנה קומפוזיציה'},
+     {cmd:'hyperframes-cli',stepLabel:'render לוידאו'},
+     {cmd:'/post:post-instagram',stepLabel:'קפשן לפרסום'}
    ]
   }
 ]
