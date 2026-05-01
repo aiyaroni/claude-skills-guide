@@ -73,12 +73,12 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
             {CAT_LABELS[skill.cat] || skill.cat}
           </span>
           <div style={{
-            marginTop: 8
+            marginTop: 10
           }}>
             <span style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: 13,
+              fontFamily: "'JetBrains Mono', monospace", fontSize: 16, fontWeight: 600,
               color: 'var(--lime)', wordBreak: 'break-all',
-              background: 'var(--black2)', padding: '2px 8px', borderRadius: 4,
+              background: 'var(--black2)', padding: '4px 12px', borderRadius: 6,
               display: 'inline-block'
             }}>
               {skill.cmd}
@@ -108,7 +108,7 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
       {/* Detail */}
       {skill.detail && (
         <Section title="מה זה עושה בפועל">
-          <div style={{ fontSize: 12, color: 'var(--text-mid)', lineHeight: 1.7 }}>
+          <div style={{ fontSize: 16, color: 'var(--text-mid)', lineHeight: 1.7 }}>
             {skill.detail.split('\n').map((line, i) => {
               const isHeading = line.trim().endsWith(':') || line.trim().endsWith('?')
               const isEmpty = line.trim() === ''
@@ -116,7 +116,7 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
               if (isHeading) return (
                 <div key={i} style={{
                   fontWeight: 700, color: 'var(--fuchsia)',
-                  fontSize: 12, marginTop: 12, marginBottom: 4
+                  fontSize: 15, marginTop: 12, marginBottom: 6
                 }}>{line}</div>
               )
               return <div key={i}>{line}</div>
@@ -128,13 +128,13 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
       {/* Triggers */}
       {skill.triggers && skill.triggers.length > 0 && (
         <Section title="טריגרים">
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {skill.triggers.map((t, i) => (
               <span
                 key={i}
                 onClick={() => copyText(t)}
                 style={{
-                  fontSize: 11, padding: '4px 8px', borderRadius: 4,
+                  fontSize: 15, padding: '6px 12px', borderRadius: 6,
                   background: 'var(--cream2)', border: '1px solid var(--border2)',
                   color: 'var(--text-mid)', cursor: 'pointer'
                 }}
@@ -180,7 +180,7 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
               key={i}
               onClick={() => n.prompt && copyText(n.prompt)}
               style={{
-                padding: '10px 12px', borderRadius: 'var(--radius-sm)', marginBottom: 8,
+                padding: '12px 14px', borderRadius: 'var(--radius-sm)', marginBottom: 10,
                 background: 'var(--cream2)', border: '1px solid var(--border)',
                 cursor: n.prompt ? 'pointer' : 'default',
                 transition: 'background 0.2s'
@@ -188,11 +188,11 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
               onMouseEnter={(e) => n.prompt && (e.currentTarget.style.background = 'var(--cream3)')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--cream2)')}
             >
-              <div style={{ fontSize: 13, marginBottom: 4 }}>
-                <span style={{ marginLeft: 6 }}>{n.emoji}</span>
-                <strong style={{ color: 'var(--text)' }}>{n.label}</strong>
+              <div style={{ fontSize: 15, marginBottom: 4, fontWeight: 600 }}>
+                <span style={{ marginRight: 8 }}>{n.emoji}</span>
+                {n.label}
               </div>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{n.hint}</div>
+              <div style={{ fontSize: 14, color: 'var(--text-muted)' }}>{n.hint}</div>
             </div>
           ))}
         </Section>
@@ -203,11 +203,11 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
 
 function Section({ title, children }) {
   return (
-    <div style={{ marginBottom: 20 }}>
+    <div style={{ marginBottom: 24 }}>
       <div style={{
-        fontSize: 11, fontWeight: 700, color: 'var(--black2)',
-        letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 12,
-        borderBottom: '1px solid var(--border)', paddingBottom: 8
+        fontSize: 13, fontWeight: 700, color: 'var(--black2)',
+        letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 14,
+        borderBottom: '1px solid var(--border)', paddingBottom: 10
       }}>
         {title}
       </div>
@@ -218,20 +218,20 @@ function Section({ title, children }) {
 
 function StepItem({ num, label, code, onCopy }) {
   return (
-    <div style={{ marginBottom: 12 }}>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: code ? 6 : 0 }}>
-        <span style={{ color: 'var(--lime)', fontWeight: 700, flexShrink: 0, fontSize: 14 }}>{num}</span>
-        <span style={{ fontSize: 12, color: 'var(--text-mid)', fontWeight: 500 }}>{label}</span>
+    <div style={{ marginBottom: 16 }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: code ? 8 : 0 }}>
+        <span style={{ color: 'var(--lime)', fontWeight: 700, flexShrink: 0, fontSize: 18 }}>{num}</span>
+        <span style={{ fontSize: 15, color: 'var(--text-mid)', fontWeight: 500 }}>{label}</span>
       </div>
       {code && (
         <div
           onClick={() => onCopy(code)}
           style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
+            fontFamily: "'JetBrains Mono', monospace", fontSize: 15,
             background: 'var(--cream3)', border: '1px solid var(--border2)',
-            borderRadius: 4, padding: '6px 10px', color: 'var(--black)',
-            cursor: 'pointer', marginLeft: 16, wordBreak: 'break-all',
-            lineHeight: 1.5
+            borderRadius: 6, padding: '8px 12px', color: 'var(--black)',
+            cursor: 'pointer', marginLeft: 20, wordBreak: 'break-all',
+            lineHeight: 1.6
           }}
         >
           {code}

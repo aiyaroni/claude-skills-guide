@@ -9,11 +9,11 @@ export default function SkillGrid() {
     : activeCat === 'all' ? 'כל הסקילים' : activeCat
 
   return (
-    <div style={{ padding: '16px 20px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-        <h2 style={{ fontSize: 16, fontWeight: 600, color: 'var(--text)' }}>{title}</h2>
+    <div style={{ padding: '20px 24px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)' }}>{title}</h2>
         <span style={{
-          fontSize: 11, padding: '2px 8px', borderRadius: 'var(--radius-sm)',
+          fontSize: 13, padding: '4px 10px', borderRadius: 'var(--radius-sm)', fontWeight: 600,
           background: 'rgba(200,255,0,0.2)', color: '#3a5000'
         }}>{filtered.length}</span>
       </div>

@@ -51,7 +51,7 @@ export default function Sidebar() {
 
       {/* Categories */}
       <div style={{ padding: '12px 0' }}>
-        <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.08em', padding: '0 16px 8px', textTransform: 'uppercase' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.08em', padding: '0 16px 10px', textTransform: 'uppercase' }}>
           קטגוריות
         </div>
         <CatItem label="הכל" color="#445" active={activeCat === 'all'} count={allSkills.length} onClick={() => setActiveCat('all')} />
@@ -69,7 +69,7 @@ export default function Sidebar() {
 
       {/* UC */}
       <div style={{ padding: '12px 0', borderTop: '1px solid var(--border)' }}>
-        <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.08em', padding: '0 16px 8px', textTransform: 'uppercase' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.08em', padding: '0 16px 10px', textTransform: 'uppercase' }}>
           לפי שימוש
         </div>
         <UCItem label="הכל" active={activeUC === 'all'} onClick={() => setActiveUC('all')} />
@@ -80,7 +80,7 @@ export default function Sidebar() {
 
       {/* Pipelines */}
       <div style={{ padding: '12px 0', borderTop: '1px solid var(--border)' }}>
-        <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.08em', padding: '0 16px 8px', textTransform: 'uppercase' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.08em', padding: '0 16px 10px', textTransform: 'uppercase' }}>
           מסלולים
         </div>
         {activePipeline && (
@@ -138,17 +138,17 @@ function CatItem({ label, color, active, count, onClick }) {
       onClick={onClick}
       style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '7px 16px', cursor: 'pointer',
+        padding: '8px 16px', cursor: 'pointer',
         background: active ? 'var(--lime)' : 'transparent',
         borderRight: active ? '2px solid var(--black2)' : '2px solid transparent',
         transition: 'all 0.15s'
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ width: 7, height: 7, borderRadius: '50%', background: color, flexShrink: 0 }} />
-        <span style={{ fontSize: 13, color: active ? 'var(--black)' : 'var(--text-muted)' }}>{label}</span>
+        <span style={{ width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0 }} />
+        <span style={{ fontSize: 14, color: active ? 'var(--black)' : 'var(--text-muted)' }}>{label}</span>
       </div>
-      <span style={{ fontSize: 11, color: active ? 'var(--black)' : 'var(--text-muted)', background: active ? 'transparent' : 'var(--cream3)', padding: '2px 6px', borderRadius: 4 }}>{count}</span>
+      <span style={{ fontSize: 12, color: active ? 'var(--black)' : 'var(--text-muted)', background: active ? 'transparent' : 'var(--cream3)', padding: '2px 8px', borderRadius: 4 }}>{count}</span>
     </div>
   )
 }
@@ -158,7 +158,7 @@ function UCItem({ label, active, onClick }) {
     <div
       onClick={onClick}
       style={{
-        padding: '6px 16px', cursor: 'pointer', fontSize: 12,
+        padding: '7px 16px', cursor: 'pointer', fontSize: 13,
         color: active ? 'var(--black)' : 'var(--text-muted)',
         background: active ? 'var(--lime)' : 'transparent',
         fontWeight: active ? 600 : 400,
@@ -172,9 +172,9 @@ function UCItem({ label, active, onClick }) {
 
 function StatRow({ label, value }) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-      <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{label}</span>
-      <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{value}</span>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+      <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{label}</span>
+      <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{value}</span>
     </div>
   )
 }

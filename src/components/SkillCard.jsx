@@ -31,19 +31,19 @@ export default function SkillCard({ skill }) {
       </div>
       {/* Cmd */}
       <div style={{
-        marginBottom: 6
+        marginBottom: 8
       }}>
         <span style={{
-          fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 13, fontWeight: 600,
           color: 'var(--lime)', wordBreak: 'break-all',
-          background: 'var(--black2)', padding: '2px 8px', borderRadius: 4,
+          background: 'var(--black2)', padding: '3px 9px', borderRadius: 5,
           display: 'inline-block'
         }}>
           {skill.cmd}
         </span>
       </div>
       {/* Desc */}
-      <div style={{ fontSize: 12, color: 'var(--text-mid)', lineHeight: 1.5 }}>
+      <div style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 1.6 }}>
         {skill.desc}
       </div>
       {/* UC tags */}
