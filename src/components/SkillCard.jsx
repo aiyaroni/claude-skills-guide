@@ -13,10 +13,11 @@ export default function SkillCard({ skill }) {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       style={{
-        background: isSelected ? 'var(--surface-hover)' : 'var(--surface)',
-        border: `1px solid ${isSelected ? 'var(--lime)' : 'var(--border)'}`,
-        borderRadius: 10, padding: '12px 14px',
-        cursor: 'pointer', transition: 'border-color 0.15s'
+        background: isSelected ? 'var(--cream2)' : 'var(--white)',
+        border: `1px solid ${isSelected ? 'var(--black2)' : 'var(--border)'}`,
+        borderRadius: 'var(--radius-sm)', padding: '12px 14px',
+        cursor: 'pointer', transition: 'all 0.15s',
+        boxShadow: isSelected ? 'var(--shadow)' : 'none'
       }}
     >
       {/* Cat badge */}
@@ -30,13 +31,19 @@ export default function SkillCard({ skill }) {
       </div>
       {/* Cmd */}
       <div style={{
-        fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
-        color: 'var(--lime)', marginBottom: 6, wordBreak: 'break-all'
+        marginBottom: 6
       }}>
-        {skill.cmd}
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
+          color: 'var(--lime)', wordBreak: 'break-all',
+          background: 'var(--black2)', padding: '2px 8px', borderRadius: 4,
+          display: 'inline-block'
+        }}>
+          {skill.cmd}
+        </span>
       </div>
       {/* Desc */}
-      <div style={{ fontSize: 12, color: 'var(--text-body)', lineHeight: 1.5 }}>
+      <div style={{ fontSize: 12, color: 'var(--text-mid)', lineHeight: 1.5 }}>
         {skill.desc}
       </div>
       {/* UC tags */}
@@ -44,8 +51,9 @@ export default function SkillCard({ skill }) {
         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 8 }}>
           {skill.uc.map(u => (
             <span key={u} style={{
-              fontSize: 9, padding: '1px 5px', borderRadius: 3,
-              background: 'var(--bg)', color: 'var(--text-dim)'
+              fontSize: 9, padding: '2px 6px', borderRadius: 'var(--radius-sm)',
+              background: 'var(--cream3)', border: '1px solid var(--border)',
+              color: 'var(--text-muted)'
             }}>{u}</span>
           ))}
         </div>

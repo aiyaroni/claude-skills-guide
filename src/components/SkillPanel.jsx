@@ -15,21 +15,43 @@ export default function SkillPanel() {
   return (
     <AnimatePresence>
       {selectedSkill && (
-        <motion.aside
-          key={selectedSkill.cmd}
-          initial={{ x: -320, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -320, opacity: 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          style={{
-            width: 456, flexShrink: 0,
-            background: 'var(--surface)',
-            borderRight: '1px solid var(--border)',
-            overflowY: 'auto', display: 'flex', flexDirection: 'column'
-          }}
-        >
-          <PanelContent skill={selectedSkill} stepContext={stepContext} onClose={() => setSelectedSkill(null)} copyText={copyText} />
-        </motion.aside>
+        <>
+          {/* Backdrop */}
+          <motion.div
+            key="overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedSkill(null)}
+            style={{
+              position: 'fixed', inset: 0,
+              background: 'rgba(0,0,0,0.5)',
+              backdropFilter: 'blur(2px)',
+              zIndex: 200
+            }}
+          />
+          {/* Modal panel */}
+          <motion.div
+            key={selectedSkill.cmd}
+            initial={{ opacity: 0, scale: 0.95, x: '-50%', y: 'calc(-50% + 20px)' }}
+            animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
+            exit={{ opacity: 0, scale: 0.95, x: '-50%', y: 'calc(-50% + 20px)' }}
+            transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+            style={{
+              position: 'fixed', top: '50%', left: '50%',
+              width: '90vw', maxWidth: 600,
+              maxHeight: '85vh',
+              overflowY: 'auto',
+              background: 'var(--white)',
+              borderRadius: 'var(--radius)',
+              boxShadow: 'var(--shadow-lg)',
+              zIndex: 201,
+              padding: 28
+            }}
+          >
+            <PanelContent skill={selectedSkill} stepContext={stepContext} onClose={() => setSelectedSkill(null)} copyText={copyText} />
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   )
@@ -40,9 +62,9 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
   const isMcp = skill.cat === 'mcp'
 
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
         <div>
           <span style={{
             fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 4,
@@ -51,18 +73,24 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
             {CAT_LABELS[skill.cat] || skill.cat}
           </span>
           <div style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: 13,
-            color: 'var(--lime)', marginTop: 8, wordBreak: 'break-all'
+            marginTop: 8
           }}>
-            {skill.cmd}
+            <span style={{
+              fontFamily: "'JetBrains Mono', monospace", fontSize: 13,
+              color: 'var(--lime)', wordBreak: 'break-all',
+              background: 'var(--black2)', padding: '2px 8px', borderRadius: 4,
+              display: 'inline-block'
+            }}>
+              {skill.cmd}
+            </span>
           </div>
-          <div style={{ fontSize: 12, color: 'var(--text-body)', marginTop: 4, lineHeight: 1.5 }}>
+          <div style={{ fontSize: 13, color: 'var(--text-mid)', marginTop: 8, lineHeight: 1.5 }}>
             {skill.desc}
           </div>
         </div>
         <button
           onClick={onClose}
-          style={{ background: 'none', border: 'none', color: 'var(--text-dim)', fontSize: 18, cursor: 'pointer', padding: 4 }}
+          style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: 20, cursor: 'pointer', padding: 0, minWidth: 24, minHeight: 24 }}
         >×</button>
       </div>
 
@@ -80,7 +108,7 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
       {/* Detail */}
       {skill.detail && (
         <Section title="מה זה עושה בפועל">
-          <div style={{ fontSize: 12, color: 'var(--text-body)', lineHeight: 1.7 }}>
+          <div style={{ fontSize: 12, color: 'var(--text-mid)', lineHeight: 1.7 }}>
             {skill.detail.split('\n').map((line, i) => {
               const isHeading = line.trim().endsWith(':') || line.trim().endsWith('?')
               const isEmpty = line.trim() === ''
@@ -106,9 +134,9 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
                 key={i}
                 onClick={() => copyText(t)}
                 style={{
-                  fontSize: 11, padding: '3px 8px', borderRadius: 4,
-                  background: 'var(--bg)', border: '1px solid var(--border)',
-                  color: 'var(--text-dim)', cursor: 'pointer'
+                  fontSize: 11, padding: '4px 8px', borderRadius: 4,
+                  background: 'var(--cream2)', border: '1px solid var(--border2)',
+                  color: 'var(--text-mid)', cursor: 'pointer'
                 }}
               >{t}</span>
             ))}
@@ -135,8 +163,8 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
       {/* Pipeline context */}
       {stepContext && (
         <Section title="הקשר בפייפליין">
-          <div style={{ fontSize: 12, color: 'var(--text-body)', lineHeight: 1.6 }}>
-            <div style={{ color: 'var(--lime)', marginBottom: 6 }}>{stepContext.short}</div>
+          <div style={{ fontSize: 12, color: 'var(--text-mid)', lineHeight: 1.6 }}>
+            <div style={{ color: 'var(--lime)', marginBottom: 6, fontWeight: 600 }}>{stepContext.short}</div>
             {stepContext.what && <div><strong>מה:</strong> {stepContext.what}</div>}
             {stepContext.howto && <div style={{ marginTop: 4 }}><strong>איך:</strong> {stepContext.howto}</div>}
             {stepContext.expect && <div style={{ marginTop: 4 }}><strong>לצפות:</strong> {stepContext.expect}</div>}
@@ -152,16 +180,19 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
               key={i}
               onClick={() => n.prompt && copyText(n.prompt)}
               style={{
-                padding: '10px 12px', borderRadius: 8, marginBottom: 6,
-                background: 'var(--bg)', border: '1px solid var(--border)',
-                cursor: n.prompt ? 'pointer' : 'default'
+                padding: '10px 12px', borderRadius: 'var(--radius-sm)', marginBottom: 8,
+                background: 'var(--cream2)', border: '1px solid var(--border)',
+                cursor: n.prompt ? 'pointer' : 'default',
+                transition: 'background 0.2s'
               }}
+              onMouseEnter={(e) => n.prompt && (e.currentTarget.style.background = 'var(--cream3)')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--cream2)')}
             >
-              <div style={{ fontSize: 13, marginBottom: 3 }}>
+              <div style={{ fontSize: 13, marginBottom: 4 }}>
                 <span style={{ marginLeft: 6 }}>{n.emoji}</span>
                 <strong style={{ color: 'var(--text)' }}>{n.label}</strong>
               </div>
-              <div style={{ fontSize: 11, color: 'var(--text-dim)' }}>{n.hint}</div>
+              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{n.hint}</div>
             </div>
           ))}
         </Section>
@@ -174,9 +205,9 @@ function Section({ title, children }) {
   return (
     <div style={{ marginBottom: 20 }}>
       <div style={{
-        fontSize: 12, fontWeight: 700, color: 'var(--lime)',
-        letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 10,
-        borderBottom: '1px solid var(--border)', paddingBottom: 6
+        fontSize: 11, fontWeight: 700, color: 'var(--black2)',
+        letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 12,
+        borderBottom: '1px solid var(--border)', paddingBottom: 8
       }}>
         {title}
       </div>
@@ -187,19 +218,19 @@ function Section({ title, children }) {
 
 function StepItem({ num, label, code, onCopy }) {
   return (
-    <div style={{ marginBottom: 10 }}>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: code ? 4 : 0 }}>
-        <span style={{ color: 'var(--lime)', fontWeight: 700, flexShrink: 0 }}>{num}</span>
-        <span style={{ fontSize: 12, color: 'var(--text-body)' }}>{label}</span>
+    <div style={{ marginBottom: 12 }}>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: code ? 6 : 0 }}>
+        <span style={{ color: 'var(--lime)', fontWeight: 700, flexShrink: 0, fontSize: 14 }}>{num}</span>
+        <span style={{ fontSize: 12, color: 'var(--text-mid)', fontWeight: 500 }}>{label}</span>
       </div>
       {code && (
         <div
           onClick={() => onCopy(code)}
           style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-            background: 'var(--bg)', border: '1px solid var(--border)',
-            borderRadius: 6, padding: '6px 10px', color: 'var(--lime)',
-            cursor: 'pointer', marginRight: 20, wordBreak: 'break-all',
+            background: 'var(--cream3)', border: '1px solid var(--border2)',
+            borderRadius: 4, padding: '6px 10px', color: 'var(--black)',
+            cursor: 'pointer', marginLeft: 16, wordBreak: 'break-all',
             lineHeight: 1.5
           }}
         >

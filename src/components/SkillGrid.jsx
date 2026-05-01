@@ -13,8 +13,8 @@ export default function SkillGrid() {
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
         <h2 style={{ fontSize: 16, fontWeight: 600, color: 'var(--text)' }}>{title}</h2>
         <span style={{
-          fontSize: 11, padding: '2px 8px', borderRadius: 4,
-          background: 'var(--lime-dim)', color: 'var(--lime)'
+          fontSize: 11, padding: '2px 8px', borderRadius: 'var(--radius-sm)',
+          background: 'rgba(200,255,0,0.2)', color: '#3a5000'
         }}>{filtered.length}</span>
       </div>
       <div style={{
