@@ -3,7 +3,7 @@ import { useApp } from '../store.jsx'
 import { CAT_LABELS, CAT_COLORS } from '../data/config.js'
 
 export default function SkillPanel() {
-  const { selectedSkill, setSelectedSkill, activePipeline, allSkills, copyText } = useApp()
+  const { selectedSkill, setSelectedSkill, activePipeline, allSkills, copyText, shareSkill } = useApp()
 
   // מצא את ה-pipeline step context אם קיים
   let stepContext = null
@@ -49,7 +49,7 @@ export default function SkillPanel() {
               padding: 28
             }}
           >
-            <PanelContent skill={selectedSkill} stepContext={stepContext} onClose={() => setSelectedSkill(null)} copyText={copyText} />
+            <PanelContent skill={selectedSkill} stepContext={stepContext} onClose={() => setSelectedSkill(null)} copyText={copyText} shareSkill={shareSkill} />
           </motion.div>
         </>
       )}
@@ -57,15 +57,24 @@ export default function SkillPanel() {
   )
 }
 
-function PanelContent({ skill, stepContext, onClose, copyText }) {
+function PanelContent({ skill, stepContext, onClose, copyText, shareSkill }) {
   const catColor = CAT_COLORS[skill.cat] || '#888'
   const isMcp = skill.cat === 'mcp'
+
+  const handleCopy = () => {
+    const cmd = skill.cmd.startsWith('/') ? skill.cmd : '/' + skill.cmd
+    copyText(cmd, 'פקודה הועתקה ✓')
+  }
+
+  const handleShare = () => {
+    shareSkill(skill)
+  }
 
   return (
     <div>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-        <div>
+        <div style={{ flex: 1 }}>
           <span style={{
             fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 4,
             background: `${catColor}20`, color: catColor, letterSpacing: '0.05em'
@@ -87,10 +96,49 @@ function PanelContent({ skill, stepContext, onClose, copyText }) {
           <div style={{ fontSize: 13, color: 'var(--text-mid)', marginTop: 8, lineHeight: 1.5 }}>
             {skill.desc}
           </div>
+          {/* Action buttons */}
+          <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+            <button
+              onClick={handleCopy}
+              style={{
+                background: 'var(--black)',
+                border: 'none',
+                color: 'var(--lime)',
+                padding: '8px 14px',
+                borderRadius: 6,
+                fontSize: 13,
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.85'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+            >
+              📋 העתק פקודה
+            </button>
+            <button
+              onClick={handleShare}
+              style={{
+                background: 'var(--cream2)',
+                border: '1px solid var(--border)',
+                color: 'var(--text)',
+                padding: '8px 14px',
+                borderRadius: 6,
+                fontSize: 13,
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--cream3)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--cream2)'}
+            >
+              🔗 שתף
+            </button>
+          </div>
         </div>
         <button
           onClick={onClose}
-          style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: 20, cursor: 'pointer', padding: 0, minWidth: 24, minHeight: 24 }}
+          style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: 20, cursor: 'pointer', padding: 0, minWidth: 24, minHeight: 24, flexShrink: 0 }}
         >×</button>
       </div>
 

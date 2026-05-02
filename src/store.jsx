@@ -44,9 +44,14 @@ export function AppProvider({ children }) {
     setTimeout(() => setToastMsg(''), 2000)
   }, [])
 
-  const copyText = useCallback((text) => {
-    navigator.clipboard.writeText(text).then(() => showToast('הועתק ✓'))
+  const copyText = useCallback((text, message = 'הועתק ✓') => {
+    navigator.clipboard.writeText(text).then(() => showToast(message))
   }, [showToast])
+
+  const shareSkill = useCallback((skill) => {
+    const url = `${window.location.origin}${window.location.pathname}?skill=${encodeURIComponent(skill.cmd)}`
+    copyText(url, 'קישור הועתק ✓')
+  }, [copyText])
 
   return (
     <AppContext.Provider value={{
@@ -61,6 +66,7 @@ export function AppProvider({ children }) {
       toastMsg,
       showToast,
       copyText,
+      shareSkill,
     }}>
       {children}
     </AppContext.Provider>
