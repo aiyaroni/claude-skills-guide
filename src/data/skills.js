@@ -3030,5 +3030,44 @@ export const SKILLS = [
       {"t": "קבל ביקורת SEO מלאה", "c": null}
     ],
     "usage": "\"/market seo [URL]\""
+  },
+  {
+    cmd:'build-agent', cat:'build',
+    uc:['dev','web'],
+    triggers:['/build-agent','build agent','multi-agent','בנה לי בוט','בוט וואטסאפ','בוט טלגרם','מערכת סוכנים','orchestrator','agent architecture','בוט שיחתי'],
+    desc:'בונה מערכת multi-agent מאפס — orchestrator, sub-agents, tools, ודיפלוי ל-Vercel',
+    detail:'רוצה לבנות בוט חכם — בוואטסאפ, בטלגרם, או באתר — שמשתמש בכמה "סוכנים" שעובדים יחד? הסקיל מלמד אותך לבנות את זה נכון, מהארכיטקטורה ועד דיפלוי בפועל.\n\n⚠️ חשוב: הסקיל אוכף **כלל ברזל** — כל סוכן עושה דבר אחד בלבד. סוכן שגם קורא מייל וגם כותב טיוטה = פיצול מיידי. בלי הפרדה קוגנטיבית — המערכת קורסת בייצור.\n\nמתי build-agent ולא agent-sdk-dev:new-sdk-app?\n• agent-sdk-dev:new-sdk-app — scaffolding ל-Agent SDK של אנתרופיק (אגנטים אוטונומיים שרצים לבד ברקע)\n• build-agent — מתודולוגיה מלאה לבניית multi-agent עם Messages API (בוט שיחתי בזמן אמת על WhatsApp/Telegram/Web)\n\nשלוש שכבות (לא לערבב):\n• Orchestrator — מפרש כוונת משתמש, מנתב לסוכנים, מסנתז תוצאות לתשובה אנושית\n• Sub-agent — מומחה לדומיין אחד (email-reader-agent, calendar-agent), בוחר tools, מטפל בשגיאות\n• Tool — קריאת API בלבד, ללא שיקול דעת\n\nשלושת שלבי הסקיל:\n• שלב 1 — הבנה: 5 שאלות (מה הבוט עושה? מקורות נתונים? ממשק קלט? משתמשים? סוג משימה?). מחליט בין Messages API (בוט שיחתי) ל-Managed Agents (אוטומציה ארוכה ברקע)\n• שלב 2 — בנייה: agent-runner.js (לולאת tool-use משותפת), orchestrator.js (KV history + ניתוב), [name]-agent.js, [name]-tools.js (DEFINITIONS + EXECUTORS), server.js (WhatsApp/Web/Telegram), vercel.json עם maxDuration נכון, Google OAuth (אם נדרש)\n• שלב 3 — דיפלוי: Vercel KV לזיכרון שיחה, חיבור webhook (Twilio/Telegram setWebhook), בדיקה מקומית עם curl, push ל-main, multi-tenant namespace (אם עסקי)\n\nדוגמאות:\n• בנה בוט וואטסאפ שקורא מיילים, מסכם דחופים, וכותב טיוטות תגובה — [תיאור עסקי]\n• מערכת סוכנים בטלגרם לניהול לקוחות — קריאת CRM, קביעת פגישות, שליחת מסמכים\n• בוט שיחה באתר Next.js שמתאים מוצרים מקטלוג Shopify — [נישה]\n• אסיסטנט שמתחבר ל-Notion + Google Calendar ועונה בוואטסאפ — [שימוש]\n• multi-tenant SaaS לעורכי דין שמטפל בתיקים — [פיצ\'רים]\n\nמה מקבלים:\n• תכנית ארכיטקטורה לאישור (סוכנים, כלים, APIs) לפני קוד\n• מבנה תיקיות מלא + תבניות העתק-הדבק לכל קובץ\n• vercel.json עם maxDuration ב-builds[].config (לא functions)\n• הוראות חיבור webhook + Vercel KV + setup Google OAuth\n• בדיקת "מוח בכל שכבה" — תחום אחריות / שיקול דעת / טיפול בקצוות',
+    steps:[
+      {t:'כתוב את הפקודה', c:'/build-agent'},
+      {t:'תאר מה לבנות — הסקיל ישאל 5 שאלות (מה? מקורות? ממשק? משתמשים? סוג משימה?)', c:'בנה בוט וואטסאפ שמסנכרן Gmail עם Google Calendar וקובע פגישות'},
+      {t:'קבל ארכיטקטורה לאישור, ואז קוד מלא + הוראות deploy ל-Vercel', c:null}
+    ],
+    usage:'"/build-agent" / "בנה לי בוט וואטסאפ ש..."'
+  },
+  {
+    cmd:'deploy-verify', cat:'automation',
+    uc:['qa','automation'],
+    triggers:['/deploy-verify','verify deploy','תאמת דפלוי','בדוק שהדפלוי עלה','check deployment','אימות פרודקשן','בדיקת דפלוי'],
+    desc:'מאמת שדפלוי לייצור באמת עלה — Git, HTTP, לוגים, endpoints, גנרי לכל פלטפורמה',
+    detail:'סיימת push, ה-CI אומר "Deployed successfully", אבל האם זה באמת עובד? הסקיל מריץ בדיקות אמיתיות — לא רק "השרת מגיב", אלא: ה-commit הנכון על remote, ה-HTTP מחזיר 200, ה-endpoints חיים, ובדיקת לוגים אם משהו נשבר בשקט.\n\n⚠️ חשוב: הסקיל לא יגיד "הדפלוי הצליח" עד שכל הבדיקות עברו. אם יש בעיה — הוא יצטט את שורת השגיאה מהלוגים, לא ינחש.\n\nמתי deploy-verify ולא curl ידני?\n• curl — אומר אם השרת חי, לא אם הקוד החדש שלך עלה\n• deploy-verify — מצליב git commit, HTTP status, time, לוגים, ו-endpoints יחד בדוח אחד\n\nתומך בכל פלטפורמה: Railway, Vercel, Fly.io, Heroku, או שרת custom.\n\nמה הסקיל בודק (6 שלבים):\n• שלב 1 — מציאת URL: סורק CLAUDE.md אחרי שורות עם prod/production/BASE_URL/railway.app/vercel.app/fly.dev/herokuapp.com. אם לא נמצא — שואל את המשתמש\n• שלב 2 — Git: משווה git log -1 מקומי ל-git ls-remote origin HEAD. GIT_OK = ה-commit עלה, GIT_BEHIND = יש לעשות push קודם\n• שלב 3 — HTTP: curl עם http_code ו-time_total. 200 + <5s = ✅, 200 + ≥5s = ⚠️ איטי, 4xx/5xx/timeout = ❌\n• שלב 4 — לוגים: בודק אם CLI מותקן (railway/vercel/fly/heroku), שולף 30 שורות אחרונות, מחפש error/exception/crash/ENOENT/Cannot find\n• שלב 5 — endpoints ספציפיים: סורק CLAUDE.md אחרי /webhook /health /api/* /process ובודק כל אחד עם method מתאים\n• שלב 6 — דוח סיכום: שורה לכל בדיקה (✅/❌), סטטוס סופי ברור\n\nדוגמאות:\n• אחרי push ל-main — תאמת שהדפלוי באמת עלה\n• בוט WhatsApp לא עונה אחרי deploy — [URL]\n• בדוק שעדכון Vercel עלה לפני שאני שולח ללקוח — [URL]\n• דפלוי Railway של API נכשל בשקט — תוציא לי לוגים\n• אחרי שינוי ב-server.js תאמת ש-/webhook עדיין מחזיר 200 ב-<2s — [URL]\n\nמה מקבלים:\n• דוח: 🔗 URL, ✅/❌ Git, ✅/❌ HTTP + זמן, ✅/❌ endpoints, 📋 לוגים\n• סטטוס סופי בעברית: "הדפלוי עלה בהצלחה" או "הדפלוי נכשל — חקור את הלוגים"\n• אם נכשל — שורת השגיאה הראשונה מהלוגים מצוטטת',
+    steps:[
+      {t:'כתוב את הפקודה', c:'/deploy-verify'},
+      {t:'הסקיל יחפש URL ייצור ב-CLAUDE.md, או ישאל אם לא נמצא', c:null},
+      {t:'קבל דוח מלא — Git, HTTP, endpoints, לוגים, וסטטוס סופי', c:null}
+    ],
+    usage:'"/deploy-verify" / "תאמת דפלוי"'
+  },
+  {
+    cmd:'update-skills-guide', cat:'automation',
+    uc:['automation','dev'],
+    triggers:['update-skills-guide','עדכן את מדריך הסקילים','עדכן את claude-skills-guide','סרוק סקילים חדשים','תוסיף לדף','עדכן את הדף','sync skills'],
+    desc:'מסנכרן את מדריך הסקילים עם הסקילים בפועל — סורק skills/, commands/, mcp.json ומוסיף החסרים',
+    detail:'התקנת סקיל חדש ושכחת להוסיף אותו למדריך? הסקיל הזה סורק את ~/.claude/skills/, ~/.claude/commands/, ו-~/.mcp.json — מוצא מה חסר ב-claude-skills-guide ומוסיף אוטומטית, לפי תבנית detail מחייבת.\n\n⚠️ חשוב: לפני שמתחיל לפעול הסקיל ישאל "זיהיתי בקשה לעדכן את מדריך הסקילים. להמשיך?" — אסור לו להריץ בלי אישור מפורש של המשתמש.\n\nמתי update-skills-guide ולא עריכה ידנית?\n• עריכה ידנית של src/data/skills.js — מתאים לסקיל יחיד שאתה מכיר\n• update-skills-guide — סריקה מלאה, אכיפת תבנית detail (פתיחה / ⚠️ / disambiguation / 5 דוגמאות / מה מקבלים), מיפוי קטגוריות אוטומטי, חישוב triggers, ועדכון pipelines\n\nמה הסקיל עושה:\n• סורק 3 מקורות — ~/.claude/skills/*/SKILL.md, ~/.claude/commands/**/*.md, ~/.mcp.json\n• משווה ל-cmd הקיימים ב-src/data/skills.js ו-src/data/mcp.js\n• ממפה קטגוריה לפי מיקום: post/ → post, agency/ → agency, commit-commands+code-review+pr-review-toolkit+feature-dev → dev, hookify/ → hookify, plugin-dev/ → plugins, telegram/ → telegram, skills/ → לפי תוכן (build/dev/docs/automation)\n• מחלץ triggers מ-frontmatter: slash command → "פקודה ידנית", MCP → "מופעל אוטומטית בשיחה", אחרת עד 6 (חובה לכלול 5+ עברית)\n• כותב desc + detail (פסקת פתיחה / ⚠️ / disambiguation / רשימה / 5+ דוגמאות / מה מקבלים) + 3 שלבי steps בעברית\n• מוסיף MCP חדשים כ-MCP · ServiceName עם cat:mcp ל-mcp.js\n• משלים שדה triggers בערכים קיימים שחסר להם\n• מעדכן pipelines: סריקה הוליסטית — האם הסקיל החדש משתלב בפייפליין קיים? האם מצדיק חדש (group: content/product/ops)?\n\nדוגמאות:\n• אחרי התקנה של 5 סקילים חדשים — סנכרן את כולם בבת אחת\n• הוספתי MCP חדש (Stripe, Linear) — תוסיף אותם ל-mcp.js\n• יש סקילים ישנים בלי triggers — תשלים את שדה ה-triggers שלהם\n• התקנתי plugin שלם (hookify/plugin-dev) — תוסיף את כל הפקודות שלו\n• רוצה pipeline חדש סביב סקיל ה-humanizer — [תיאור עסקי]\n\nמה מקבלים:\n• עדכון של src/data/skills.js, src/data/mcp.js, ו-src/data/pipelines.js\n• כל הערכים בעברית, לפי תבנית detail מחייבת\n• ערכים קיימים לא משתנים — רק תוספות',
+    steps:[
+      {t:'תגיד', c:'עדכן את מדריך הסקילים שלי'},
+      {t:'אשר כשהסקיל ישאל "להמשיך?"', c:null},
+      {t:'קבל skills.js / mcp.js / pipelines.js מעודכנים', c:null}
+    ],
+    usage:'"עדכן את מדריך הסקילים"'
   }
 ]
