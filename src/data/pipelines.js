@@ -28,7 +28,7 @@ export const PIPELINES = [
      {cmd:'last30days',stepLabel:'מחקר נושא'},
      {cmd:'copywriting',stepLabel:'כתיבת תוכן'},
      {cmd:'humanizer',stepLabel:'ניקוי AI writing'},
-     {cmd:'doc-coauthoring',stepLabel:'עריכה ופרסום'}
+     {cmd:'MCP · Notion',stepLabel:'עריכה ופרסום'}
    ]
   },
   {id:'market-research',group:'content',name:'ניתוח שוק',emoji:'🔍',
@@ -37,7 +37,7 @@ export const PIPELINES = [
      {cmd:'last30days',stepLabel:'מחקר טרנדים'},
      {cmd:'business-analyst',stepLabel:'ניתוח נתונים'},
      {cmd:'xlsx',stepLabel:'גיליון נתונים'},
-     {cmd:'doc-coauthoring',stepLabel:'כתיבת דוח'}
+     {cmd:'MCP · Notion',stepLabel:'כתיבת דוח'}
    ]
   },
   {id:'reel-creator',group:'content',name:'ריל לאינסטגרם',emoji:'🎬',
@@ -177,7 +177,7 @@ export const PIPELINES = [
    skills:[
      {cmd:'last30days',stepLabel:'איתור טרנדים'},
      {cmd:'business-analyst',stepLabel:'ניתוח נתונים'},
-     {cmd:'doc-coauthoring',stepLabel:'כתיבת דוח'}
+     {cmd:'MCP · Notion',stepLabel:'כתיבת דוח'}
    ]
   },
   {id:'community',group:'ops',name:'בניית קהילה',emoji:'👥',

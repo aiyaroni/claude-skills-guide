@@ -209,17 +209,18 @@ export const SKILLS = [
     ],
     "desc": "בונה מפרט טכני מלא ל-AI agent ללקוח — מהאבחנה עד לו\"ז",
     "detail": "נניח לקוח אמר לך \"אני רוצה שיהיה לי בוט שעונה על הודעות\". אתה לא יודע מאיפה להתחיל. הסקיל הזה הוא כמו יועץ בכיר שיושב איתך ומוציא מפרט שלם:\n\n• מה הבוט יעשה בדיוק\n• מה הוא לא יעשה (חשוב!)\n• איזה כלים להשתמש\n• כמה זמן זה ייקח\n• סיכום שאפשר לשלוח ללקוח\n\nמילות חיפוש: מפרט, לקוח, AI agent, פרויקט, briefing",
+    "mode": "combined",
     "steps": [
       {
-        "t": "פשוט תאר את הלקוח בשפה טבעית, למשל:",
-        "c": null
+        "t": "כתוב את הפקודה + פרטי הלקוח באותה שורה",
+        "c": "/agency:auto_agent_builder הלקוח שלי הוא סוכנות נדל\"ן שרוצה לאטומט קביעת פגישות, תקציב בינוני, משתמשים ב-GoHighLevel"
       },
       {
         "t": "קבל מפרט מלא מוכן לשליחה ללקוח",
-        "c": "הלקוח שלי הוא סוכנות נדל\"ן שרוצה לאטומט את תהליך קביעת הפגישות. התקציב שלהם בינוני והם משתמשים ב-GoHighLevel. תבנה לי מפרט סוכן מלא."
+        "c": null
       }
     ],
-    "usage": "הרץ ← הדבק פרטי לקוח"
+    "usage": "/agency:auto_agent_builder + פרטי לקוח באותה שורה"
   },
   {
     "cmd": "/agency:cold_call_script",
@@ -232,17 +233,18 @@ export const SKILLS = [
     ],
     "desc": "כותב סקריפט שיחת קור מותאם לעסק ספציפי",
     "detail": "רוצה להתקשר לעסק ולמכור להם שירות AI? בלי סקריפט — זה מרגיש מביך ורוב הפעמים נגמר ב\"תשלח מייל\". הסקיל כותב סקריפט שלם שנשמע כמו שיחה אמיתית:\n\n• פתיח של 8 שניות שלא נשמע כמו טלמרקטינג\n• ה-hook שגורם להם להמשיך להקשיב\n• תשובות לכל ה\"לא מעניין אותי\" האפשריים\n• מה להגיד בתא קולי\n\nמילות חיפוש: טלפון, שיחת מכירה, סקריפט, pitch, תסריט",
+    "mode": "combined",
     "steps": [
       {
-        "t": "פשוט תאר בשפה טבעית, למשל:",
-        "c": null
+        "t": "כתוב את הפקודה + פרטי ה-prospect באותה שורה",
+        "c": "/agency:cold_call_script פיצה האט — מוכרים פיצה ללקוחות פרטיים, אני מוכר להם שירותי אוטומציית AI"
       },
       {
         "t": "קבל סקריפט מלא מוכן לשיחה",
-        "c": "תכין לי תסריט שיחה קרה עבור חברת פיצה האט, הם מוכרים פיצה ללקוחות פרטיים. אני מוכר להם שירותי אוטומציית AI."
+        "c": null
       }
     ],
-    "usage": "הרץ ← הדבק פרטי prospect",
+    "usage": "/agency:cold_call_script + פרטי prospect באותה שורה",
     "next": [
       {
         "emoji": "📧",
@@ -400,14 +402,15 @@ export const SKILLS = [
     ],
     "desc": "בודק PR — סגנון, באגים, אבטחה, והתאמה לפרויקט",
     "detail": "לפני שאתה מבקש מישהו לסקור את הקוד שלך, הסקיל עובר עליו קודם. הוא מחפש: באגים, בעיות אבטחה, קוד לא יעיל, ופרטים שלא מתאימים לסגנון הפרויקט.\n\nמילות חיפוש: code review, ביקורת קוד, QA, באגים, security",
+    "mode": "combined",
     "steps": [
       {
-        "t": "כתוב",
-        "c": null
+        "t": "כתוב את הפקודה + מספר ה-PR באותה שורה",
+        "c": "/code-review:code-review PR#123"
       },
       {
         "t": "קבל רשימת הערות מסודרת",
-        "c": "/code-review:code-review PR#123"
+        "c": null
       }
     ],
     "usage": "/code-review:code-review PR#123"
@@ -424,13 +427,18 @@ export const SKILLS = [
     ],
     "desc": "review מקיף עם מספר sub-agents מתמחים",
     "detail": "חזק יותר מ-code-review. מפעיל מספר \"סוקרים\" במקביל — אחד בודק קוד, אחד בודק טיפוסי TypeScript, אחד בודק כיסוי בדיקות, אחד בודק תגובות על הקוד. תוצאה כוללת יותר.\n\nמילות חיפוש: code review, PR, pull request, QA, TypeScript, בדיקות",
+    "mode": "inline",
     "steps": [
       {
-        "t": "כתוב",
+        "t": "כתוב את הפקודה",
         "c": "/pr-review-toolkit:review-pr"
       },
       {
-        "t": "כמה agents עובדים במקביל ומחזירים דוח",
+        "t": "ציין על איזה PR לעשות review",
+        "c": "PR#123 — חדש feature for user auth"
+      },
+      {
+        "t": "כמה agents עובדים במקביל ומחזירים דוח מאוחד",
         "c": null
       }
     ],
@@ -509,17 +517,18 @@ export const SKILLS = [
     ],
     "desc": "יצירה, קריאה ועריכת קובצי PowerPoint — decks ומצגות",
     "detail": "כל פעולה על קבצי .pptx. לא צריך לפתוח PowerPoint — פשוט תגיד מה אתה צריך.\n\nמה אפשר לעשות:\n• ליצור מצגת חדשה מאפס\n• לקרוא ולסכם מצגת קיימת\n• לערוך שקפים, להוסיף/למחוק תוכן\n• לחלץ טקסט מ-deck ולהשתמש בו במקום אחר\n\nמופעל אוטומטית כשמזכירים \"deck\", \"שקפים\", \"מצגת\", או קובץ .pptx.\n\nמילות חיפוש: מצגת, שקפים, PowerPoint, deck, פרזנטציה, slides, presentation",
+    "mode": "auto",
     "steps": [
       {
-        "t": "ליצירת מצגת:",
-        "c": "\"תצור deck של 5 שקפים להצגת שירות ה-AI שלי ללקוחות\""
+        "t": "תאר ל-Claude מה אתה רוצה (אין פקודה — Claude מזהה אוטומטית)",
+        "c": "תצור deck של 5 שקפים להצגת שירות ה-AI שלי ללקוחות"
       },
       {
-        "t": "לקריאה:",
-        "c": "\"תסכם לי את המצגת הזו: [העלה קובץ .pptx]\""
+        "t": "או העלה קובץ .pptx ובקש פעולה",
+        "c": "תסכם לי את המצגת הזו: [העלה קובץ .pptx]"
       },
       {
-        "t": "Claude יפעיל pptx skill אוטומטית",
+        "t": "Claude יפעיל את ה-pptx skill ויחזיר תוצאה",
         "c": null
       }
     ],
@@ -3069,5 +3078,18 @@ export const SKILLS = [
       {t:'קבל skills.js / mcp.js / pipelines.js מעודכנים', c:null}
     ],
     usage:'"עדכן את מדריך הסקילים"'
+  },
+  {
+    cmd:'ui-ux-pro-max', cat:'dev',
+    uc:['design','web'],
+    triggers:['ui ux pro max','עצב לי','תיצור design system','landing page מקצועי','dashboard','עיצוב UI','בנה לי ממשק','glassmorphism','color palette','font pairing','neumorphism','SaaS design','wireframe'],
+    desc:'מדריך עיצוב UI/UX אינטגרלי — 67 סגנונות, 96 פלטות צבע, 57 שילובי פונטים, 25 סוגי גרפים ל-13 stacks',
+    detail:'כשאתה בונה ממשק ורוצה שהוא ייראה מקצועי — הסקיל הזה מייעץ לפני שאתה כותב שורה אחת. הוא מחפש ב-database פנימי של סגנונות, פלטות, פונטים וכללי UX ומחזיר design system מלא לפרויקט שלך.\n\n⚠️ חשוב: הסקיל מופעל **אוטומטית** ברקע כשאתה מבקש עיצוב UI. לא צריך פקודה — פשוט תאר מה אתה בונה ומה הסגנון שאתה רוצה.\n\nמתי ui-ux-pro-max ולא screenshot-to-code?\n• screenshot-to-code — יש לך תמונה של עיצוב קיים ואתה רוצה ממנה קוד\n• ui-ux-pro-max — אתה מתחיל מאפס ורוצה שClaude יבחר לך סגנון, צבעים, פונטים וכללי UX בהתאם לסוג הפרויקט\n\nמה הסקיל מכיל:\n• 67 סגנונות — glassmorphism, claymorphism, brutalism, neumorphism, bento grid, minimalism, flat design, skeuomorphism\n• 96 פלטות צבע — מאורגנות לפי: SaaS, e-commerce, healthcare, fintech, beauty, gaming\n• 57 שילובי פונטים — Heading + Body לפי אישיות הפרויקט (elegant, playful, professional)\n• 25 סוגי גרפים — איזה chart מתאים לאיזה data\n• 99 כללי UX — accessibility (contrast 4.5:1, touch targets 44px), animation (150-300ms), loading states\n• 13 tech stacks — html-tailwind (default), React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, shadcn\n• Pre-delivery checklist — רשימת בדיקות לפני שנותנים ללקוח\n\nדוגמאות:\n• בנה landing page לסטארטאפ SaaS בסגנון glassmorphism עם dark mode — [שם]\n• תצור dashboard לניהול לקוחות — React + Tailwind, clean minimal\n• עצב מסך כניסה לאפליקציה לביוטי קליניקה — [שם]\n• בנה דף pricing עם 3 תוכניות — Next.js, כחול ולבן, professional\n• תיצור design system שלם לאפליקציה fintech — צבעים, פונטים, קומפוננטות\n\nמה מקבלים:\n• design system: סגנון, פלטת צבעים, שילוב פונטים, effects — לפני כתיבת קוד\n• קוד מלא לפי ה-stack שבחרת, עם hover states, transitions, ו-accessibility\n• pre-delivery checklist: כל הדברים שצריך לבדוק לפני שנותנים ללקוח',
+    steps:[
+      {t:'אין פקודה — מופעל אוטומטית ברקע כשמבקשים עיצוב UI', c:null},
+      {t:'תאר מה לבנות: סוג פרויקט + סגנון + tech stack', c:'בנה landing page לסטארטאפ SaaS בסגנון glassmorphism עם dark mode, React + Tailwind'},
+      {t:'קבל design system מלא + קוד מיישם', c:null}
+    ],
+    usage:'"בנה לי [סוג דף] בסגנון [style]" — מופעל אוטומטית'
   }
 ]
