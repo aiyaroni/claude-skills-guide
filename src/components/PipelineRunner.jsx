@@ -25,7 +25,7 @@ function MiniPanel({ item, onClose, onCopy }) {
               <span className="dot" style={{ background: color }}></span>
               {CAT_LABELS[cat] || cat}
             </span>
-            <button onClick={onClose} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--mute)', padding: 6, borderRadius: 8, display: 'flex' }}>
+            <button onClick={onClose} aria-label="סגור" style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--mute)', padding: 6, borderRadius: 8, display: 'flex' }}>
               <Ic.x />
             </button>
           </div>

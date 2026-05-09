@@ -107,14 +107,14 @@ export default function TweaksPanel({ tweaks, setTweak }) {
   return (
     <>
       <style>{STYLE}</style>
-      <button className="twk-gear-btn" onClick={() => setOpen(o => !o)} title="ערוך עיצוב">
+      <button className="twk-gear-btn" onClick={() => setOpen(o => !o)} aria-label="הגדרות עיצוב" title="ערוך עיצוב">
         <Ic.gear />
       </button>
       {open && (
         <div className="twk-panel">
           <div className="twk-hd">
             <b>עיצוב</b>
-            <button className="twk-x" onClick={() => setOpen(false)}>✕</button>
+            <button className="twk-x" onClick={() => setOpen(false)} aria-label="סגור הגדרות">✕</button>
           </div>
           <div className="twk-body">
             <TweakSection title="סגנון">

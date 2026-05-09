@@ -211,6 +211,10 @@ input, textarea { font-family:inherit; }
 }
 @keyframes orbmove1 { from{transform:translate(0,0) scale(1);} to{transform:translate(-50px,35px) scale(1.15);} }
 @keyframes orbmove2 { from{transform:translate(0,0) scale(1);} to{transform:translate(35px,-25px) scale(1.2);} }
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb { animation: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 
 .hero-head {
   position:relative; z-index:1;
@@ -769,4 +773,66 @@ input, textarea { font-family:inherit; }
   background:var(--surface2); border:1px solid var(--line);
   border-radius:7px; color:var(--ink2); font-family:inherit; font-size:12px;
   cursor:pointer; outline:none;
+}
+
+/* ===== Focus visible ===== */
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+button:focus-visible,
+.cat-row:focus-visible,
+.uc-row:focus-visible,
+.skill-card:focus-visible,
+.pipe-card:focus-visible,
+.pipe-tab:focus-visible,
+.kbar:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:inherit; }
+
+/* ===== Mobile layout ===== */
+.filter-fab {
+  display:none; align-items:center; gap:6px;
+  height:44px; padding:0 14px;
+  background:transparent; border:1px solid var(--line);
+  border-radius:8px; color:var(--ink2);
+  font-size:13px; font-weight:600; cursor:pointer; font-family:inherit;
+}
+.aside-overlay { display:none; }
+
+@media (max-width: 768px) {
+  .filter-fab { display:flex; }
+
+  .topbar { padding:0 14px; gap:10px; }
+  .kbar { max-width:none; }
+  .brand .tag { display:none; }
+
+  .aside {
+    position:fixed; top:60px; right:0; bottom:0;
+    z-index:50; transform:translateX(100%);
+    transition:transform 0.22s cubic-bezier(.2,.7,.2,1);
+    box-shadow:-8px 0 32px rgba(0,0,0,0.18);
+    width:260px;
+  }
+  .aside.open { transform:translateX(0); }
+  .aside-overlay {
+    display:none; position:fixed; inset:0; z-index:49;
+    background:rgba(0,0,0,0.4); backdrop-filter:blur(2px);
+  }
+  .aside.open + .aside-overlay { display:block; }
+
+  .main { padding-bottom:80px; }
+  .skill-grid { padding:0 14px 32px; grid-template-columns:1fr; }
+  .section-head { padding:14px 14px 8px; }
+  .pipeline-hero { padding:20px 14px 14px; }
+  .pipe-grid { grid-template-columns:1fr; }
+  .hero-title { font-size:36px; }
+  .runner-name { font-size:28px; }
+  .runner-steps { padding:16px 16px 80px; }
+  .detail-body { padding:20px 16px 48px; }
+  .detail-head { padding:18px 16px 14px; }
+
+  /* Touch targets */
+  .sc-fav { padding:10px; }
+  .sc-copy { padding:10px 14px; }
+  .cat-row { padding:12px 10px; }
+  .uc-row { padding:10px 10px; }
+  .head-btn { height:44px; padding:0 14px; }
+  .rback { padding:10px 16px; }
+  .rp-dot { width:44px; height:44px; }
 }

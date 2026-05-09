@@ -30,6 +30,7 @@ export default function App() {
   const [openItem, setOpenItem] = useState(null)
   const [runPipe, setRunPipe] = useState(null)
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [mobileAsideOpen, setMobileAsideOpen] = useState(false)
 
   const [favs, toggleFav] = useFavorites()
   const [recents, pushRecent] = useRecents()
@@ -113,6 +114,14 @@ export default function App() {
 
         <div className="head-actions">
           <button
+            className="filter-fab"
+            onClick={() => setMobileAsideOpen(o => !o)}
+            aria-label="פתח פילטרים"
+          >
+            <Ic.filter />
+            <span>פילטר{activeFilters > 0 ? ` (${activeFilters})` : ''}</span>
+          </button>
+          <button
             className={cx('head-btn', favOnly && 'active')}
             onClick={() => setFavOnly(f => !f)}
             title="מועדפים"
@@ -126,7 +135,7 @@ export default function App() {
 
       {/* Work area */}
       <div className={cx('work', (runPipe || openItem) && 'runner-mode')}>
-        <aside className="aside">
+        <aside className={cx('aside', mobileAsideOpen && 'open')}>
           {recentItems.length > 0 && !runPipe && (
             <div className="aside-section">
               <div className="aside-title">
@@ -178,6 +187,7 @@ export default function App() {
             ))}
           </div>
         </aside>
+        <div className="aside-overlay" onClick={() => setMobileAsideOpen(false)} />
 
         <main className="main">
           {runPipe ? (
@@ -300,7 +310,10 @@ export default function App() {
                 )}
 
                 {filtered.length === 0 ? (
-                  <div className="empty">אין תוצאות עם הפילטרים האלה</div>
+                  <div className="empty">
+                    <div>אין תוצאות עם הפילטרים האלה</div>
+                    <button className="btn" style={{ marginTop: 14 }} onClick={clearFilters}>נקה פילטרים</button>
+                  </div>
                 ) : (
                   <div className="skill-grid">
                     {filtered.map(it => (
