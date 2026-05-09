@@ -470,7 +470,8 @@ input, textarea { font-family:inherit; }
 .rsc-num.done { background:var(--ink2); border-color:var(--ink2); color:var(--surface); }
 .rsc-info { flex:1; min-width:0; }
 .rsc-step-label { font-size:11px; font-weight:800; letter-spacing:0.14em; color:var(--mute); text-transform:uppercase; margin-bottom:3px; }
-.rsc.cur .rsc-step-label { color:var(--accent); }
+.rsc.cur .rsc-step-label { color:var(--ink2); }
+[data-variant="bold"] .rsc.cur .rsc-step-label { color:var(--accent); }
 .rsc-name { font-family:'Syne','Heebo',sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.01em; color:var(--ink2); line-height:1.1; }
 .rsc-cmd-hint { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--mute); margin-top:3px; }
 .rsc-actions { display:flex; gap:8px; flex-shrink:0; align-items:center; }
