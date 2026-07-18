@@ -356,5 +356,13 @@ export const PIPELINES = [
      {cmd:'agent-sdk-dev:new-sdk-app',stepLabel:'scaffolding'},
      {cmd:'deploy-verify',stepLabel:'אימות דפלוי'}
    ]
+  },
+  {id:'lead-gen-pipeline',group:'ops',name:'גיוס לידים מרשת',emoji:'🎯',
+   desc:'שליפת נתונים → ארגון → קמפיין אימייל קר',
+   skills:[
+     {cmd:'apify-ultimate-scraper',stepLabel:'שליפת לידים'},
+     {cmd:'xlsx',stepLabel:'ארגון ב-Excel'},
+     {cmd:'/agency:cold_email_machine',stepLabel:'אימייל קר'}
+   ]
   }
 ]
