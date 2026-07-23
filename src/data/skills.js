@@ -3938,5 +3938,85 @@ export const SKILLS = [
       {"t": "Claude יאשר ויתחיל לבנות בגישה החסכונית ביותר", "c": null}
     ],
     "usage": "\"/ponytail\" → Claude בונה במינימום קוד עד שכותבים \"stop ponytail\""
+  },
+  {
+    cmd:'supabase:supabase', cat:'plugins',
+    uc:['dev','web'],
+    triggers:['supabase','RLS','Row Level Security','supabase-js','Postgres migration','Supabase Auth','Edge Functions','supabase cli'],
+    desc:'מומחיות Supabase — database, auth, edge functions, migrations, ו-RLS',
+    detail:'כשעובדים עם Supabase — התחברות, שאילתות, הרשאות, migrations — הסקיל מכיר את כל השירותים ומונע טעויות נפוצות כמו RLS שבור או session handling שגוי.\n\n⚠️ חשוב: RLS (Row Level Security) הוא לרוב מקור הבאגים המרכזי — טבלה בלי RLS מופעל חושפת את כל הנתונים לכל משתמש. הסקיל תמיד בודק את זה.\n\nמתי supabase:supabase ולא MCP · Supabase?\n• MCP · Supabase — ביצוע פעולות בפועל מול הפרויקט (שאילתות, migrations בזמן אמת)\n• supabase:supabase — ידע/best practices בזמן כתיבת קוד — auth flow, RLS policies, schema design\n\nמה הסקיל מכסה:\n• Database — migrations, schema design, extensions (pg_vector, pg_cron)\n• Auth — session, JWT, cookies, getSession/getUser, SSR integrations (Next.js, SvelteKit, Remix)\n• Edge Functions, Realtime, Storage, Queues\n• RLS policies נכונות לכל טבלה\n• supabase-js ו-@supabase/ssr בשימוש נכון\n\nדוגמאות:\n• להוסיף auth עם Supabase לאפליקציית Next.js — [הפרויקט]\n• לכתוב RLS policy לטבלת [שם הטבלה]\n• migration חדש שמוסיף עמודה ואינדקס — [השינוי]\n• לבדוק אם ה-session handling נכון ב-SSR — [הקוד]\n• audit אבטחה למדיניות RLS הקיימת — [הפרויקט]',
+    steps:[
+      {t:'תאר את המשימה עם Supabase', c:'להוסיף auth עם Supabase לאפליקציית Next.js שלי'},
+      {t:'הסקיל מיישם לפי best practices של Supabase', c:null},
+      {t:'קבל קוד/migration/policy מוכן עם RLS נכון', c:null}
+    ],
+    usage:'"תוסיף/תבדוק [משהו] ב-Supabase"'
+  },
+  {
+    cmd:'supabase:supabase-postgres-best-practices', cat:'plugins',
+    uc:['dev'],
+    triggers:['Postgres performance','אופטימיזציית שאילתות','connection pooling','indexing','slow query','database performance'],
+    desc:'מדריך אופטימיזציית Postgres של Supabase — ביצועי שאילתות, אינדקסים, וניהול חיבורים',
+    detail:'כששאילתת Postgres איטית או שהסכמה לא מתוכננת נכון — הסקיל מביא כללי ביצועים מ-Supabase, ממוינים לפי השפעה: מקריטי (ניהול חיבורים, ביצועי שאילתה) ועד שיפורים מתקדמים.\n\n⚠️ חשוב: זה ספציפית ל-Postgres/Supabase — לא מדריך SQL כללי. חלק מהכללים (כמו connection pooling) רלוונטיים בעיקר לסביבת serverless.\n\nמתי supabase:supabase-postgres-best-practices ולא supabase:supabase?\n• supabase:supabase — כל נושא Supabase (auth, edge functions, RLS וכו\')\n• supabase:supabase-postgres-best-practices — ממוקד אך ורק בביצועי Postgres/שאילתות/סכמה\n\nמה מכוסה:\n• ביצועי שאילתות — EXPLAIN ANALYZE, אינדקסים נכונים\n• ניהול חיבורים — connection pooling ב-serverless\n• תכנון סכמה נכון (normalization vs denormalization)\n• תכונות מתקדמות של Postgres שרלוונטיות לביצועים\n• סדר עדיפויות — קריטי מול נחמד-שיהיה\n\nדוגמאות:\n• השאילתה הזו איטית — לבדוק למה — [השאילתה]\n• לתכנן אינדקסים לטבלה עם מיליוני רשומות — [הטבלה]\n• connection pool נגמר בסביבת serverless — לתקן — [ההגדרות]\n• לבדוק אם הסכמה הזו מתוכננת נכון לביצועים — [הסכמה]\n• audit ביצועים למסד נתונים קיים — [הפרויקט]',
+    steps:[
+      {t:'הדבק את השאילתה/סכמה שאיטית', c:'השאילתה הזו לוקחת 4 שניות — לבדוק למה'},
+      {t:'הסקיל מריץ ניתוח ומצביע על הכלל הרלוונטי', c:null},
+      {t:'קבל תיקון עם אינדקס/שאילתה משופרת', c:null}
+    ],
+    usage:'"למה השאילתה הזו איטית" / "לבדוק ביצועי הסכמה"'
+  },
+  {
+    cmd:'verify', cat:'dev',
+    uc:['qa','dev'],
+    triggers:['verify','לוודא שהשינוי עובד','תבדוק שזה עובד באמת','בדוק בפועל','end to end check'],
+    desc:'מוודא ששינוי קוד באמת עובד — מפעיל את הפיצ\'ר בפועל ולא רק מריץ טסטים',
+    detail:'אחרי שינוי בקוד — הסקיל מפעיל בפועל את הזרימה שהושפעה (לא רק type-check או טסטים) ומדווח אם היא באמת עובדת כמו שציפית.\n\n⚠️ חשוב: לא רלוונטי לשינוי שנוגע רק בטסטים/תיעוד בלי משטח הרצה — אין מה להריץ בפועל שם.\n\nמתי verify ולא deploy-verify?\n• deploy-verify — מאמת שדפלוי לייצור עלה בהצלחה (git, HTTP, לוגים)\n• verify — מאמת ששינוי קוד מקומי עובד כמצופה לפני commit\n\nמה הסקיל בודק:\n• מפעיל את הזרימה שהשתנתה בפועל (לא רק טסטים סטטיים)\n• בונה על סקיל run של הפרויקט אם קיים, אחרת נופל לדפוסים מובנים\n• מדווח על תקלות בפועל, לא רק "הקוד קומפל"\n• מתאים במיוחד לפני commit על שינוי לא טריוויאלי\n\nדוגמאות:\n• סיימתי לתקן באג בטופס ההרשמה — לוודא שזה באמת עובד\n• שיניתי endpoint API — תבדוק שהוא מחזיר תשובה נכונה\n• עדכנתי לוגיקת תשלום — לוודא לפני commit\n• רפקטרתי פונקציה — לוודא שההתנהגות לא השתנתה\n• הוספתי פיצ\'ר חדש — להריץ ולבדוק בפועל',
+    steps:[
+      {t:'סיים שינוי קוד לא טריוויאלי', c:null},
+      {t:'תגיד', c:'תוודא שהשינוי הזה באמת עובד'},
+      {t:'קבל דיווח אם הזרימה בפועל עברה או נכשלה', c:null}
+    ],
+    usage:'"תוודא שהשינוי עובד" לפני commit'
+  },
+  {
+    cmd:'security-review', cat:'dev',
+    uc:['dev','qa'],
+    triggers:['security review','ביקורת אבטחה','בדוק אבטחה לפני push','audit אבטחה ל-branch'],
+    desc:'מבצע ביקורת אבטחה מלאה על השינויים הממתינים ב-branch הנוכחי',
+    detail:'לפני push או PR — הסקיל סורק את כל השינויים הממתינים ומחפש פרצות אבטחה נפוצות: injection, הרשאות שבורות, סודות בקוד, ולידציה חסרה.\n\n⚠️ חשוב: זו ביקורת ל-**שינויים ממתינים** ב-branch, לא סריקה מלאה של כל הקודבייס — לזה יש כלים ייעודיים אחרים.\n\nמתי security-review ולא VibeSec-Skill?\n• VibeSec-Skill — עוזר לכתוב קוד web מאובטח תוך כדי הכתיבה עצמה\n• security-review — ביקורת ממוקדת על ה-diff לפני push/PR\n\nמה נבדק:\n• SQL/command injection פוטנציאליים\n• בעיות הרשאות וגישה (auth/authorization)\n• סודות/מפתחות שנכנסו בטעות לקוד\n• ולידציית קלט חסרה בנקודות כניסה חדשות\n• OWASP Top 10 רלוונטי לשינוי\n\nדוגמאות:\n• לפני שאני עושה push — תבדוק אבטחה על כל השינויים\n• PR מוכן — תעשה ביקורת אבטחה לפני שמבקשים review\n• הוספתי endpoint חדש — לבדוק שאין חורי אבטחה\n• שיניתי לוגיקת הרשאות — audit לפני מיזוג\n• לבדוק אם דלף מפתח API לקוד בטעות',
+    steps:[
+      {t:'סיים את השינויים ב-branch', c:null},
+      {t:'תגיד', c:'תעשה ביקורת אבטחה על השינויים הממתינים'},
+      {t:'קבל דוח ממצאים מדורג לפי חומרה', c:null}
+    ],
+    usage:'"בדוק אבטחה לפני push"'
   }
+,
+  {
+    cmd:'hookify:help', cat:'hookify',
+    uc:['automation','dev'],
+    triggers:['/hookify:help','hookify help','איך hookify עובד','עזרה עם hookify','hookify usage'],
+    desc:'מסביר איך פלאגין hookify עובד ומציג את כל הפקודות הזמינות',
+    detail:'לא בטוח איך hookify עובד או איך לכתוב חוק חדש — הפקודה הזו מסבירה את כל המערכת: איך ה-hooks נטענים, איך בונים קובץ חוק, ואילו פקודות קיימות.\n\n⚠️ חשוב: זו פקודת עזרה בלבד — היא לא יוצרת או משנה חוקים. ליצירת חוק חדש יש להשתמש ב-/hookify עם תיאור.\n\nמתי hookify:help ולא hookify:hookify?\n• hookify:hookify — יוצר חוק חדש מתיאור או מניתוח שיחה\n• hookify:help — רק מסביר איך המערכת עובדת, בלי ליצור כלום\n\nמה מוסבר בעזרה:\n• איך hooks נטענים מקבצי .claude/hookify.*.local.md\n• מבנה קובץ חוק — name, enabled, event, pattern, action\n• תחביר regex נתמך לדפוסי חסימה/אזהרה\n• ההבדל בין block ל-warn\n• פתרון בעיות נפוצות — חוק שלא מופעל\n\nדוגמאות:\n• איך אני כותב חוק hookify חדש בעצמי\n• למה החוק שיצרתי לא מופעל\n• מה ההבדל בין block ל-warn ב-hookify\n• איך תחביר ה-regex עובד בקבצי חוק\n• אילו פקודות hookify בכלל קיימות',
+    steps:[
+      {t:'כתוב את הפקודה', c:'/hookify:help'},
+      {t:'קבל הסבר מלא על המערכת', c:null},
+      {t:'המשך ליצירת חוק עם /hookify', c:null}
+    ],
+    usage:'"/hookify:help"'
+  },
+  {
+    cmd:'vercel:*', cat:'plugins',
+    uc:['dev','web','automation'],
+    triggers:['vercel','לדפלוי ל-vercel','vercel:deploy','vercel:nextjs','shadcn','vercel:vercel-cli','ENV vars ב-vercel','vercel firewall'],
+    desc:'משפחת סקילים של Vercel — דפלוי, Next.js, shadcn, storage, functions, firewall ועוד (~30 תת-סקילים)',
+    detail:'פלאגין שלם עם ~30 סקילים ממוקדים לכל היבט של עבודה עם Vercel — כל אחד מופעל כפקודת slash נפרדת לפי הנושא הספציפי. במקום ערך נפרד לכל אחד, זה סיכום מאוחד עם רשימת התת-סקילים החשובים.\n\n⚠️ חשוב: זה משפחת **סקילי הנחיה/ידע** (מריצים אותם כ-`/vercel:שם`) — לביצוע פעולות בפועל מול חשבון Vercel שלך (דפלוי אמיתי, קריאת logs, ניהול פרויקטים) יש להשתמש בחיבור MCP · Vercel שמפעיל את הפעולה ישירות.\n\nמתי vercel:* ולא MCP · Vercel?\n• MCP · Vercel — מבצע פעולה בפועל מול Vercel (דפלוי, קריאת logs, ניהול דומיין)\n• vercel:* — סקיל ידע/הנחיה לנושא ספציפי (איך לבנות עם Next.js, איך להגדיר shadcn, best practices) שמכוון את הקוד לפני/בלי לגעת ב-API\n\nתת-סקילים מרכזיים:\n• vercel:deploy — דפלוי הפרויקט (preview/production)\n• vercel:bootstrap — הכנת ריפו עם משאבים מקושרי-Vercel (DB, auth) בסדר בטוח\n• vercel:nextjs / vercel:next-upgrade / vercel:next-forge / vercel:next-cache-components — עבודה עם Next.js\n• vercel:shadcn — קומפוננטות shadcn/ui\n• vercel:vercel-storage / vercel:vercel-functions / vercel:runtime-cache — אחסון, functions, caching\n• vercel:env-vars / vercel:auth / vercel:vercel-firewall — משתני סביבה, אימות, הגנת firewall\n• vercel:deployments-cicd / vercel:vercel-cli / vercel:vercel-agent — CI/CD ותפעול דרך CLI\n• vercel:ai-sdk / vercel:ai-gateway / vercel:chat-sdk — בניית אפליקציות AI על Vercel\n\nדוגמאות:\n• תדפלוי את [הפרויקט] ל-production\n• תעדכן את [הפרויקט] מ-Next.js ישן לגרסה החדשה\n• תוסיף קומפוננטת shadcn ל-[העמוד]\n• תגדיר משתני סביבה ל-[הפרויקט] ב-Vercel\n• תבדוק למה ה-build נכשל ב-Vercel\n\nמה מקבלים:\n• הנחיה/ביצוע ממוקד לפי הנושא הספציפי שביקשת מתוך משפחת ה-vercel:*',
+    steps:[
+      {t:'כתוב את הפקודה הספציפית לנושא', c:'/vercel:deploy'},
+      {t:'תאר את הפעולה או הבעיה', c:'תדפלוי את [הפרויקט] ל-production'},
+      {t:'קבל ביצוע/הנחיה ממוקדת לנושא', c:null}
+    ],
+    usage:'"/vercel:deploy" או "/vercel:nextjs" לפי הצורך'
+  }
+
 ]
