@@ -3,6 +3,7 @@
 export const MCP_SKILLS = [
   {
     "cmd": "MCP · Figma",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "design"
@@ -30,6 +31,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Canva",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "design"
@@ -57,6 +59,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Gmail",
+    "source": "mcp-connector",
     "cat": "mcp",
     "triggers": [
       "מופעל אוטומטית בשיחה"
@@ -81,6 +84,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Google Calendar",
+    "source": "mcp-connector",
     "cat": "mcp",
     "triggers": [
       "מופעל אוטומטית בשיחה"
@@ -105,6 +109,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Notion",
+    "source": "mcp-connector",
     "cat": "mcp",
     "triggers": [
       "מופעל אוטומטית בשיחה"
@@ -129,6 +134,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Vercel",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "dev",
@@ -157,6 +163,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Google Drive / Sheets / Docs",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "analysis",
@@ -186,6 +193,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · n8n",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "automation"
@@ -213,6 +221,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · context7",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "dev"
@@ -240,6 +249,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Playwright",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "automation",
@@ -268,6 +278,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Supabase",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "analysis",
@@ -296,6 +307,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Stitch",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": [
       "design",
@@ -345,6 +357,7 @@ export const MCP_SKILLS = [
   },
 {
     "cmd": "MCP · Kling Ai",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": ["design", "content"],
     "triggers": ["מופעל אוטומטית בשיחה"],
@@ -359,6 +372,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Spotify",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": ["content"],
     "triggers": ["מופעל אוטומטית בשיחה"],
@@ -373,6 +387,7 @@ export const MCP_SKILLS = [
   },
   {
     "cmd": "MCP · Facebook Ads",
+    "source": "mcp-connector",
     "cat": "mcp",
     "uc": ["automation", "analysis"],
     "triggers": ["מופעל אוטומטית בשיחה"],

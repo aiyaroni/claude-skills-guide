@@ -3,6 +3,7 @@
 export const SKILLS = [
   {
     "cmd": "/post:post-linkedin",
+    "source": "local",
     "cat": "post",
     "uc": [
       "content"
@@ -50,6 +51,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/post:post-instagram",
+    "source": "local",
     "cat": "post",
     "uc": [
       "content"
@@ -91,6 +93,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/post:post-x",
+    "source": "local",
     "cat": "post",
     "uc": [
       "content"
@@ -132,6 +135,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/post:post-facebook",
+    "source": "local",
     "cat": "post",
     "uc": [
       "content"
@@ -173,6 +177,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/post:post-prompt",
+    "source": "local",
     "cat": "post",
     "uc": [
       "content"
@@ -200,6 +205,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/agency:auto_agent_builder",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "dev"
@@ -224,6 +230,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/agency:cold_call_script",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "content"
@@ -262,6 +269,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/agency:cold_email_machine",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "content"
@@ -299,6 +307,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/agency:insta_client_machine",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "content",
@@ -323,6 +332,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/commit-commands:commit",
+    "source": "commit-commands@official",
     "cat": "dev",
     "uc": [
       "dev"
@@ -346,6 +356,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/commit-commands:commit-push-pr",
+    "source": "commit-commands@official",
     "cat": "dev",
     "uc": [
       "dev"
@@ -369,6 +380,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/commit-commands:clean_gone",
+    "source": "commit-commands@official",
     "cat": "dev",
     "uc": [
       "dev"
@@ -392,6 +404,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/code-review:code-review",
+    "source": "code-review@official",
     "cat": "dev",
     "uc": [
       "dev",
@@ -417,6 +430,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/pr-review-toolkit:review-pr",
+    "source": "pr-review-toolkit@official",
     "cat": "dev",
     "uc": [
       "dev",
@@ -446,6 +460,7 @@ export const SKILLS = [
   },
   {
     "cmd": "webapp-testing",
+    "source": "local",
     "cat": "dev",
     "uc": [
       "web",
@@ -479,6 +494,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/feature-dev:feature-dev",
+    "source": "feature-dev@official",
     "cat": "dev",
     "uc": [
       "dev",
@@ -503,6 +519,7 @@ export const SKILLS = [
   },
   {
     "cmd": "pptx",
+    "source": "local",
     "cat": "docs",
     "uc": [
       "slides"
@@ -536,6 +553,7 @@ export const SKILLS = [
   },
   {
     "cmd": "pdf",
+    "source": "local",
     "cat": "docs",
     "triggers": [
       ".pdf",
@@ -565,6 +583,7 @@ export const SKILLS = [
   },
   {
     "cmd": "xlsx",
+    "source": "local",
     "cat": "docs",
     "uc": [
       "analysis"
@@ -611,6 +630,7 @@ export const SKILLS = [
   },
   {
     "cmd": "docx",
+    "source": "local",
     "cat": "docs",
     "uc": [
       "content"
@@ -639,6 +659,7 @@ export const SKILLS = [
   },
   {
     "cmd": "doc-coauthoring",
+    "source": "local",
     "cat": "docs",
     "uc": [
       "content"
@@ -691,6 +712,7 @@ export const SKILLS = [
   },
   {
     "cmd": "frontend-design:frontend-design",
+    "source": "frontend-design@official",
     "cat": "build",
     "uc": [
       "design",
@@ -744,6 +766,7 @@ export const SKILLS = [
   },
   {
     "cmd": "claude-api",
+    "source": "local",
     "cat": "build",
     "uc": [
       "dev",
@@ -773,6 +796,7 @@ export const SKILLS = [
   },
   {
     "cmd": "agent-sdk-dev:new-sdk-app",
+    "source": "agent-sdk-dev@official",
     "cat": "build",
     "uc": [
       "dev",
@@ -797,6 +821,7 @@ export const SKILLS = [
   },
   {
     "cmd": "excalidraw-diagram",
+    "source": "local",
     "cat": "build",
     "uc": [
       "dev"
@@ -823,6 +848,7 @@ export const SKILLS = [
   },
   {
     "cmd": "canvas-design",
+    "source": "local",
     "cat": "build",
     "uc": [
       "design",
@@ -856,6 +882,7 @@ export const SKILLS = [
   },
   {
     "cmd": "theme-factory",
+    "source": "local",
     "cat": "build",
     "uc": [
       "design",
@@ -890,6 +917,7 @@ export const SKILLS = [
   },
   {
     "cmd": "web-artifacts-builder",
+    "source": "local",
     "cat": "build",
     "uc": [
       "web"
@@ -918,6 +946,7 @@ export const SKILLS = [
   },
   {
     "cmd": "skill-creator",
+    "source": "local",
     "cat": "build",
     "uc": [
       "dev"
@@ -946,6 +975,7 @@ export const SKILLS = [
   },
   {
     "cmd": "loop",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "automation"
@@ -974,6 +1004,7 @@ export const SKILLS = [
   },
   {
     "cmd": "schedule",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "automation"
@@ -1002,6 +1033,7 @@ export const SKILLS = [
   },
   {
     "cmd": "update-config",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "automation"
@@ -1030,6 +1062,7 @@ export const SKILLS = [
   },
   {
     "cmd": "claude-md-management",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "automation"
@@ -1062,6 +1095,7 @@ export const SKILLS = [
   },
   {
     "cmd": "keybindings-help",
+    "source": "local",
     "cat": "automation",
     "triggers": [
       "קיצור מקלדת",
@@ -1087,6 +1121,7 @@ export const SKILLS = [
   },
   {
     "cmd": "telegram:configure",
+    "source": "telegram@official",
     "cat": "telegram",
     "uc": [
       "automation"
@@ -1110,6 +1145,7 @@ export const SKILLS = [
   },
   {
     "cmd": "telegram:access",
+    "source": "telegram@official",
     "cat": "telegram",
     "uc": [
       "automation"
@@ -1133,6 +1169,7 @@ export const SKILLS = [
   },
   {
     "cmd": "hookify:hookify",
+    "source": "hookify@official",
     "cat": "hookify",
     "uc": [
       "automation"
@@ -1160,6 +1197,7 @@ export const SKILLS = [
   },
   {
     "cmd": "hookify:configure",
+    "source": "hookify@official",
     "cat": "hookify",
     "uc": [
       "automation"
@@ -1187,6 +1225,7 @@ export const SKILLS = [
   },
   {
     "cmd": "hookify:list",
+    "source": "hookify@official",
     "cat": "hookify",
     "uc": [
       "automation"
@@ -1210,6 +1249,7 @@ export const SKILLS = [
   },
   {
     "cmd": "hookify:writing-rules",
+    "source": "hookify@official",
     "cat": "hookify",
     "uc": [
       "automation"
@@ -1237,6 +1277,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:create-plugin",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1260,6 +1301,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:skill-development",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1283,6 +1325,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:command-development",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1306,6 +1349,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:agent-development",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1329,6 +1373,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:hook-development",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1352,6 +1397,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:plugin-structure",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1375,6 +1421,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:plugin-settings",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1402,6 +1449,7 @@ export const SKILLS = [
   },
   {
     "cmd": "mcp-builder",
+    "source": "local",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1434,6 +1482,7 @@ export const SKILLS = [
   },
   {
     "cmd": "build-mcp-server",
+    "source": "local",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1465,6 +1514,7 @@ export const SKILLS = [
   },
   {
     "cmd": "plugin-dev:mcp-integration",
+    "source": "plugin-dev@official",
     "cat": "plugins",
     "uc": [
       "dev"
@@ -1492,6 +1542,7 @@ export const SKILLS = [
   },
   {
     "cmd": "security-check",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "dev"
@@ -1528,6 +1579,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "analysis",
@@ -1562,6 +1614,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market-audit",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "analysis"
@@ -1592,6 +1645,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market-proposal",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "content",
@@ -1623,6 +1677,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market-report-pdf",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "analysis"
@@ -1653,6 +1708,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market-competitors",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "analysis"
@@ -1683,6 +1739,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market-emails",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "content"
@@ -1713,6 +1770,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market-social",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "content"
@@ -1743,6 +1801,7 @@ export const SKILLS = [
   },
   {
     "cmd": "market-launch",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "content",
@@ -1774,6 +1833,7 @@ export const SKILLS = [
   },
   {
     "cmd": "skill-pdf-guide",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "content",
@@ -1807,6 +1867,7 @@ export const SKILLS = [
   },
   {
     "cmd": "carousel",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "content",
@@ -1837,6 +1898,7 @@ export const SKILLS = [
   },
   {
     "cmd": "carousel-agent",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "content",
@@ -1872,6 +1934,7 @@ export const SKILLS = [
   },
   {
     "cmd": "remotion-best-practices",
+    "source": "local",
     "cat": "build",
     "uc": [
       "content",
@@ -1905,6 +1968,7 @@ export const SKILLS = [
   },
   {
     "cmd": "imagen-creative",
+    "source": "local",
     "cat": "build",
     "uc": [
       "content",
@@ -1936,6 +2000,7 @@ export const SKILLS = [
   },
   {
     "cmd": "kling-prompts",
+    "source": "local",
     "cat": "build",
     "uc": [
       "content",
@@ -1966,6 +2031,7 @@ export const SKILLS = [
   },
   {
     "cmd": "creative-brief",
+    "source": "local",
     "cat": "build",
     "uc": [
       "content",
@@ -1997,6 +2063,7 @@ export const SKILLS = [
   },
   {
     "cmd": "business-analyst",
+    "source": "local",
     "cat": "agency",
     "uc": [
       "analysis"
@@ -2055,6 +2122,7 @@ export const SKILLS = [
   },
   {
     "cmd": "baseline-ui",
+    "source": "local",
     "cat": "build",
     "uc": [
       "design",
@@ -2088,6 +2156,7 @@ export const SKILLS = [
   },
   {
     "cmd": "fixing-accessibility",
+    "source": "local",
     "cat": "build",
     "uc": [
       "web",
@@ -2121,6 +2190,7 @@ export const SKILLS = [
   },
   {
     "cmd": "fixing-metadata",
+    "source": "local",
     "cat": "build",
     "uc": [
       "web",
@@ -2154,6 +2224,7 @@ export const SKILLS = [
   },
   {
     "cmd": "fixing-motion-performance",
+    "source": "local",
     "cat": "build",
     "uc": [
       "design",
@@ -2187,6 +2258,7 @@ export const SKILLS = [
   },
   {
     "cmd": "copywriting",
+    "source": "marketing-skills",
     "cat": "build",
     "uc": [
       "content",
@@ -2241,6 +2313,7 @@ export const SKILLS = [
   },
   {
     "cmd": "humanizer",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "content"
@@ -2275,6 +2348,7 @@ export const SKILLS = [
   },
   {
     "cmd": "last30days",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "analysis",
@@ -2330,6 +2404,7 @@ export const SKILLS = [
   },
   {
     "cmd": "viral-content-optimizer",
+    "source": "local",
     "cat": "post",
     "uc": [
       "content"
@@ -2377,6 +2452,7 @@ export const SKILLS = [
   },
   {
     "cmd": "multi-platform-distributor",
+    "source": "local",
     "cat": "post",
     "uc": [
       "content"
@@ -2410,6 +2486,7 @@ export const SKILLS = [
   },
   {
     "cmd": "screenshot-to-code",
+    "source": "local",
     "cat": "build",
     "uc": [
       "design",
@@ -2457,6 +2534,7 @@ export const SKILLS = [
   },
   {
     "cmd": "ui-cloner",
+    "source": "local",
     "cat": "build",
     "uc": [
       "design",
@@ -2505,6 +2583,7 @@ export const SKILLS = [
   },
   {
     "cmd": "website-cloner",
+    "source": "local",
     "cat": "build",
     "uc": [
       "web"
@@ -2551,6 +2630,7 @@ export const SKILLS = [
   },
   {
     "cmd": "find-skills",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "automation",
@@ -2585,6 +2665,7 @@ export const SKILLS = [
   },
   {
     "cmd": "landing-page-copywriter",
+    "source": "local",
     "cat": "build",
     "uc": [
       "content",
@@ -2640,6 +2721,7 @@ export const SKILLS = [
   },
   {
     "cmd": "presentation-design",
+    "source": "local",
     "cat": "docs",
     "uc": [
       "slides",
@@ -2696,6 +2778,7 @@ export const SKILLS = [
   },
   {
     "cmd": "/design-audit",
+    "source": "local",
     "cat": "docs",
     "uc": [
       "design",
@@ -2729,7 +2812,8 @@ export const SKILLS = [
     "usage": "\"/design-audit\" → בחר שלב → צרף עיצוב"
   },
   {
-    "cmd": "caveman", "cat": "dev",
+    "cmd": "caveman",
+    "source": "local", "cat": "dev",
     "uc": ["dev"],
     "triggers": ["/caveman","caveman mode","מצב קייבמן","קצר פחות טוקנים","דבר בקצרה","תדבר פחות","compress responses","שמור טוקנים"],
     "desc": "מצב תקשורת קצר — מוריד ~75% טוקנים תוך שמירת דיוק טכני מלא",
@@ -2742,7 +2826,8 @@ export const SKILLS = [
     "usage": "\"/caveman\" → Claude עונה בפורמט קצר"
   },
   {
-    "cmd": "caveman-compress", "cat": "dev",
+    "cmd": "caveman-compress",
+    "source": "local", "cat": "dev",
     "uc": ["dev","automation"],
     "triggers": ["/caveman-compress","כווץ את CLAUDE.md","דחס קבצי זיכרון","compress claude md","compress memory","חסוך טוקנים בכניסה","קצר את הקונטקסט"],
     "desc": "כווץ קבצי זיכרון (CLAUDE.md, todos) לפורמט caveman לחסכון בטוקנים קלט",
@@ -2755,7 +2840,8 @@ export const SKILLS = [
     "usage": "\"/caveman-compress\" + ציין קובץ"
   },
   {
-    "cmd": "caveman-commit", "cat": "dev",
+    "cmd": "caveman-commit",
+    "source": "local", "cat": "dev",
     "uc": ["dev"],
     "triggers": ["/caveman-commit","commit קצר","הודעת commit","כתוב commit message","conventional commit","git commit קצר","commit message קייבמן"],
     "desc": "מייצר הודעות git commit קצרות ומדויקות בפורמט Conventional Commits",
@@ -2768,7 +2854,8 @@ export const SKILLS = [
     "usage": "\"/caveman-commit\" + git diff"
   },
   {
-    "cmd": "caveman-review", "cat": "dev",
+    "cmd": "caveman-review",
+    "source": "local", "cat": "dev",
     "uc": ["dev","qa"],
     "triggers": ["/caveman-review","ביקורת קוד קצרה","code review מהיר","PR review קצר","בדוק את הקוד","review קצר","caveman code review"],
     "desc": "ביקורת קוד קצרה ועניינית — מיקום + בעיה + תיקון בשורה אחת לכל ממצא",
@@ -2781,7 +2868,8 @@ export const SKILLS = [
     "usage": "\"/caveman-review\" + קוד"
   },
   {
-    "cmd": "caveman-help", "cat": "dev",
+    "cmd": "caveman-help",
+    "source": "local", "cat": "dev",
     "uc": ["dev"],
     "triggers": ["/caveman-help","עזרה עם caveman","מה caveman יכול","רשימת פקודות caveman","caveman commands","איך משתמשים ב-caveman"],
     "desc": "כרטיס עזר מהיר לכל מצבי, סקילים ופקודות caveman",
@@ -2794,7 +2882,8 @@ export const SKILLS = [
     "usage": "\"/caveman-help\" → כרטיס עזר מיידי"
   },
   {
-    "cmd": "compress", "cat": "dev",
+    "cmd": "compress",
+    "source": "local", "cat": "dev",
     "uc": ["dev","automation"],
     "triggers": ["/compress","כווץ קובץ","דחס markdown","compress file","קצר הוראות","compress CLAUDE.md"],
     "desc": "כווץ קבצי Markdown וטקסט לפורמט caveman — חסכון בטוקנים קלט",
@@ -2807,7 +2896,8 @@ export const SKILLS = [
     "usage": "\"/compress\" + קובץ"
   },
   {
-    "cmd": "hyperframes", "cat": "build",
+    "cmd": "hyperframes",
+    "source": "local", "cat": "build",
     "uc": ["web","design","content"],
     "triggers": ["hyperframes","וידאו מ-HTML","אנימציה לוידאו","כיתוביות לוידאו","יצור וידאו","scene transitions","audio reactive","text animation video","סצנות וידאו","הפק וידאו"],
     "desc": "יצירת קומפוזיציות וידאו, אנימציות, כיתוביות וטרנזיציות ב-HTML לייצור וידאו",
@@ -2820,7 +2910,8 @@ export const SKILLS = [
     "usage": "\"תאר את הוידאו לבנות\""
   },
   {
-    "cmd": "hyperframes-cli", "cat": "build",
+    "cmd": "hyperframes-cli",
+    "source": "local", "cat": "build",
     "uc": ["dev","web"],
     "triggers": ["/hyperframes-cli","hyperframes init","hyperframes render","hyperframes preview","hyperframes tts","hyperframes transcribe","scaffold hyperframes","הרץ hyperframes"],
     "desc": "פקודות CLI של HyperFrames — init, render, preview, tts, transcribe, doctor",
@@ -2833,7 +2924,8 @@ export const SKILLS = [
     "usage": "\"מה רוצים לעשות עם HyperFrames CLI\""
   },
   {
-    "cmd": "hyperframes-registry", "cat": "build",
+    "cmd": "hyperframes-registry",
+    "source": "local", "cat": "build",
     "uc": ["dev","web"],
     "triggers": ["/hyperframes-registry","hyperframes add","התקן בלוק","install block hyperframes","registry block","הוסף component לhyperframes"],
     "desc": "התקנת בלוקים ורכיבים מהרשימה ל-HyperFrames — hyperframes add",
@@ -2846,7 +2938,8 @@ export const SKILLS = [
     "usage": "\"תאר מה להוסיף ל-HyperFrames\""
   },
   {
-    "cmd": "website-to-hyperframes", "cat": "build",
+    "cmd": "website-to-hyperframes",
+    "source": "local", "cat": "build",
     "uc": ["web","design","content"],
     "triggers": ["website to hyperframes","אתר לוידאו","הפוך אתר לוידאו","צלם אתר","צור וידאו מאתר","promo מאתר","social ad מאתר","תהפוך את זה לוידאו","URL לוידאו"],
     "desc": "צולם אתר ויוצר ממנו וידאו HyperFrames — promo, product tour, social ad",
@@ -2859,7 +2952,8 @@ export const SKILLS = [
     "usage": "\"URL האתר + סוג הוידאו הרצוי\""
   },
   {
-    "cmd": "gsap", "cat": "build",
+    "cmd": "gsap",
+    "source": "local", "cat": "build",
     "uc": ["web","design"],
     "triggers": ["gsap","gsap animation","gsap timeline","gsap.to","אנימציה ב-HyperFrames","gsap stagger","gsap easing","greensock"],
     "desc": "מדריך GSAP לאנימציות ב-HyperFrames — gsap.to, timeline, stagger, easing, performance",
@@ -2872,7 +2966,8 @@ export const SKILLS = [
     "usage": "\"שאל על GSAP ב-HyperFrames\""
   },
   {
-    "cmd": "prompt-mastermind", "cat": "dev",
+    "cmd": "prompt-mastermind",
+    "source": "local", "cat": "dev",
     "uc": ["dev","automation"],
     "triggers": ["prompt-mastermind","תכתוב לי פרומפט","תעזור לי לנסח פרומפט","תבנה לי system prompt","הפרומפט שלי לא עובד","תשפר את הפרומפט","write a prompt","improve this prompt","פרומפט לסוכן","prompt engineering","נסח פרומפט"],
     "desc": "הופך כוונה גולמית לפרומפט מובנה — בוחר מ-20+ פריימוורקים מחקריים לפי הצורך",
@@ -2885,7 +2980,8 @@ export const SKILLS = [
     "usage": "\"תאר את מטרת הפרומפט\""
   },
   {
-    "cmd": "instagram-carousel", "cat": "post",
+    "cmd": "instagram-carousel",
+    "source": "local", "cat": "post",
     "uc": ["content","design"],
     "triggers": ["/instagram-carousel","קרוסלה אינסטגרם","צור לי קרוסלה","שקף לאינסטגרם","carousel instagram","שקפים לאינסטגרם","png 1080x1080","קרוסלה עם שקפים"],
     "desc": "יוצר קרוסלה לאינסטגרם HTML עם עיצוב מקצועי, ייצוא PNG 1080x1080",
@@ -2898,7 +2994,8 @@ export const SKILLS = [
     "usage": "\"/instagram-carousel\" + נושא ומספר שקפים"
   },
   {
-    "cmd": "israeli-insurance-comparator", "cat": "automation",
+    "cmd": "israeli-insurance-comparator",
+    "source": "local", "cat": "automation",
     "uc": ["analysis"],
     "triggers": ["ביטוח ישראל","השוואת ביטוח רכב","ביטוח חובה","ביטוח מקיף","ביטוח דירה","ביטוח בריאות ישראל","כמה עולה ביטוח","להוזיל ביטוח","חידוש ביטוח","ביטוח זול"],
     "desc": "השוואת ביטוחים ישראלים — רכב, דירה, בריאות — ב-20+ חברות דרך מחשבונים ממשלתיים ואתרי השוואה",
@@ -2911,7 +3008,8 @@ export const SKILLS = [
     "usage": "\"השווה ביטוח [סוג] עבור [פרטים]\""
   },
   {
-    "cmd": "israeli-payroll-calculator", "cat": "automation",
+    "cmd": "israeli-payroll-calculator",
+    "source": "local", "cat": "automation",
     "uc": ["analysis"],
     "triggers": ["תלוש שכר","חשב שכר","ברוטו נטו","ביטוח לאומי שכר","מס הכנסה שכר","נקודות זיכוי","עלות מעסיק","חישוב שכר","שכר עצמאי","tlush maskoret"],
     "desc": "מחשב תלוש שכר ישראלי — מס הכנסה, ביטוח לאומי, בריאות, פנסיה, ועלות מעסיק",
@@ -2924,7 +3022,8 @@ export const SKILLS = [
     "usage": "\"חשב שכר [ברוטו] + פרטים\""
   },
   {
-    "cmd": "israeli-pension-advisor", "cat": "automation",
+    "cmd": "israeli-pension-advisor",
+    "source": "local", "cat": "automation",
     "uc": ["analysis"],
     "triggers": ["פנסיה ישראל","קרן פנסיה","קרן השתלמות","ביטוח מנהלים","חיסכון פנסיוני","דמי ניהול פנסיה","פרישה ישראל","מסלולי פנסיה","pension","צבירה פנסיונית"],
     "desc": "מנווט במערכת הפנסיה הישראלית — קרן פנסיה, ביטוח מנהלים, קרן השתלמות, תכנון פרישה",
@@ -2937,7 +3036,8 @@ export const SKILLS = [
     "usage": "\"שאל על [נושא פנסיה ספציפי]\""
   },
   {
-    "cmd": "koala-financial-advisor", "cat": "automation",
+    "cmd": "koala-financial-advisor",
+    "source": "local", "cat": "automation",
     "uc": ["analysis"],
     "triggers": ["יועץ פיננסי","KOALA","ניתוח פנסיה","ביטוח כפול","תוכנית פיננסית","פגישה עם סוכן","נוסח פנייה לביטוח","כפילויות ביטוח","ניתוח דוח פנסיה","koala financial"],
     "desc": "יועץ פיננסי לישראלים — מנתח דוחות פנסיה, מזהה כפילויות וחורים, בונה תוכנית פעולה",
@@ -2950,7 +3050,8 @@ export const SKILLS = [
     "usage": "\"תאר מצב פיננסי או צרף דוח\""
   },
   {
-    "cmd": "market-ads", "cat": "agency",
+    "cmd": "market-ads",
+    "source": "local", "cat": "agency",
     "uc": ["content","design"],
     "triggers": ["/market ads","פרסום","קמפיין פרסום","ad copy","קופי לפרסומת","מודעות","target audience","תכנון מדיה","ad creative","פרסומת לרשתות"],
     "desc": "מייצר קמפיין פרסום מלא — קופי לכל פלטפורמה, קהלים, תקציב, ספציפיקציית קריאייטיב",
@@ -2963,7 +3064,8 @@ export const SKILLS = [
     "usage": "\"/market ads [URL]\""
   },
   {
-    "cmd": "market-brand", "cat": "agency",
+    "cmd": "market-brand",
+    "source": "local", "cat": "agency",
     "uc": ["content","design"],
     "triggers": ["/market brand","קול המותג","brand voice","מדריך סגנון","brand guidelines","זהות מותגית","טון ותקשורת","brand identity","brand analysis","תדמית מותגית"],
     "desc": "מנתח את קול המותג ומייצר מדריך Brand Voice מפורט ומוכן לשימוש",
@@ -2976,7 +3078,8 @@ export const SKILLS = [
     "usage": "\"/market brand [URL]\""
   },
   {
-    "cmd": "market-copy", "cat": "agency",
+    "cmd": "market-copy",
+    "source": "local", "cat": "agency",
     "uc": ["content"],
     "triggers": ["/market copy","שפר קופי","ניתוח קופי","copywriting audit","כתוב מחדש","שכתוב אתר","לפני ואחרי קופי","headline","value proposition","copy analysis"],
     "desc": "מנתח ומשפר קופי של אתר — לפני ואחרי, ניקוד, פריימוורקים מוכחים",
@@ -2989,7 +3092,8 @@ export const SKILLS = [
     "usage": "\"/market copy [URL]\""
   },
   {
-    "cmd": "market-funnel", "cat": "agency",
+    "cmd": "market-funnel",
+    "source": "local", "cat": "agency",
     "uc": ["analysis","automation"],
     "triggers": ["/market funnel","ניתוח משפך","funnel analysis","נקודות נשירה","conversion rate","אופטימיזציה המרות","customer journey","funnel optimization","drop off","CRO funnel"],
     "desc": "ממפה את משפך ההמרה, מזהה נקודות נשירה ומציע אופטימיזציות עם הערכת השפעה",
@@ -3002,7 +3106,8 @@ export const SKILLS = [
     "usage": "\"/market funnel [URL]\""
   },
   {
-    "cmd": "market-landing", "cat": "agency",
+    "cmd": "market-landing",
+    "source": "local", "cat": "agency",
     "uc": ["content","web"],
     "triggers": ["/market landing","CRO","landing page audit","דף נחיתה","ניתוח דף נחיתה","שפר דף נחיתה","conversion rate landing","אופטימיזציה דף","landing page teardown","הגדל המרות"],
     "desc": "ניתוח CRO מלא לדף נחיתה — קטע-קטע, ממוין לפי עדיפות, עם תיקונים מיידיים",
@@ -3015,7 +3120,8 @@ export const SKILLS = [
     "usage": "\"/market landing [URL]\""
   },
   {
-    "cmd": "market-report", "cat": "agency",
+    "cmd": "market-report",
+    "source": "local", "cat": "agency",
     "uc": ["content","analysis"],
     "triggers": ["/market report","דוח שיווק","marketing report","דוח ביקורת","סיכום audit","דוח ללקוח","marketing summary","דוח שיווקי","aggregate report","marketing document"],
     "desc": "מייצר דוח שיווק מקיף ב-Markdown — ניקודים, ממצאים, תוכנית פעולה עם הערכת השפעה",
@@ -3028,7 +3134,8 @@ export const SKILLS = [
     "usage": "\"/market report [URL]\""
   },
   {
-    "cmd": "market-seo", "cat": "agency",
+    "cmd": "market-seo",
+    "source": "local", "cat": "agency",
     "uc": ["content","web"],
     "triggers": ["/market seo","SEO audit","בדיקת SEO","אופטימיזציה למנועי חיפוש","לא מופיע בגוגל","שפר SEO","on-page SEO","keywords","meta tags SEO","תוכן לגוגל"],
     "desc": "ביקורת SEO מלאה — on-page, E-E-A-T, keywords, technical SEO, אסטרטגיית תוכן",
@@ -3042,6 +3149,7 @@ export const SKILLS = [
   },
   {
     "cmd": "ckm-banner-design",
+    "source": "local",
     "cat": "build",
     "uc": ["design"],
     "triggers": ["מופעל אוטומטית בשיחה", "באנר", "כריכה לפייסבוק", "באנר לאינסטגרם", "באנר לרכישה ממומנת", "כרזה", "באנר לאתר", "header", "cover", "banner"],
@@ -3056,6 +3164,7 @@ export const SKILLS = [
   },
   {
     "cmd": "ckm-brand",
+    "source": "local",
     "cat": "build",
     "uc": ["design", "content"],
     "triggers": ["מופעל אוטומטית בשיחה", "מיתוג", "טון של מותג", "brand voice", "style guide", "שפה מותגית", "מותג", "ניהול נכסים", "color palette", "טיפוגרפיה", "messaging framework"],
@@ -3070,6 +3179,7 @@ export const SKILLS = [
   },
   {
     "cmd": "ckm-design",
+    "source": "local",
     "cat": "build",
     "uc": ["design", "web", "slides"],
     "triggers": ["מופעל אוטומטית בשיחה", "לוגו", "CIP", "corporate identity", "social photo", "אייקון", "מצגת HTML", "deliverables עיצוב", "design system מלא", "זהות תאגידית"],
@@ -3084,6 +3194,7 @@ export const SKILLS = [
   },
   {
     "cmd": "ckm-design-system",
+    "source": "local",
     "cat": "build",
     "uc": ["design", "dev"],
     "triggers": ["מופעל אוטומטית בשיחה", "design tokens", "design system", "טוקנים", "primitive tokens", "semantic tokens", "CSS variables", "tailwind theme", "component specs"],
@@ -3098,6 +3209,7 @@ export const SKILLS = [
   },
   {
     "cmd": "ckm-slides",
+    "source": "local",
     "cat": "docs",
     "uc": ["slides", "content"],
     "triggers": ["מופעל אוטומטית בשיחה", "מצגת", "presentation", "pitch deck", "שקפים", "deck", "מצגת HTML", "Chart.js", "מצגת מכירה", "מצגת אסטרטגית"],
@@ -3112,6 +3224,7 @@ export const SKILLS = [
   },
   {
     "cmd": "ckm-ui-styling",
+    "source": "local",
     "cat": "build",
     "uc": ["design", "web", "dev"],
     "triggers": ["מופעל אוטומטית בשיחה", "shadcn", "shadcn/ui", "Tailwind", "responsive layout", "dark mode", "dialog", "form", "table", "navigation", "ממשק נגיש"],
@@ -3126,6 +3239,7 @@ export const SKILLS = [
   },
   {
     "cmd": "israeli-employee-tax-refund",
+    "source": "local",
     "cat": "automation",
     "uc": ["automation", "analysis"],
     "triggers": ["מופעל אוטומטית בשיחה", "החזר מס", "החזר מס לשכירים", "טופס 135", "טופס 106", "מילואים החזר מס", "נקודות זיכוי שלא נוצלו", "תרומות סעיף 46", "יישוב מזכה", "החזר מס שנים קודמות"],
@@ -3139,7 +3253,8 @@ export const SKILLS = [
     "usage": "\"בדוק החזר מס לשנת [YYYY]\""
   },
   {
-    cmd:'build-agent', cat:'build',
+    cmd:'build-agent',
+    source:'local', cat:'build',
     uc:['dev','web'],
     triggers:['/build-agent','build agent','multi-agent','בנה לי בוט','בוט וואטסאפ','בוט טלגרם','מערכת סוכנים','orchestrator','agent architecture','בוט שיחתי'],
     desc:'בונה מערכת multi-agent מאפס — orchestrator, sub-agents, tools, ודיפלוי ל-Vercel',
@@ -3152,7 +3267,8 @@ export const SKILLS = [
     usage:'"/build-agent" / "בנה לי בוט וואטסאפ ש..."'
   },
   {
-    cmd:'deploy-verify', cat:'automation',
+    cmd:'deploy-verify',
+    source:'local', cat:'automation',
     uc:['qa','automation'],
     triggers:['/deploy-verify','verify deploy','תאמת דפלוי','בדוק שהדפלוי עלה','check deployment','אימות פרודקשן','בדיקת דפלוי'],
     desc:'מאמת שדפלוי לייצור באמת עלה — Git, HTTP, לוגים, endpoints, גנרי לכל פלטפורמה',
@@ -3165,7 +3281,8 @@ export const SKILLS = [
     usage:'"/deploy-verify" / "תאמת דפלוי"'
   },
   {
-    cmd:'update-skills-guide', cat:'automation',
+    cmd:'update-skills-guide',
+    source:'local', cat:'automation',
     uc:['automation','dev'],
     triggers:['update-skills-guide','עדכן את מדריך הסקילים','עדכן את claude-skills-guide','סרוק סקילים חדשים','תוסיף לדף','עדכן את הדף','sync skills'],
     desc:'מסנכרן את מדריך הסקילים עם הסקילים בפועל — סורק skills/, commands/, mcp.json ומוסיף החסרים',
@@ -3178,7 +3295,8 @@ export const SKILLS = [
     usage:'"עדכן את מדריך הסקילים"'
   },
   {
-    cmd:'ui-ux-pro-max', cat:'dev',
+    cmd:'ui-ux-pro-max',
+    source:'local', cat:'dev',
     uc:['design','web'],
     triggers:['ui ux pro max','עצב לי','תיצור design system','landing page מקצועי','dashboard','עיצוב UI','בנה לי ממשק','glassmorphism','color palette','font pairing','neumorphism','SaaS design','wireframe'],
     desc:'מדריך עיצוב UI/UX אינטגרלי — 67 סגנונות, 96 פלטות צבע, 57 שילובי פונטים, 25 סוגי גרפים ל-13 stacks',
@@ -3191,7 +3309,8 @@ export const SKILLS = [
     usage:'"בנה לי [סוג דף] בסגנון [style]" — מופעל אוטומטית'
   },
   {
-    cmd:'apify-ultimate-scraper', cat:'automation',
+    cmd:'apify-ultimate-scraper',
+    source:'local', cat:'automation',
     uc:['automation','analysis'],
     triggers:['תשלוף נתונים','אסוף נתונים מ','תגרד','scraping','סקריפינג','lead generation','לידים','brand monitoring','מעקב מותג','מחקר מתחרים','influencer','Instagram','TikTok','Google Maps','YouTube','LinkedIn','שלוף מאתר','רצועות מוצרים','ביקורות','reviews'],
     desc:'שולף נתונים מ-130+ פלטפורמות — Instagram, TikTok, Google Maps, LinkedIn ועוד',
@@ -3204,7 +3323,8 @@ export const SKILLS = [
     usage:'"שלוף [נתונים] מ-[פלטפורמה]"'
   },
   {
-    cmd:'ab-testing', cat:'agency',
+    cmd:'ab-testing',
+    source:'marketing-skills', cat:'agency',
     uc:['analysis','content'],
     triggers:['ab-testing','מופעל אוטומטית בשיחה','היפותזה','גודל מדגם ומשך','ICE scoring','מובהקות סטטיסטית'],
     desc:'מתכנן ומריץ A/B טסטים — היפותזה, גודל מדגם, משך זמן, ומסקנה סטטיסטית',
@@ -3217,7 +3337,8 @@ export const SKILLS = [
     usage:'לבדוק אם [שינוי] משפר את [מדד]'
   },
   {
-    cmd:'ad-creative', cat:'agency',
+    cmd:'ad-creative',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['ad-creative','מופעל אוטומטית בשיחה','כותרות RSA','טקסט ראשי ותיאורים','פורמטים יצירתיים','בדיקת ביצועים'],
     desc:'מייצר ומשכפל קריאייטיב לפרסום — כותרות, טקסטים, ווריאציות לכל פלטפורמה',
@@ -3230,7 +3351,8 @@ export const SKILLS = [
     usage:'תכתוב לי [N] כותרות/מודעות ל-[פלטפורמה] על [מוצר]'
   },
   {
-    cmd:'ads', cat:'agency',
+    cmd:'ads',
+    source:'marketing-skills', cat:'agency',
     uc:['content','analysis'],
     triggers:['ads','מופעל אוטומטית בשיחה','בחירת פלטפורמה','טירגוט קהל','תקציב ובידינג','Negative keywords ו-Performance Max'],
     desc:'אסטרטגיית פרסום בתשלום — טירגוט, תקציב, בידינג ומתי לעצור קמפיין',
@@ -3243,7 +3365,8 @@ export const SKILLS = [
     usage:'לבנות קמפיין [פלטפורמה] ל-[מוצר] עם תקציב [סכום]'
   },
   {
-    cmd:'ads-launcher', cat:'agency',
+    cmd:'ads-launcher',
+    source:'local', cat:'agency',
     uc:['content','automation'],
     triggers:['ads-launcher','מופעל אוטומטית בשיחה','מחקר שוק','קופי בקול של ירוני','קריאייטיב','תצוגה מקדימה בצ\'אט לפני שיגור'],
     desc:'מתזמר קמפיין פרסום מלא — מחקר שוק, קופי בקול שלך, קריאייטיב, ושיגור בפועל למטא במצב PAUSED',
@@ -3256,7 +3379,8 @@ export const SKILLS = [
     usage:'תשגר קמפיין ל-[מוצר] עם קהל [יעד]'
   },
   {
-    cmd:'ai-seo', cat:'agency',
+    cmd:'ai-seo',
+    source:'marketing-skills', cat:'agency',
     uc:['content','analysis'],
     triggers:['ai-seo','מופעל אוטומטית בשיחה','llms.txt ו-Open Knowledge Format','ניסוח תשובות ברורות שקל לצטט','אופטימיזציה ל-AI Overviews, Perplexity, ChatGPT','זיהוי איפה כבר מצטטים אותך היום'],
     desc:'מייעל תוכן להופיע בתשובות AI — ChatGPT, Perplexity, AI Overviews של גוגל',
@@ -3269,7 +3393,8 @@ export const SKILLS = [
     usage:'לייעל את [האתר/העמוד] להופעה בתשובות AI'
   },
   {
-    cmd:'analytics', cat:'agency',
+    cmd:'analytics',
+    source:'marketing-skills', cat:'agency',
     uc:['analysis','automation'],
     triggers:['analytics','מופעל אוטומטית בשיחה','הקמת GA4 ו-Google Tag Manager','תכנון tracking plan','UTM parameters לקמפיינים','בדיקה שאירועים באמת יורים'],
     desc:'מקים ומבקר מדידה ומעקב — GA4, GTM, אירועים, UTM',
@@ -3282,7 +3407,8 @@ export const SKILLS = [
     usage:'להקים/לבדוק מעקב ל-[אתר/פיצ\'ר]'
   },
   {
-    cmd:'aso', cat:'agency',
+    cmd:'aso',
+    source:'marketing-skills', cat:'agency',
     uc:['analysis'],
     triggers:['aso','מופעל אוטומטית בשיחה','ניתוח כותרת ותת-כותרת מול מילות מפתח','בדיקת צילומי מסך ו-video preview','השוואה מול מתחרים בחנות','אופטימיזציית תיאור וביקורות'],
     desc:'מבצע ביקורת ואופטימיזציה לרישום באפ סטור וגוגל פליי',
@@ -3295,7 +3421,8 @@ export const SKILLS = [
     usage:'בדוק ASO ל-[קישור לאפליקציה]'
   },
   {
-    cmd:'churn-prevention', cat:'agency',
+    cmd:'churn-prevention',
+    source:'marketing-skills', cat:'agency',
     uc:['automation','analysis'],
     triggers:['churn-prevention','מופעל אוטומטית בשיחה','מסך ביטול עם הצעת שימור','Dunning','סקר יציאה שמניב תשובות אמיתיות','זיהוי churn לא-רצוני מול רצוני'],
     desc:'בונה תהליכי ביטול, הצעות שימור, ושחזור תשלומים כושלים',
@@ -3308,7 +3435,8 @@ export const SKILLS = [
     usage:'לבנות תהליך ביטול/שימור ל-[המוצר]'
   },
   {
-    cmd:'co-marketing', cat:'agency',
+    cmd:'co-marketing',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['co-marketing','מופעל אוטומטית בשיחה','זיהוי שותפים פוטנציאליים לפי קהל משלים','רעיונות לקמפיין משותף','מבנה הצעה לשיתוף פעולה','תיאום הודעה משותפת'],
     desc:'מוצא שותפי קו-מרקטינג ומתכנן קמפיינים משותפים',
@@ -3321,7 +3449,8 @@ export const SKILLS = [
     usage:'למצוא שותפי קו-מרקטינג ל-[העסק שלי]'
   },
   {
-    cmd:'cold-email', cat:'agency',
+    cmd:'cold-email',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['cold-email','מופעל אוטומטית בשיחה','שורת נושא שפותחים','פתיחה מותאמת אישית','גוף קצר עם ערך ברור','CTA חד'],
     desc:'כותב מיילי קולד ורצפי פולואפ ל-B2B שמניבים תגובות',
@@ -3334,7 +3463,8 @@ export const SKILLS = [
     usage:'לכתוב רצף קולד מייל ל-[קהל יעד] על [מוצר]'
   },
   {
-    cmd:'community-marketing', cat:'agency',
+    cmd:'community-marketing',
+    source:'marketing-skills', cat:'agency',
     uc:['content','automation'],
     triggers:['community-marketing','מופעל אוטומטית בשיחה','אסטרטגיית קהילה','תכנית גדילה community-led','זיהוי והפעלת שגרירי מותג','engagement post-signup'],
     desc:'בונה ומינף קהילה אונליין — Discord, Slack, פורום, שגרירי מותג',
@@ -3347,7 +3477,8 @@ export const SKILLS = [
     usage:'לבנות אסטרטגיית קהילה ל-[המוצר]'
   },
   {
-    cmd:'competitor-profiling', cat:'agency',
+    cmd:'competitor-profiling',
+    source:'marketing-skills', cat:'agency',
     uc:['analysis'],
     triggers:['competitor-profiling','מופעל אוטומטית בשיחה','מחקר לפי כתובות URL של מתחרים','מיפוי מיצוב, תמחור, ופיצ\'רים','זיהוי חוזקות וחולשות אובייקטיבי','קובצי markdown מובנים לכל מתחרה'],
     desc:'חוקר ומפרופל מתחרים מתוך רשימת URLs — קבצי markdown מובנים',
@@ -3360,7 +3491,8 @@ export const SKILLS = [
     usage:'לפרופל את המתחרים האלה: [רשימת URLs]'
   },
   {
-    cmd:'competitors', cat:'agency',
+    cmd:'competitors',
+    source:'marketing-skills', cat:'agency',
     uc:['content','analysis'],
     triggers:['competitors','מופעל אוטומטית בשיחה','פורמט אלטרנטיבה יחיד','פורמט אלטרנטיבות מרובות','פורמט "You vs Competitor"','פורמט "Competitor vs Competitor"'],
     desc:'יוצר עמודי השוואה ואלטרנטיבה מול מתחרים — לSEO ולמכירות',
@@ -3373,7 +3505,8 @@ export const SKILLS = [
     usage:'לכתוב עמוד "[המוצר] vs [מתחרה]"'
   },
   {
-    cmd:'content-strategy', cat:'agency',
+    cmd:'content-strategy',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['content-strategy','מופעל אוטומטית בשיחה','בניית topic clusters לפי נושא מרכזי','לוח עריכה','זיהוי פערי תוכן מול מתחרים','תיעדוף נושאים לפי ערך עסקי'],
     desc:'מתכנן אסטרטגיית תוכן — נושאים, טופיק קלאסטרס, לוח עריכה',
@@ -3386,7 +3519,8 @@ export const SKILLS = [
     usage:'לבנות אסטרטגיית תוכן ל-[הבלוג/האתר]'
   },
   {
-    cmd:'copy-editing', cat:'agency',
+    cmd:'copy-editing',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['copy-editing','מופעל אוטומטית בשיחה','ניקוי מילים מיותרות וחיזוק ניסוח','בדיקת בהירות המסר','חידוד CTA וכותרות','רענון תוכן שהתיישן'],
     desc:'עורך ומשפר קופי שיווקי קיים — proofreading, חידוד, רענון',
@@ -3399,7 +3533,8 @@ export const SKILLS = [
     usage:'לערוך ולחדד את הטקסט הזה: [הטקסט]'
   },
   {
-    cmd:'cro', cat:'agency',
+    cmd:'cro',
+    source:'marketing-skills', cat:'agency',
     uc:['analysis','content'],
     triggers:['cro','מופעל אוטומטית בשיחה','ניתוח דף לפי היררכיית מידע ו-hierarchy ויזואלית','בדיקת חיכוך בטפסים','חוזק ה-CTA ומיקומו','אמון וחברתי proof'],
     desc:'משפר שיעורי המרה בדפי שיווק — עמוד בית, נחיתה, תמחור, טפסים',
@@ -3412,7 +3547,8 @@ export const SKILLS = [
     usage:'לבדוק ולשפר את ההמרה של [URL]'
   },
   {
-    cmd:'customer-research', cat:'agency',
+    cmd:'customer-research',
+    source:'marketing-skills', cat:'agency',
     uc:['analysis'],
     triggers:['customer-research','מופעל אוטומטית בשיחה','ניתוח תמלולי ראיונות לקוחות','כרייה מביקורות','ניתוח פניות תמיכה לזיהוי בעיות חוזרות','בניית פרסונות מבוססות Jobs To Be Done'],
     desc:'מבצע ומסכם מחקר לקוחות — ראיונות, סקרים, ביקורות, JTBD',
@@ -3425,7 +3561,8 @@ export const SKILLS = [
     usage:'לנתח את [מקור המידע] ולהפיק תובנות לקוחות'
   },
   {
-    cmd:'directory-submissions', cat:'agency',
+    cmd:'directory-submissions',
+    source:'marketing-skills', cat:'agency',
     uc:['automation','content'],
     triggers:['directory-submissions','מופעל אוטומטית בשיחה','רשימת דירקטוריז רלוונטיים לפי סוג מוצר','הכנת חומרים אחידים להגשה','מעקב סטטוס הגשות','דירקטוריז ל-AI/MCP/agents במיוחד'],
     desc:'מגיש את המוצר לדירקטוריז — Product Hunt, BetaList, G2 ועוד לבקלינקים ולחשיפה',
@@ -3438,7 +3575,8 @@ export const SKILLS = [
     usage:'להגיש את [המוצר] לדירקטוריז רלוונטיים'
   },
   {
-    cmd:'emails', cat:'agency',
+    cmd:'emails',
+    source:'marketing-skills', cat:'agency',
     uc:['content','automation'],
     triggers:['emails','מופעל אוטומטית בשיחה','רצף welcome למשתמשים חדשים','נרצ\'ר סדרות לפי התנהגות','re-engagement למשתמשים לא פעילים','טריגר-בייסד אימיילים'],
     desc:'בונה רצפי מייל אוטומטיים — welcome, נרצ\'ר, re-engagement, lifecycle',
@@ -3451,7 +3589,8 @@ export const SKILLS = [
     usage:'לבנות רצף מייל ל-[תרחיש] עבור [המוצר]'
   },
   {
-    cmd:'free-tools', cat:'agency',
+    cmd:'free-tools',
+    source:'marketing-skills', cat:'agency',
     uc:['content','dev'],
     triggers:['free-tools','מופעל אוטומטית בשיחה','רעיונות לכלי חינמי לפי נישה','מחשבוני ROI / grader tools','הערכת פוטנציאל לידים ולינקים','תכנון UX לכלי'],
     desc:'מתכנן כלי חינמי לשיווק — מחשבון, גנרטור, כלי לידים',
@@ -3464,7 +3603,8 @@ export const SKILLS = [
     usage:'רעיון לכלי שיווקי חינמי בתחום [נישה]'
   },
   {
-    cmd:'graphify', cat:'build',
+    cmd:'graphify',
+    source:'local', cat:'build',
     uc:['dev','analysis'],
     triggers:['graphify','מופעל אוטומטית בשיחה','בניית גרף ידע מקוד, מסמכים, PDF, תמונות, וידאו','זיהוי "god nodes"','community detection','שאילתות query/path/explain על הגרף'],
     desc:'הופך כל קלט — קוד, מסמכים, תמונות — לגרף ידע ניתן לשאילתה',
@@ -3477,7 +3617,8 @@ export const SKILLS = [
     usage:'למפות את [הפרויקט/המסמכים] לגרף ידע'
   },
   {
-    cmd:'grilling', cat:'dev',
+    cmd:'grilling',
+    source:'local', cat:'dev',
     uc:['dev','qa'],
     triggers:['grilling','מופעל אוטומטית בשיחה','שאלות "מה אם" על כל הנחת יסוד','חיפוש מקרי קצה שלא נלקחו בחשבון','בדיקת עומק ה-why מאחורי כל החלטה','זיהוי סיכונים שלא דוברו'],
     desc:'"מחקר" את התוכנית שלך בשאלות קשות לפני שבונים — stress-test לרעיון',
@@ -3490,7 +3631,8 @@ export const SKILLS = [
     usage:'תחקור לי את התוכנית הזאת: [תיאור]'
   },
   {
-    cmd:'launch', cat:'agency',
+    cmd:'launch',
+    source:'marketing-skills', cat:'agency',
     uc:['content','automation'],
     triggers:['launch','מופעל אוטומטית בשיחה','תכנית go-to-market לפי שלב המוצר','צ\'קליסט השקה ל-Product Hunt','אסטרטגיית waitlist ו-early access','תיאום הודעה בכל הערוצים'],
     desc:'מתכנן השקת מוצר/פיצ\'ר — Product Hunt, GTM, waitlist, checklist',
@@ -3503,7 +3645,8 @@ export const SKILLS = [
     usage:'לתכנן השקה ל-[המוצר/הפיצ\'ר]'
   },
   {
-    cmd:'lead-magnets', cat:'agency',
+    cmd:'lead-magnets',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['lead-magnets','מופעל אוטומטית בשיחה','בחירת פורמט','תכנון תוכן שבאמת שווה מייל','אסטרטגיית הפצה','מדידת המרה של lead magnet'],
     desc:'מתכנן ומייעל תוכן להורדה בתמורה למייל — ebook, checklist, template',
@@ -3516,7 +3659,8 @@ export const SKILLS = [
     usage:'רעיון ל-lead magnet בנושא [X]'
   },
   {
-    cmd:'marketing-council', cat:'agency',
+    cmd:'marketing-council',
+    source:'marketing-skills', cat:'agency',
     uc:['content','analysis'],
     triggers:['marketing-council','מופעל אוטומטית בשיחה','מועצת יועצים מדמים','כל יועץ מגיב לפי הפילוסופיה שלו','דיון/עימות בין נקודות מבט סותרות','שימושי כשתקוע ורוצה זוויות שונות'],
     desc:'מדמה מועצת יועצי שיווק אגדיים — סת גודין, אוגילבי, הורמוזי ועוד — לדיון בשאלה שלך',
@@ -3529,7 +3673,8 @@ export const SKILLS = [
     usage:'מה המועצה חושבת על [השאלה שלי]'
   },
   {
-    cmd:'marketing-ideas', cat:'agency',
+    cmd:'marketing-ideas',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['marketing-ideas','מופעל אוטומטית בשיחה','139 רעיונות שיווק ממוינים לפי מטרה','התאמה לפי שלב המוצר','רעיונות ל-acquisition, activation, retention','כיוונים לא שגרתיים לצד קלאסיים'],
     desc:'מייצר רעיונות ואסטרטגיות שיווק ל-SaaS כשתקועים או מחפשים השראה',
@@ -3542,7 +3687,8 @@ export const SKILLS = [
     usage:'תן לי רעיונות שיווק ל-[המוצר/המצב]'
   },
   {
-    cmd:'marketing-loops', cat:'agency',
+    cmd:'marketing-loops',
+    source:'marketing-skills', cat:'agency',
     uc:['automation'],
     triggers:['marketing-loops','מופעל אוטומטית בשיחה','לולאת סקירה שיווקית שבועית','בדיקת עייפות מודעות','לולאת ריענון תוכן ישן','התראה על ירידה בדירוג SEO'],
     desc:'בונה תהליכי שיווק חוזרים שרצים לבד על קדנס — לא משימה חד-פעמית',
@@ -3555,7 +3701,8 @@ export const SKILLS = [
     usage:'לבנות לולאת שיווק חוזרת ל-[המשימה]'
   },
   {
-    cmd:'marketing-plan', cat:'agency',
+    cmd:'marketing-plan',
+    source:'marketing-skills', cat:'agency',
     uc:['content','analysis'],
     triggers:['marketing-plan','מופעל אוטומטית בשיחה','מבנה AARRR','התאמה לתקציב, צוות, ושלב מימון','מיפוי לאבני דרך עתידיות','חיבור לספריית 139 הרעיונות של marketing-ideas'],
     desc:'בונה תכנית שיווק מקיפה ב-13 סעיפים לפי AARRR, מותאמת לתקציב ולצוות',
@@ -3568,7 +3715,8 @@ export const SKILLS = [
     usage:'לבנות תכנית שיווק ל-[העסק/הלקוח]'
   },
   {
-    cmd:'marketing-psychology', cat:'agency',
+    cmd:'marketing-psychology',
+    source:'marketing-skills', cat:'agency',
     uc:['content','analysis'],
     triggers:['marketing-psychology','מופעל אוטומטית בשיחה','עיגון','הוכחה חברתית ומחסור','loss aversion','מסגור'],
     desc:'מיישם עקרונות פסיכולוגיה והתנהגות צרכנים על שיווק — הטיות, שכנוע, מודלים מנטליים',
@@ -3581,7 +3729,8 @@ export const SKILLS = [
     usage:'אילו עקרונות פסיכולוגיים רלוונטיים ל-[הבעיה שלי]'
   },
   {
-    cmd:'notebooklm', cat:'automation',
+    cmd:'notebooklm',
+    source:'local', cat:'automation',
     uc:['automation','analysis'],
     triggers:['notebooklm','מופעל אוטומטית בשיחה','יצירת מחברת חדשה ב-NotebookLM','הוספת מקורות','שאילת שאלות מתוך המקורות שהוזנו','יצירת audio overview'],
     desc:'מפעיל את NotebookLM — יצירת מחברות, הוספת מקורות, סיכומים, פודקאסט אודיו',
@@ -3594,7 +3743,8 @@ export const SKILLS = [
     usage:'פתח NotebookLM וסכם לי [המקורות]'
   },
   {
-    cmd:'offers', cat:'agency',
+    cmd:'offers',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['offers','מופעל אוטומטית בשיחה','value stack','bonus stacking','עיצוב ערבות','scarcity ו-urgency אמיתיים'],
     desc:'בונה הצעה בלתי ניתנת לסירוב — ערך, בונוסים, ערבות, מחסור, תמחור',
@@ -3607,7 +3757,8 @@ export const SKILLS = [
     usage:'לבנות הצעה ל-[המוצר/השירות]'
   },
   {
-    cmd:'onboarding', cat:'agency',
+    cmd:'onboarding',
+    source:'marketing-skills', cat:'agency',
     uc:['content','automation'],
     triggers:['onboarding','מופעל אוטומטית בשיחה','זיהוי "aha moment"','empty states שמנחים לפעולה','onboarding checklist','קיצור time-to-value'],
     desc:'מייעל אונבורדינג בתוך המוצר — הפעלה, empty states, זמן לערך',
@@ -3620,7 +3771,8 @@ export const SKILLS = [
     usage:'לשפר את האונבורדינג של [המוצר]'
   },
   {
-    cmd:'paywalls', cat:'agency',
+    cmd:'paywalls',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['paywalls','מופעל אוטומטית בשיחה','מסך שדרוג ברגע הנכון','feature gates','מסך פקיעת trial','upsell modals לא פולשניים'],
     desc:'בונה ומייעל פייוולים בתוך המוצר — מסכי שדרוג, הגבלות, upsell',
@@ -3633,7 +3785,8 @@ export const SKILLS = [
     usage:'לבנות פייוול ל-[הפיצ\'ר/המוצר]'
   },
   {
-    cmd:'popups', cat:'agency',
+    cmd:'popups',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['popups','מופעל אוטומטית בשיחה','exit-intent popup לפני יציאה','מודל לכידת מייל','באנר/sticky bar להודעות','scroll trigger'],
     desc:'בונה ומייעל פופאפים, מודלים והתראות להמרה',
@@ -3646,7 +3799,8 @@ export const SKILLS = [
     usage:'לבנות פופאפ ל-[מטרה] באתר'
   },
   {
-    cmd:'pricing', cat:'agency',
+    cmd:'pricing',
+    source:'marketing-skills', cat:'agency',
     uc:['content','analysis'],
     triggers:['pricing','מופעל אוטומטית בשיחה','בחירת value metric','מבנה tiers ומה בכל מסלול','שיטת Van Westendorp למחיר סביר','freemium מול free trial'],
     desc:'עוזר בהחלטות תמחור ואריזת מסלולים — tiers, freemium, Van Westendorp',
@@ -3659,7 +3813,8 @@ export const SKILLS = [
     usage:'לעזור לי לתמחר את [המוצר]'
   },
   {
-    cmd:'product-marketing', cat:'agency',
+    cmd:'product-marketing',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['product-marketing','מופעל אוטומטית בשיחה','הגדרת מיצוב המוצר','ICP','קהל יעד וסגמנטים','יצירת .agents/product-marketing.md'],
     desc:'בונה מסמך קונטקסט מוצר — מיצוב, קהל יעד, ICP — שכל הסקילים האחרים משתמשים בו',
@@ -3672,7 +3827,8 @@ export const SKILLS = [
     usage:'להקים קונטקסט מוצר ל-[המוצר שלי]'
   },
   {
-    cmd:'programmatic-seo', cat:'agency',
+    cmd:'programmatic-seo',
+    source:'marketing-skills', cat:'agency',
     uc:['content','automation'],
     triggers:['programmatic-seo','מופעל אוטומטית בשיחה','תבנית עמוד אחת + מקור נתונים','עמודי [מילת מפתח] + [עיר]','עמודי אינטגרציה','עמודי דירקטורי מבוססי מיקום'],
     desc:'בונה עמודי SEO בקנה מידה מתבניות ונתונים — עמודי ערים, השוואות, אינטגרציות',
@@ -3685,7 +3841,8 @@ export const SKILLS = [
     usage:'לבנות עמודי pSEO לפי [משתנה] — [רשימת ערכים]'
   },
   {
-    cmd:'prospecting', cat:'agency',
+    cmd:'prospecting',
+    source:'marketing-skills', cat:'agency',
     uc:['automation','analysis'],
     triggers:['prospecting','מופעל אוטומטית בשיחה','בניית רשימת חברות/עסקים לפי ICP','סינון לפי fit','זיהוי עסקים מקומיים ללא אתר/עם בעיה ספציפית','דירוג פרוספקטים לפי סבירות לסגור'],
     desc:'בונה ומכשיר רשימת פרוספקטים לפנייה — B2B SaaS, עסקים מקומיים',
@@ -3698,7 +3855,8 @@ export const SKILLS = [
     usage:'לבנות רשימת פרוספקטים לפי [ICP]'
   },
   {
-    cmd:'public-relations', cat:'agency',
+    cmd:'public-relations',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['public-relations','מופעל אוטומטית בשיחה','כתיבת הודעה לעיתונות','בניית media list ורשימת עיתונאים רלוונטיים','שימוש ב-HARO/Qwoted/Featured לתגובות עיתונאים','newsjacking'],
     desc:'מתכנן יחסי ציבור — הודעות לעיתונות, פנייה לעיתונאים, HARO, newsjacking',
@@ -3711,7 +3869,8 @@ export const SKILLS = [
     usage:'לכתוב הודעה לעיתונות על [האירוע]'
   },
   {
-    cmd:'referrals', cat:'agency',
+    cmd:'referrals',
+    source:'marketing-skills', cat:'agency',
     uc:['content','automation'],
     triggers:['referrals','מופעל אוטומטית בשיחה','תוכנית הפניה עם תמריץ דו-צדדי','תוכנית אפיליאייט ותשלומים','תוכנית שגרירים','ויראל לופ'],
     desc:'בונה ומנתח תוכנית הפניות/שותפים — הפניה, אפיליאייט, שגרירים',
@@ -3724,7 +3883,8 @@ export const SKILLS = [
     usage:'לבנות תוכנית הפניה ל-[המוצר]'
   },
   {
-    cmd:'revops', cat:'agency',
+    cmd:'revops',
+    source:'marketing-skills', cat:'agency',
     uc:['automation'],
     triggers:['revops','מופעל אוטומטית בשיחה','lead scoring','lead routing','הגדרת MQL מול SQL','אוטומציית CRM'],
     desc:'מייעל תפעול הכנסות — ניקוד לידים, ניתוב, מסירה משיווק למכירות',
@@ -3737,7 +3897,8 @@ export const SKILLS = [
     usage:'לייעל את תהליך המסירה משיווק למכירות'
   },
   {
-    cmd:'sales-enablement', cat:'agency',
+    cmd:'sales-enablement',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['sales-enablement','מופעל אוטומטית בשיחה','מצגת מכירה','one-pager / leave-behind','מסמך מענה להתנגדויות','תסריט דמו'],
     desc:'בונה חומרי מכירות — מצגות, one-pagers, מענה להתנגדויות, תסריטי דמו',
@@ -3750,7 +3911,8 @@ export const SKILLS = [
     usage:'לבנות [סוג חומר מכירות] ל-[המוצר]'
   },
   {
-    cmd:'schema', cat:'agency',
+    cmd:'schema',
+    source:'marketing-skills', cat:'agency',
     uc:['dev','content'],
     triggers:['schema','מופעל אוטומטית בשיחה','FAQ schema','Product schema עם מחיר ומלאי','Review schema עם כוכבים','Breadcrumb schema'],
     desc:'מוסיף ומתקן schema markup ונתונים מובנים — JSON-LD, rich snippets',
@@ -3763,7 +3925,8 @@ export const SKILLS = [
     usage:'להוסיף schema markup ל-[URL/סוג עמוד]'
   },
   {
-    cmd:'seo-audit', cat:'agency',
+    cmd:'seo-audit',
+    source:'marketing-skills', cat:'agency',
     uc:['analysis'],
     triggers:['seo-audit','מופעל אוטומטית בשיחה','בדיקה טכנית','ביקורת on-page','Core Web Vitals','זיהוי סיבה לירידה בתנועה/דירוג'],
     desc:'מאבחן בעיות SEO — טכני, on-page, ירידה בדירוג, מהירות',
@@ -3776,7 +3939,8 @@ export const SKILLS = [
     usage:'לבדוק את ה-SEO של [URL]'
   },
   {
-    cmd:'signup', cat:'agency',
+    cmd:'signup',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['signup','מופעל אוטומטית בשיחה','ניתוח שלבי טופס הרשמה','זיהוי נטישה בכל שלב','צמצום שדות מיותרים','אקטיבציית טרייל'],
     desc:'מייעל תהליכי הרשמה, רישום ואקטיבציית טרייל',
@@ -3789,7 +3953,8 @@ export const SKILLS = [
     usage:'לשפר את תהליך ההרשמה ל-[המוצר]'
   },
   {
-    cmd:'site-architecture', cat:'agency',
+    cmd:'site-architecture',
+    source:'marketing-skills', cat:'agency',
     uc:['content','dev'],
     triggers:['site-architecture','מופעל אוטומטית בשיחה','מיפוי חזותי','היררכיית עמודים ותתי-עמודים','מבנה URL קריא ועקבי','אסטרטגיית קישור פנימי'],
     desc:'מתכנן היררכיית עמודים, ניווט, מבנה URL וקישור פנימי',
@@ -3802,7 +3967,8 @@ export const SKILLS = [
     usage:'לתכנן מבנה עמודים ל-[האתר]'
   },
   {
-    cmd:'sms', cat:'agency',
+    cmd:'sms',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['sms','מופעל אוטומטית בשיחה','רצף welcome ב-SMS','תזכורת עגלה נטושה','SMS אחרי רכישה ו-win-back','דרישות ציות'],
     desc:'בונה ומייעל מסעות SMS/MMS שיווקיים — welcome, נטישת עגלה, win-back',
@@ -3815,7 +3981,8 @@ export const SKILLS = [
     usage:'לבנות רצף SMS ל-[תרחיש]'
   },
   {
-    cmd:'social', cat:'agency',
+    cmd:'social',
+    source:'marketing-skills', cat:'agency',
     uc:['content'],
     triggers:['social','מופעל אוטומטית בשיחה','לוח תוכן ולוח פרסום לרשתות','כתיבת פוסטים ושרשורים','סקריפטים לוידאו קצר','social listening ומעורבות'],
     desc:'יוצר ומתזמן תוכן לרשתות חברתיות — לינקדאין, טוויטר, אינסטגרם, טיקטוק',
@@ -3828,7 +3995,8 @@ export const SKILLS = [
     usage:'לבנות תוכן/לוח פרסום ל-[הרשת]'
   },
   {
-    cmd:'VibeSec-Skill', cat:'dev',
+    cmd:'VibeSec-Skill',
+    source:'local', cat:'dev',
     uc:['dev','qa'],
     triggers:['VibeSec-Skill','מופעל אוטומטית בשיחה','זיהוי SQL injection ו-XSS פוטנציאליים','בדיקת ולידציית קלט','שיטות עבודה מאובטחות בזמן כתיבה','סריקת אבטחה על פי בקשה מפורשת'],
     desc:'עוזר לכתוב אפליקציות web מאובטחות ומבצע סריקת אבטחה בסיסית',
@@ -3841,7 +4009,8 @@ export const SKILLS = [
     usage:'סרוק את הקוד הזה לבעיות אבטחה'
   },
   {
-    cmd:'image', cat:'build',
+    cmd:'image',
+    source:'marketing-skills', cat:'build',
     uc:['design','content'],
     triggers:['image','מופעל אוטומטית בשיחה','תמונת הירו לבלוג/עמוד נחיתה','גרפיקה לסושיאל בפורמט הנכון','מוקאפ מוצר','באנר פרופיל'],
     desc:'יוצר ועורך תמונות לשיווק — הירו, גרפיקות סושיאל, מוקאפים, כלים כמו Flux/DALL-E/Nano Banana',
@@ -3854,7 +4023,8 @@ export const SKILLS = [
     usage:'ליצור תמונה של [תיאור] לשימוש ב-[פלטפורמה]'
   },
   {
-    cmd:'video', cat:'build',
+    cmd:'video',
+    source:'marketing-skills', cat:'build',
     uc:['content','design'],
     triggers:['video','מופעל אוטומטית בשיחה','וידאו אווטאר מדבר','וידאו גנרטיבי מטקסט','וידאו פרוגרמטי עם Remotion/Hyperframes','סרטון דמו מוצר'],
     desc:'יוצר ומפיק תוכן וידאו — Remotion, Hyperframes, HeyGen, Veo, Sora, Kling',
@@ -3867,7 +4037,8 @@ export const SKILLS = [
     usage:'ליצור וידאו על [נושא] בסגנון [סוג]'
   },
   {
-    cmd:'visual-edit-builder', cat:'build',
+    cmd:'visual-edit-builder',
+    source:'local', cat:'build',
     uc:['web','design'],
     triggers:['visual-edit-builder','מופעל אוטומטית בשיחה','עמוד נחיתה עם visual edit mode','מצגת HTML הניתנת לעריכה','שינוי טקסט/תמונות ישירות בדפדפן בלי לגעת בקוד','מתאים לצוותים לא-טכניים שצריכים לערוך בעצמם'],
     desc:'בונה עמוד נחיתה או מצגת HTML הניתנים לעריכה ישירה בדפדפן',
@@ -3880,7 +4051,8 @@ export const SKILLS = [
     usage:'בנה עמוד נחיתה editable ל-[המטרה]'
   },
   {
-    cmd:'hebrew-web-fonts', cat:'build',
+    cmd:'hebrew-web-fonts',
+    source:'local', cat:'build',
     uc:['design','web'],
     triggers:['פונט עברית','Hebrew font','כותרת עברית','Frank Ruhl Libre','פונט לאתר בעברית','האתר בעברית נראה מכוער','תבחר פונט לכותרת'],
     desc:'בוחר פונט עברית נכון לאתר — Heebo/Assistant, במקום ברירת המחדל המכוערת של AI',
@@ -3894,6 +4066,7 @@ export const SKILLS = [
   },
   {
     "cmd": "night-run-orchestrator",
+    "source": "local",
     "cat": "automation",
     "uc": [
       "automation",
@@ -3927,7 +4100,8 @@ export const SKILLS = [
     "usage": "\"אני הולך לישון, תכין לי סשנים ללילה על...\""
   },
   {
-    "cmd": "ponytail", "cat": "dev",
+    "cmd": "ponytail",
+    "source": "ponytail", "cat": "dev",
     "uc": ["dev"],
     "triggers": ["/ponytail", "ponytail mode", "be lazy", "lazy mode", "yagni", "simplest solution", "מצב עצלן", "הפתרון הכי פשוט", "אל תבנה יותר מדי", "פתרון מינימלי", "פחות קוד יותר תוצאה", "אל תוסיף תלויות מיותרות"],
     "desc": "מכריח את הפתרון הכי עצל שבאמת עובד — פחות קוד, פחות תלויות, פחות הנדסת יתר",
@@ -3940,7 +4114,8 @@ export const SKILLS = [
     "usage": "\"/ponytail\" → Claude בונה במינימום קוד עד שכותבים \"stop ponytail\""
   },
   {
-    cmd:'supabase:supabase', cat:'plugins',
+    cmd:'supabase:supabase',
+    source:'supabase@official', cat:'plugins',
     uc:['dev','web'],
     triggers:['supabase','RLS','Row Level Security','supabase-js','Postgres migration','Supabase Auth','Edge Functions','supabase cli'],
     desc:'מומחיות Supabase — database, auth, edge functions, migrations, ו-RLS',
@@ -3953,7 +4128,8 @@ export const SKILLS = [
     usage:'"תוסיף/תבדוק [משהו] ב-Supabase"'
   },
   {
-    cmd:'supabase:supabase-postgres-best-practices', cat:'plugins',
+    cmd:'supabase:supabase-postgres-best-practices',
+    source:'supabase@official', cat:'plugins',
     uc:['dev'],
     triggers:['Postgres performance','אופטימיזציית שאילתות','connection pooling','indexing','slow query','database performance'],
     desc:'מדריך אופטימיזציית Postgres של Supabase — ביצועי שאילתות, אינדקסים, וניהול חיבורים',
@@ -3966,7 +4142,8 @@ export const SKILLS = [
     usage:'"למה השאילתה הזו איטית" / "לבדוק ביצועי הסכמה"'
   },
   {
-    cmd:'verify', cat:'dev',
+    cmd:'verify',
+    source:'local', cat:'dev',
     uc:['qa','dev'],
     triggers:['verify','לוודא שהשינוי עובד','תבדוק שזה עובד באמת','בדוק בפועל','end to end check'],
     desc:'מוודא ששינוי קוד באמת עובד — מפעיל את הפיצ\'ר בפועל ולא רק מריץ טסטים',
@@ -3979,7 +4156,8 @@ export const SKILLS = [
     usage:'"תוודא שהשינוי עובד" לפני commit'
   },
   {
-    cmd:'security-review', cat:'dev',
+    cmd:'security-review',
+    source:'local', cat:'dev',
     uc:['dev','qa'],
     triggers:['security review','ביקורת אבטחה','בדוק אבטחה לפני push','audit אבטחה ל-branch'],
     desc:'מבצע ביקורת אבטחה מלאה על השינויים הממתינים ב-branch הנוכחי',
@@ -3993,7 +4171,8 @@ export const SKILLS = [
   }
 ,
   {
-    cmd:'hookify:help', cat:'hookify',
+    cmd:'hookify:help',
+    source:'hookify@official', cat:'hookify',
     uc:['automation','dev'],
     triggers:['/hookify:help','hookify help','איך hookify עובד','עזרה עם hookify','hookify usage'],
     desc:'מסביר איך פלאגין hookify עובד ומציג את כל הפקודות הזמינות',
@@ -4006,7 +4185,8 @@ export const SKILLS = [
     usage:'"/hookify:help"'
   },
   {
-    cmd:'vercel:*', cat:'plugins',
+    cmd:'vercel:*',
+    source:'vercel@official', cat:'plugins',
     uc:['dev','web','automation'],
     triggers:['vercel','לדפלוי ל-vercel','vercel:deploy','vercel:nextjs','shadcn','vercel:vercel-cli','ENV vars ב-vercel','vercel firewall'],
     desc:'משפחת סקילים של Vercel — דפלוי, Next.js, shadcn, storage, functions, firewall ועוד (~30 תת-סקילים)',

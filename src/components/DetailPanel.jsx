@@ -1,5 +1,5 @@
 import { useMemo, useEffect } from 'react'
-import { CAT_LABELS, CAT_COLORS } from '../data/config.js'
+import { CAT_LABELS, CAT_COLORS, SOURCES } from '../data/config.js'
 import { PIPELINES } from '../data/pipelines.js'
 import { Ic } from '../lib/icons.jsx'
 
@@ -25,6 +25,7 @@ export default function DetailPanel({ item, onClose, onOpen, onCopy, onRunPipeli
   }, [onClose])
 
   const detailParas = (item.detail || '').split('\n\n').filter(Boolean)
+  const source = item.source ? SOURCES[item.source] : null
 
   return (
     <div className="detail-view">
@@ -113,6 +114,24 @@ export default function DetailPanel({ item, onClose, onOpen, onCopy, onRunPipeli
                   <span key={i} className="trigger-tag">{t}</span>
                 ))}
               </div>
+            </div>
+          )}
+
+          {source && (
+            <div className="psec">
+              <h3>איך מתקינים</h3>
+              <p style={{ fontSize: 14, color: 'var(--mute)', marginBottom: 10 }}>
+                סקיל זה חלק מ-<strong style={{ color: 'var(--ink2)' }}>{source.label}</strong>
+              </p>
+              {source.cmd && (
+                <div className="code" onClick={() => onCopy(source.cmd)} title="לחץ להעתקה" style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, fontFamily: "'JetBrains Mono',monospace", fontSize: 12, background: 'var(--surface2)', border: '1px solid var(--line)', borderRadius: 8, padding: '10px 12px', marginBottom: 10 }}>
+                  <span>{source.cmd}</span>
+                  <Ic.copy />
+                </div>
+              )}
+              <a href={source.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--fuchsia)', textDecoration: 'none' }}>
+                למידע נוסף ↗
+              </a>
             </div>
           )}
 
