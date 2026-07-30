@@ -1,12 +1,19 @@
 import { useState, useCallback } from 'react'
 
+// ה-prerender מריץ את הקומפוננטות ב-node, שם אין localStorage.
+// בלי השמירה הזאת כל עמוד סטטי נופל בזמן הבנייה
+const hasLS = typeof localStorage !== 'undefined'
+
 const LS = {
   get(k, def) {
+    if (!hasLS) return def
     try { const v = localStorage.getItem('ysk:' + k); return v == null ? def : JSON.parse(v) }
     catch { return def }
   },
   set(k, v) {
-    try { localStorage.setItem('ysk:' + k, JSON.stringify(v)) } catch {}
+    if (!hasLS) return
+    try { localStorage.setItem('ysk:' + k, JSON.stringify(v)) }
+    catch { /* מכסה מלאה או מצב פרטי — לא שובר את האתר */ }
   },
 }
 
@@ -45,16 +52,11 @@ export function useToast() {
 }
 
 export function useTweaks(defaults) {
-  const [values, setValues] = useState(() => {
-    try {
-      const saved = localStorage.getItem('ysk:tweaks')
-      return saved ? { ...defaults, ...JSON.parse(saved) } : defaults
-    } catch { return defaults }
-  })
+  const [values, setValues] = useState(() => ({ ...defaults, ...LS.get('tweaks', {}) }))
   const setTweak = useCallback((key, val) => {
     setValues(prev => {
       const next = { ...prev, [key]: val }
-      localStorage.setItem('ysk:tweaks', JSON.stringify(next))
+      LS.set('tweaks', next)
       return next
     })
   }, [])

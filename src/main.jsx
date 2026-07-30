@@ -1,10 +1,19 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { hydrateRoot, createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
+import AppRoutes from './routes.jsx'
 
-createRoot(document.getElementById('root')).render(
+const el = document.getElementById('root')
+const tree = (
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  </StrictMode>
 )
+
+// עמודי הפריטים מגיעים מ-prerender עם HTML מלא — עליהם מרטיבים במקום ליצור מחדש,
+// אחרת התוכן שגוגל קיבל נמחק ונבנה שוב ברגע שה-JS עולה
+if (el.hasChildNodes()) hydrateRoot(el, tree)
+else createRoot(el).render(tree)

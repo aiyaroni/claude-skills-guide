@@ -64,6 +64,21 @@ export const ALL_ITEMS = merge(
 
 export const KINDS = ['guide', 'prompt', 'skill', 'mcp']
 
+/** ה-URL ברבים, המודל ביחיד */
+export const KIND_PATH = { guide: 'guides', prompt: 'prompts', skill: 'skills', mcp: 'mcp' }
+export const PATH_KIND = Object.fromEntries(Object.entries(KIND_PATH).map(([k, v]) => [v, k]))
+
+/** מזהה בכתובת — cmd של סקיל מכיל / ו-: שלא עוברים ב-URL */
+export const slugOf = (item) =>
+  String(item.id).replace(/^\//, '').replace(/[:/]/g, '-').replace(/\s+/g, '-')
+
+export const hrefOf = (item) => `/${KIND_PATH[item.kind] || item.kind}/${slugOf(item)}`
+
+export const findBySlug = (kindPath, slug) => {
+  const kind = PATH_KIND[kindPath]
+  return ALL_ITEMS.find(i => i.kind === kind && slugOf(i) === slug) || null
+}
+
 export const countBy = (items, key) =>
   items.reduce((acc, i) => {
     for (const v of [].concat(i[key] ?? [])) acc[v] = (acc[v] || 0) + 1

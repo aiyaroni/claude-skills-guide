@@ -4,7 +4,8 @@ import {
   CAT_LABELS, CAT_COLORS, CAT_ORDER, UC_LABELS, UC_ORDER, PIPELINE_GROUPS,
   TYPE_LABELS, TYPE_COLORS,
 } from './data/config.js'
-import { ALL_ITEMS, KINDS } from './data/items.js'
+import { useParams, useNavigate } from 'react-router-dom'
+import { ALL_ITEMS, KINDS, hrefOf, findBySlug } from './data/items.js'
 import { useFavorites, useRecents, useToast, useTweaks, copy } from './lib/hooks.js'
 import { Ic } from './lib/icons.jsx'
 import ItemCard from './components/ItemCard.jsx'
@@ -27,7 +28,6 @@ export default function App() {
   const [selKind, setSelKind] = useState(null)
   const [collectedOnly, setCollectedOnly] = useState(false)
   const [favOnly, setFavOnly] = useState(false)
-  const [openItem, setOpenItem] = useState(null)
   const [runPipe, setRunPipe] = useState(null)
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [mobileAsideOpen, setMobileAsideOpen] = useState(false)
@@ -36,11 +36,19 @@ export default function App() {
   const [recents, pushRecent] = useRecents()
   const [toast, showToast] = useToast()
 
+  // הפריט הפתוח נגזר מהכתובת ולא מ-state. ככה אפשר לשמור סימנייה,
+  // לשלוח לינק, ולחזור לאותו מקום — וזה גם מה שמאפשר prerender
+  const { kind: kindPath, slug } = useParams()
+  const navigate = useNavigate()
+  const openItem = kindPath && slug ? findBySlug(kindPath, slug) : null
+  const notFound = Boolean(kindPath && slug && !openItem)
+
   const onCopy = useCallback((text) => copy(text, showToast), [showToast])
   const onOpen = useCallback((item) => {
-    setOpenItem(item)
     pushRecent(item.id)
-  }, [pushRecent])
+    navigate(hrefOf(item))
+  }, [pushRecent, navigate])
+  const closeItem = useCallback(() => navigate('/'), [navigate])
 
   // ⌘K / /
   useEffect(() => {
@@ -108,11 +116,11 @@ export default function App() {
     setSelKind(null)
     setCollectedOnly(false)
     setFavOnly(false)
-    setOpenItem(null)
+    navigate('/')
     setRunPipe(null)
     setPaletteOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [])
+  }, [navigate])
 
   return (
     <div className="app-root">
@@ -220,7 +228,12 @@ export default function App() {
         <div className="aside-overlay" onClick={() => setMobileAsideOpen(false)} />
 
         <main className="main">
-          {runPipe ? (
+          {notFound ? (
+            <div className="empty">
+              <div>הפריט הזה לא קיים בארכיון</div>
+              <button className="btn" style={{ marginTop: 14 }} onClick={closeItem}>חזרה לכל הפריטים</button>
+            </div>
+          ) : runPipe ? (
             <PipelineRunner
               pipeline={runPipe}
               onClose={() => setRunPipe(null)}
@@ -231,16 +244,16 @@ export default function App() {
             openItem.origin === 'content' ? (
               <ContentDetail
                 item={openItem}
-                onClose={() => setOpenItem(null)}
+                onClose={closeItem}
                 onCopy={onCopy}
               />
             ) : (
               <DetailPanel
                 item={openItem.raw}
-                onClose={() => setOpenItem(null)}
+                onClose={closeItem}
                 onOpen={onOpen}
                 onCopy={onCopy}
-                onRunPipeline={(p) => { setOpenItem(null); setRunPipe(p) }}
+                onRunPipeline={(p) => { navigate('/'); setRunPipe(p) }}
               />
             )
           ) : (

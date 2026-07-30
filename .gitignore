@@ -32,3 +32,6 @@ src/data/*.bak.*
 dashboard.html
 src/data/generated/
 LOOP-STATE.md
+dash-check.png
+kb-home.png
+.playwright-mcp/
