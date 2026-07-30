@@ -1,0 +1,32 @@
+{
+  "_comment": "פרופיל פיתוח. הריצה הלילית משתמשת ב-.claude/ingest-settings.json שנעול הרבה יותר.",
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(npm run lint)",
+      "Bash(node scripts/*)",
+      "Bash(node --test:*)",
+      "Bash(pdftotext:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)"
+    ],
+    "deny": [
+      "Bash(curl:* | bash)",
+      "Bash(curl:* | sh)",
+      "Bash(sudo:*)",
+      "Edit(./src/data/skills.js)",
+      "Edit(./src/data/mcp.js)",
+      "Edit(./src/data/pipelines.js)",
+      "Edit(./backup/**)",
+      "Write(./src/data/generated/**)"
+    ]
+  }
+}

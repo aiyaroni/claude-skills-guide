@@ -1,23 +1,21 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import { SKILLS } from './data/skills.js'
-import { MCP_SKILLS } from './data/mcp.js'
 import { PIPELINES } from './data/pipelines.js'
-import { CAT_LABELS, CAT_COLORS, CAT_ORDER, UC_LABELS, UC_ORDER, PIPELINE_GROUPS } from './data/config.js'
+import {
+  CAT_LABELS, CAT_COLORS, CAT_ORDER, UC_LABELS, UC_ORDER, PIPELINE_GROUPS,
+  TYPE_LABELS, TYPE_COLORS,
+} from './data/config.js'
+import { ALL_ITEMS, KINDS } from './data/items.js'
 import { useFavorites, useRecents, useToast, useTweaks, copy } from './lib/hooks.js'
 import { Ic } from './lib/icons.jsx'
-import SkillCard from './components/SkillCard.jsx'
+import ItemCard from './components/ItemCard.jsx'
 import DetailPanel from './components/DetailPanel.jsx'
+import ContentDetail from './components/ContentDetail.jsx'
 import PipelineRunner from './components/PipelineRunner.jsx'
 import CommandPalette from './components/CommandPalette.jsx'
 import TweaksPanel from './components/TweaksPanel.jsx'
 import Toast from './components/Toast.jsx'
 
 const cx = (...args) => args.filter(Boolean).join(' ')
-
-const ALL_ITEMS = [
-  ...SKILLS.map(s => ({ ...s, kind: 'skill' })),
-  ...MCP_SKILLS.map(m => ({ ...m, kind: 'mcp' })),
-]
 
 const TWEAK_DEFAULTS = { variant: 'calm', accent: 'lime', density: 'comfy' }
 
@@ -26,6 +24,8 @@ export default function App() {
   const [selCat, setSelCat] = useState(null)
   const [selUC, setSelUC] = useState(null)
   const [selPipe, setSelPipe] = useState(null)
+  const [selKind, setSelKind] = useState(null)
+  const [collectedOnly, setCollectedOnly] = useState(false)
   const [favOnly, setFavOnly] = useState(false)
   const [openItem, setOpenItem] = useState(null)
   const [runPipe, setRunPipe] = useState(null)
@@ -39,7 +39,7 @@ export default function App() {
   const onCopy = useCallback((text) => copy(text, showToast), [showToast])
   const onOpen = useCallback((item) => {
     setOpenItem(item)
-    pushRecent(item.cmd)
+    pushRecent(item.id)
   }, [pushRecent])
 
   // ⌘K / /
@@ -66,11 +66,13 @@ export default function App() {
 
   const filtered = useMemo(() => {
     let items = ALL_ITEMS
-    if (favOnly) items = items.filter(i => favs.includes(i.cmd))
+    if (favOnly) items = items.filter(i => favs.includes(i.id))
+    if (collectedOnly) items = items.filter(i => i.install_state === 'collected')
+    if (selKind) items = items.filter(i => i.kind === selKind)
     if (selCat) items = items.filter(i => i.cat === selCat)
     if (selUC) items = items.filter(i => (i.uc || []).includes(selUC))
     return items
-  }, [selCat, selUC, favOnly, favs])
+  }, [selKind, selCat, selUC, favOnly, collectedOnly, favs])
 
   const catCounts = useMemo(() => {
     const c = {}
@@ -78,18 +80,33 @@ export default function App() {
     return c
   }, [])
 
+  const kindCounts = useMemo(() => {
+    const c = {}
+    for (const it of ALL_ITEMS) c[it.kind] = (c[it.kind] || 0) + 1
+    return c
+  }, [])
+
+  const collectedCount = useMemo(
+    () => ALL_ITEMS.filter(i => i.install_state === 'collected').length, [])
+
   const recentItems = useMemo(() =>
-    recents.map(cmd => ALL_ITEMS.find(it => it.cmd === cmd)).filter(Boolean).slice(0, 6),
+    recents.map(id => ALL_ITEMS.find(it => it.id === id)).filter(Boolean).slice(0, 6),
     [recents]
   )
 
-  const clearFilters = () => { setSelCat(null); setSelUC(null); setFavOnly(false); setSelPipe(null) }
-  const activeFilters = [selCat, selUC, favOnly && 'favs'].filter(Boolean).length
+  const clearFilters = () => {
+    setSelCat(null); setSelUC(null); setSelKind(null)
+    setFavOnly(false); setCollectedOnly(false); setSelPipe(null)
+  }
+  const activeFilters = [selCat, selUC, selKind, favOnly && 'favs', collectedOnly && 'collected']
+    .filter(Boolean).length
 
   const resetAll = useCallback(() => {
     setSelCat(null)
     setSelUC(null)
     setSelPipe(null)
+    setSelKind(null)
+    setCollectedOnly(false)
     setFavOnly(false)
     setOpenItem(null)
     setRunPipe(null)
@@ -102,8 +119,11 @@ export default function App() {
       {/* Topbar */}
       <header className="topbar">
         <div className="brand" onClick={resetAll} style={{ cursor: 'pointer' }} title="חזרה לעמוד הראשי">
-          <div className="name">YARONI · SKILLS</div>
-          <div className="tag">{SKILLS.length} סקילים · {PIPELINES.length} פייפליינים · {MCP_SKILLS.length} MCP</div>
+          <div className="name">YARONI · מרכז הידע</div>
+          <div className="tag">
+            {ALL_ITEMS.length} פריטים · {PIPELINES.length} פייפליינים
+            {collectedCount > 0 && ` · ${collectedCount} ממתינים להתקנה`}
+          </div>
         </div>
 
         <div className="kbar" onClick={() => setPaletteOpen(true)}>
@@ -121,6 +141,16 @@ export default function App() {
             <Ic.filter />
             <span>פילטר{activeFilters > 0 ? ` (${activeFilters})` : ''}</span>
           </button>
+          {collectedCount > 0 && (
+            <button
+              className={cx('head-btn', collectedOnly && 'active')}
+              onClick={() => setCollectedOnly(v => !v)}
+              title="סקילים שאספת ולא התקנת"
+            >
+              <span>אספתי ולא התקנתי</span>
+              <span className="kbd" style={{ marginRight: 4 }}>{collectedCount}</span>
+            </button>
+          )}
           <button
             className={cx('head-btn', favOnly && 'active')}
             onClick={() => setFavOnly(f => !f)}
@@ -143,9 +173,9 @@ export default function App() {
                 <span className="reset" onClick={() => { localStorage.removeItem('ysk:recents'); window.location.reload() }}>נקה</span>
               </div>
               {recentItems.map(it => (
-                <div key={it.cmd} className="uc-row" onClick={() => onOpen(it)}
+                <div key={it.id} className="uc-row" onClick={() => onOpen(it)}
                   style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11.5 }}>
-                  {it.cmd}
+                  {it.cmd || it.title}
                 </div>
               ))}
             </div>
@@ -198,13 +228,21 @@ export default function App() {
               allItems={ALL_ITEMS}
             />
           ) : openItem ? (
-            <DetailPanel
-              item={openItem}
-              onClose={() => setOpenItem(null)}
-              onOpen={onOpen}
-              onCopy={onCopy}
-              onRunPipeline={(p) => { setOpenItem(null); setRunPipe(p) }}
-            />
+            openItem.origin === 'content' ? (
+              <ContentDetail
+                item={openItem}
+                onClose={() => setOpenItem(null)}
+                onCopy={onCopy}
+              />
+            ) : (
+              <DetailPanel
+                item={openItem.raw}
+                onClose={() => setOpenItem(null)}
+                onOpen={onOpen}
+                onCopy={onCopy}
+                onRunPipeline={(p) => { setOpenItem(null); setRunPipe(p) }}
+              />
+            )
           ) : (
             <>
               {/* Pipelines hero */}
@@ -233,11 +271,11 @@ export default function App() {
                       <span className="hs-label">פייפליינים</span>
                     </div>
                     <div className="hero-stat">
-                      <span className="hs-num" style={{ background: 'var(--fuchsia)', color: '#fff' }}>{SKILLS.length}</span>
+                      <span className="hs-num" style={{ background: 'var(--fuchsia)', color: '#fff' }}>{kindCounts.skill || 0}</span>
                       <span className="hs-label">סקילים</span>
                     </div>
                     <div className="hero-stat">
-                      <span className="hs-num" style={{ background: 'var(--ink2)', color: 'var(--surface)' }}>{MCP_SKILLS.length}</span>
+                      <span className="hs-num" style={{ background: 'var(--ink2)', color: 'var(--surface)' }}>{kindCounts.mcp || 0}</span>
                       <span className="hs-label">MCP</span>
                     </div>
                   </div>
@@ -272,11 +310,32 @@ export default function App() {
                 </div>
               </section>
 
-              {/* Skills section */}
+              {/* Items section */}
               <section>
+                <div className="type-tabs">
+                  <div className={cx('type-tab', !selKind && 'on')} onClick={() => setSelKind(null)}>
+                    <span>הכל</span><span className="n">{ALL_ITEMS.length}</span>
+                  </div>
+                  {KINDS.filter(k => kindCounts[k]).map(k => (
+                    <div key={k}
+                      className={cx('type-tab', selKind === k && 'on')}
+                      onClick={() => setSelKind(selKind === k ? null : k)}>
+                      <span className="dot" style={{ background: TYPE_COLORS[k] }} />
+                      <span>{TYPE_LABELS[k]}</span>
+                      <span className="n">{kindCounts[k]}</span>
+                    </div>
+                  ))}
+                </div>
+
                 <div className="section-head">
                   <div className="lab">
-                    <h2>{favOnly ? 'מועדפים' : selCat ? CAT_LABELS[selCat] : 'כל הסקילים'}</h2>
+                    <h2>{
+                      collectedOnly ? 'אספתי ולא התקנתי'
+                        : favOnly ? 'מועדפים'
+                        : selKind ? TYPE_LABELS[selKind]
+                        : selCat ? CAT_LABELS[selCat]
+                        : 'הכל'
+                    }</h2>
                     <span className="ct">{filtered.length}</span>
                   </div>
                   <div className="controls">
@@ -317,10 +376,10 @@ export default function App() {
                 ) : (
                   <div className="skill-grid">
                     {filtered.map(it => (
-                      <SkillCard
-                        key={it.cmd}
+                      <ItemCard
+                        key={it.id}
                         item={it}
-                        isFav={favs.includes(it.cmd)}
+                        isFav={favs.includes(it.id)}
                         onFav={toggleFav}
                         onOpen={onOpen}
                         onCopy={onCopy}

@@ -24,3 +24,11 @@ dist-ssr
 *.sw?
 .vercel
 .playwright-mcp
+
+# backups
+src/data/*.bak.*
+
+# knowledge base — local only
+dashboard.html
+src/data/generated/
+LOOP-STATE.md

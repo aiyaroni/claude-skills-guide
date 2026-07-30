@@ -37,6 +37,49 @@ export const SOURCES = {
   'mcp-connector':             { label: 'MCP Connector', cmd: null, url: 'https://claude.ai' },
 }
 
+// ── מרכז הידע ───────────────────────────────────────────────────────────
+
+export const TYPE_LABELS = {
+  guide:  'מדריך',
+  prompt: 'פרומפט',
+  skill:  'סקיל',
+  mcp:    'MCP',
+}
+
+export const TYPE_COLORS = {
+  guide:  '#a78bfa',
+  prompt: '#34d399',
+  skill:  '#c5f206',
+  mcp:    '#94a3b8',
+}
+
+export const TAG_LABELS = {
+  cowork: 'Cowork', 'claude-code': 'קלוד קוד', prompts: 'פרומפטים',
+  security: 'אבטחה', marketing: 'שיווק', content: 'תוכן',
+  automation: 'אוטומציה', models: 'מודלים', mcp: 'MCP',
+  agents: 'סוכנים', design: 'עיצוב', tokens: 'טוקנים',
+  workflows: 'שגרות עבודה', hebrew: 'עברית',
+}
+
+export const INSTALL_STATE_LABELS = {
+  installed: 'מותקן',
+  collected: 'אספתי, לא התקנתי',
+  reference: 'מידע בלבד',
+}
+
+export const SECURITY_LABELS = {
+  unverified: 'לא נבדק',
+  verified:   'נבדק',
+  rejected:   'נדחה',
+}
+
+/** הבקשה שמועתקת בלחיצה על סקיל שלא נבדק — הפייפליין לא מריץ התקנות */
+export const securityCheckPrompt = (item) =>
+  `הרץ security-check על הסקיל "${item.title}".\n` +
+  `מקור: ${item.raw?.source_url || 'לא צוין'}\n` +
+  `פקודת ההתקנה שנשמרה כטקסט:\n${item.raw?.install_cmd || ''}\n\n` +
+  `אל תתקין כלום לפני שתציג לי את הממצאים ואאשר.`
+
 export const PIPELINE_GROUPS = {
   content: { emoji:'📱', label:'תוכן ושיווק', desc:'פוסטים, מדריכים, ניתוח שוק, קהילה' },
   product: { emoji:'🛠️', label:'בניית מוצר', desc:'אתרים, כלי AI, מצגות' },

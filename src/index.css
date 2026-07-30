@@ -836,3 +836,90 @@ button:focus-visible,
   .rback { padding:10px 16px; }
   .rp-dot { width:44px; height:44px; }
 }
+
+/* ── מרכז הידע ─────────────────────────────────────────────────────────
+   באדג'ים, חוסר מוצהר, ובלוקי פקודה. הפלטה לא משתנה — רק נוספים מצבים. */
+
+.sc-flags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 2px; }
+
+.flag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; line-height: 1;
+  padding: 4px 8px; border-radius: 999px;
+  border: 1px solid var(--line2);
+}
+.flag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.flag.collected  { background: var(--accent-soft); color: var(--accent-text); }
+.flag.partial    { background: var(--surface2); color: var(--mute); }
+.flag.unverified { background: rgba(255,45,120,0.10); color: var(--fuchsia); border-color: rgba(255,45,120,0.35); }
+.flag.unverified .dot { background: var(--fuchsia); }
+
+/* חוסר מוצהר הוא מידע — עמום, אבל נוכח */
+.not-found {
+  color: var(--mute); font-size: 14px; font-style: italic;
+  padding: 8px 12px; border-inline-start: 2px solid var(--line2);
+  background: var(--surface2); border-radius: 0 8px 8px 0;
+}
+
+.field-list { margin: 0; padding-inline-start: 20px; }
+.field-list li { margin-bottom: 6px; line-height: 1.65; }
+
+/* פקודות תמיד LTR בתוך דף RTL — אחרת מה שמעתיקים לא ירוץ */
+.code.copyable {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace; font-size: 12.5;
+  background: var(--surface2); border: 1px solid var(--line);
+  border-radius: 8px; padding: 10px 12px; cursor: pointer;
+  overflow-x: auto; direction: ltr; text-align: left;
+}
+.code.copyable:hover { border-color: var(--line2); }
+
+.prompt-block {
+  font-family: inherit; font-size: 14px; line-height: 1.7;
+  white-space: pre-wrap; word-break: break-word;
+  background: var(--surface2); border: 1px solid var(--line);
+  border-radius: 10px; padding: 14px 16px; cursor: pointer; margin: 0;
+}
+.prompt-block:hover { border-color: var(--accent); }
+
+.hint-line { font-size: 12.5px; color: var(--mute); margin-top: 8px; }
+
+.security-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-top: 10px; font-size: 13px;
+}
+.security-row .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mute); }
+.security-row.unverified .dot { background: var(--fuchsia); }
+.security-row.verified   .dot { background: #34d399; }
+.security-row.rejected   .dot { background: #ef4444; }
+
+.btn.small { font-size: 12px; padding: 5px 10px; }
+
+.banner.partial {
+  margin-top: 12px; padding: 10px 14px; border-radius: 8px;
+  background: var(--surface2); border: 1px solid var(--line2);
+  font-size: 13.5px; color: var(--ink3);
+}
+
+.crumb .state { font-size: 12px; color: var(--mute); }
+.crumb .state.collected { color: var(--accent-text); font-weight: 600; }
+
+.meta { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; font-size: 13.5px; }
+.meta dt { color: var(--mute); }
+.meta dd { margin: 0; color: var(--ink3); }
+
+.body-prose p { line-height: 1.75; margin-bottom: 12px; }
+
+/* פילטר סוגים */
+.type-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.type-tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface);
+  font-size: 13px; font-weight: 500;
+}
+.type-tab .dot { width: 7px; height: 7px; border-radius: 50%; }
+.type-tab .n { color: var(--mute); font-size: 12px; }
+.type-tab:hover { border-color: var(--line2); }
+.type-tab.on { background: var(--ink2); color: var(--surface); border-color: var(--ink2); }
+.type-tab.on .n { color: var(--surface); opacity: .7; }

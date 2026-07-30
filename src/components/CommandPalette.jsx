@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
-import { CAT_LABELS, CAT_COLORS } from '../data/config.js'
+import { TYPE_LABELS, TYPE_COLORS, TAG_LABELS } from '../data/config.js'
 import { Ic } from '../lib/icons.jsx'
 
 const cx = (...args) => args.filter(Boolean).join(' ')
@@ -27,26 +27,33 @@ export default function CommandPalette({ open, onClose, onPick, allItems, recent
     if (!q.trim()) {
       const seen = new Set()
       const out = []
-      for (const cmd of [...(favs || []), ...(recents || [])]) {
-        if (seen.has(cmd)) continue
-        const item = allItems.find(i => i.cmd === cmd)
-        if (item) { out.push(item); seen.add(cmd) }
+      for (const id of [...(favs || []), ...(recents || [])]) {
+        if (seen.has(id)) continue
+        const item = allItems.find(i => i.id === id)
+        if (item) { out.push(item); seen.add(id) }
       }
       for (const item of allItems) {
         if (out.length >= 8) break
-        if (seen.has(item.cmd)) continue
-        out.push(item); seen.add(item.cmd)
+        if (seen.has(item.id)) continue
+        out.push(item); seen.add(item.id)
       }
       return out.slice(0, 10)
     }
     const ql = normalize(q)
     return allItems
       .map(item => {
-        const hay = normalize(item.cmd + ' ' + item.desc + ' ' + (item.detail || '') + ' ' + (item.triggers || []).join(' '))
-        const ncmd = normalize(item.cmd)
+        const label = item.cmd || item.title
+        // תגיות וסוג נכנסים לחיפוש — פריט מתויג שלא נמצא בחיפוש הוא פריט אבוד
+        const hay = normalize([
+          label, item.title, item.desc, item.body,
+          (item.tags || []).join(' '), (item.triggers || []).join(' '),
+          TYPE_LABELS[item.kind] || '',
+        ].join(' '))
+        const nlabel = normalize(label)
         let score = 0
-        if (ncmd.includes(ql)) score += 10
-        if (ncmd.startsWith(ql)) score += 5
+        if (nlabel.includes(ql)) score += 10
+        if (nlabel.startsWith(ql)) score += 5
+        if ((item.tags || []).some(t => normalize(t) === ql || normalize(TAG_LABELS[t] || '') === ql)) score += 8
         if (hay.includes(ql)) score += 1
         return { item, score }
       })
@@ -76,7 +83,7 @@ export default function CommandPalette({ open, onClose, onPick, allItems, recent
             value={q}
             onChange={e => setQ(e.target.value)}
             onKeyDown={onKey}
-            placeholder="חפש סקיל, פייפליין, פקודה…"
+            placeholder="חפש מדריך, פרומפט, סקיל, תגית…"
           />
           <span className="esc">esc</span>
         </div>
@@ -85,20 +92,20 @@ export default function CommandPalette({ open, onClose, onPick, allItems, recent
             <div className="kp-empty">אין תוצאות עבור &ldquo;{q}&rdquo;</div>
           )}
           {results.map((item, i) => {
-            const cat = item.cat || 'mcp'
+            const kind = item.kind || 'skill'
             return (
               <div
-                key={item.cmd}
+                key={item.id}
                 className={cx('kp-row', i === sel && 'on')}
                 onClick={() => onPick(item)}
                 onMouseEnter={() => setSel(i)}
               >
-                <span className="dot" style={{ background: CAT_COLORS[cat] || '#94a3b8' }}></span>
+                <span className="dot" style={{ background: TYPE_COLORS[kind] || '#94a3b8' }}></span>
                 <div className="body">
-                  <div className="kp-cmd">{item.cmd}</div>
+                  <div className="kp-cmd">{item.cmd || item.title}</div>
                   <div className="kp-d">{item.desc}</div>
                 </div>
-                <span className="kp-cat">{CAT_LABELS[cat] || cat}</span>
+                <span className="kp-cat">{TYPE_LABELS[kind] || kind}</span>
               </div>
             )
           })}
