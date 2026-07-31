@@ -12,6 +12,7 @@
 import { SKILLS } from './skills.js'
 import { MCP_SKILLS } from './mcp.js'
 import { CONTENT } from './generated/content.js'
+import { TASKS } from './config.js'
 
 /** הקטלוג הישן — id הוא ה-cmd, כדי שמועדפים שמורים לא יאבדו */
 const fromLegacy = (s, kind) => ({
@@ -84,3 +85,64 @@ export const countBy = (items, key) =>
     for (const v of [].concat(i[key] ?? [])) acc[v] = (acc[v] || 0) + 1
     return acc
   }, {})
+
+// ── שערי משימה ──────────────────────────────────────────────────────────
+
+/** פריט שמתאים לכמה שערים מופיע בכולם — לא סיווג בלעדי. ראה docs/PLAN.md */
+export function byTask(taskKey, items = ALL_ITEMS) {
+  const spec = TASKS[taskKey]
+  if (!spec) return []
+  return items.filter(i =>
+    (spec.uc || []).some(u => (i.uc || []).includes(u)) ||
+    (spec.tags || []).some(t => (i.tags || []).includes(t)) ||
+    (spec.state && i.install_state === spec.state)
+  )
+}
+
+export function taskCounts(items = ALL_ITEMS) {
+  const out = {}
+  for (const key of Object.keys(TASKS)) out[key] = byTask(key, items).length
+  return out
+}
+
+// ── מסלולי לימוד ────────────────────────────────────────────────────────
+
+const partOf = (item) => item?.raw?.part_of ?? null
+const orderOf = (item) => item?.raw?.order ?? null
+
+/**
+ * קבוצות part_of עם לפחות 2 פריטים ו-order לא-null (סף מהתוכנית — שאלה 8).
+ * מציג רק מה שכבר נקלט, בלי placeholder rows למה שטרם נקלט (שאלה 1) —
+ * גדל אוטומטית כשעוד פריטים מאותה סדרה נכנסים לארכיון.
+ */
+export function tracks(items = ALL_ITEMS) {
+  const groups = new Map()
+  for (const i of items) {
+    const p = partOf(i)
+    if (!p || orderOf(i) == null) continue
+    if (!groups.has(p)) groups.set(p, [])
+    groups.get(p).push(i)
+  }
+  return [...groups.entries()]
+    .map(([part_of, list]) => ({ part_of, items: list.slice().sort((a, b) => orderOf(a) - orderOf(b)) }))
+    .filter(t => t.items.length >= 2)
+}
+
+/** "מדריך 2 · האקדמיה של טל" — בלי "מתוך N", ראה הערה ב-ValueHeader.jsx */
+export function seriesPositionLabel(item) {
+  const o = orderOf(item)
+  const p = partOf(item)
+  if (o == null || !p) return null
+  return `מדריך ${o} · ${p}`
+}
+
+// ── נקלט לאחרונה ────────────────────────────────────────────────────────
+
+/** חלון 7 ימים, נעלם אם ריק — ראה docs/PLAN.md, שאלה 6 */
+export function recentlyIngested(items = ALL_ITEMS, days = 7) {
+  const cutoff = Date.now() - days * 86400000
+  return items
+    .filter(i => i.origin === 'content' && i.raw?.ingested_at)
+    .filter(i => new Date(i.raw.ingested_at).getTime() >= cutoff)
+    .sort((a, b) => new Date(b.raw.ingested_at) - new Date(a.raw.ingested_at))
+}

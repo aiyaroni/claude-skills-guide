@@ -162,7 +162,7 @@ export default function PipelineRunner({ pipeline, onClose, onCopy, allItems }) 
                 <div className="rsc-info">
                   <div className="rsc-step-label">שלב {i + 1}</div>
                   <div className="rsc-name">{s.stepLabel || s.cmd}</div>
-                  {!isCur && <div className="rsc-cmd-hint">{s.cmd}</div>}
+                  {!isCur && <div className="rsc-cmd-hint" dir="ltr">{s.cmd}</div>}
                 </div>
                 <div className="rsc-actions" onClick={e => e.stopPropagation()}>
                   {!isDone && (
@@ -200,7 +200,7 @@ export default function PipelineRunner({ pipeline, onClose, onCopy, allItems }) 
 
                   <div className="rsc-cmd-block" onClick={() => onCopy(s.cmd)}>
                     <span className="rcb-label">פקודה</span>
-                    <span className="rcb-cmd">{s.cmd}</span>
+                    <span className="rcb-cmd" dir="ltr">{s.cmd}</span>
                     <Ic.copy />
                   </div>
 

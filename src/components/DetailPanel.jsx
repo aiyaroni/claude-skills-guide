@@ -57,9 +57,29 @@ export default function DetailPanel({ item, onClose, onOpen, onCopy, onRunPipeli
           {detailParas.length > 0 && (
             <div className="psec">
               <h3>למה זה שווה</h3>
-              {detailParas.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+              {detailParas.map((p, i) => {
+                const lines = p.split('\n').map(l => l.trim()).filter(Boolean)
+                const blocks = []
+                let bulletGroup = null
+                for (const line of lines) {
+                  if (line.startsWith('•')) {
+                    if (!bulletGroup) { bulletGroup = []; blocks.push(bulletGroup) }
+                    bulletGroup.push(line.replace(/^•\s*/, ''))
+                  } else {
+                    bulletGroup = null
+                    blocks.push(line)
+                  }
+                }
+                return (
+                  <div key={i}>
+                    {blocks.map((b, j) =>
+                      Array.isArray(b)
+                        ? <ul key={j}>{b.map((li, k) => <li key={k}>{li}</li>)}</ul>
+                        : <p key={j}>{b}</p>
+                    )}
+                  </div>
+                )
+              })}
             </div>
           )}
 

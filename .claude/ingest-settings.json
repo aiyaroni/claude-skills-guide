@@ -52,7 +52,15 @@
       "Edit(./.claude/ingest-settings.json)",
       "Edit(./content/tags.json)",
       "Edit(./package.json)",
-      "Edit(./CLAUDE.md)"
+      "Edit(./CLAUDE.md)",
+      "Bash(trash:*)",
+      "Bash(shred:*)",
+      "Bash(find:* -delete)",
+      "Bash(find:* -exec rm*)",
+      "Bash(rmdir:*)",
+      "Bash(git clean:*)",
+      "Bash(git checkout:*)",
+      "Bash(git reset:*)"
     ]
   }
 }

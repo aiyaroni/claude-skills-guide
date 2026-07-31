@@ -102,7 +102,7 @@ export default function CommandPalette({ open, onClose, onPick, allItems, recent
               >
                 <span className="dot" style={{ background: TYPE_COLORS[kind] || '#94a3b8' }}></span>
                 <div className="body">
-                  <div className="kp-cmd">{item.cmd || item.title}</div>
+                  <div className="kp-cmd" dir={item.cmd ? 'ltr' : undefined}>{item.cmd || item.title}</div>
                   <div className="kp-d">{item.desc}</div>
                 </div>
                 <span className="kp-cat">{TYPE_LABELS[kind] || kind}</span>

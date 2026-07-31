@@ -80,6 +80,20 @@ export const securityCheckPrompt = (item) =>
   `פקודת ההתקנה שנשמרה כטקסט:\n${item.raw?.install_cmd || ''}\n\n` +
   `אל תתקין כלום לפני שתציג לי את הממצאים ואאשר.`
 
+// ── שערי משימה — עמוד הבית ──────────────────────────────────────────────
+// פריט שמתאים לכמה שערים מופיע בכולם, ראה byTask ב-items.js. אין אריח
+// "ללמוד" בכוונה — מסלולי לימוד כבר הכניסה למדריכים, ראה docs/PLAN.md
+
+export const TASKS = {
+  content:  { label: 'לכתוב תוכן',   uc: ['content'],            tags: ['content', 'prompts', 'marketing'] },
+  build:    { label: 'לבנות',        uc: ['web', 'design', 'dev'], tags: ['design'] },
+  automate: { label: 'לאוטומט',      uc: ['automation'],          tags: ['automation', 'workflows', 'agents', 'mcp'] },
+  save:     { label: 'לחסוך טוקנים', uc: [],                      tags: ['tokens', 'models'] },
+  install:  { label: 'להתקין',       uc: [],                      tags: [], state: 'collected' },
+}
+
+export const TASK_ORDER = ['content', 'build', 'automate', 'save', 'install']
+
 export const PIPELINE_GROUPS = {
   content: { emoji:'📱', label:'תוכן ושיווק', desc:'פוסטים, מדריכים, ניתוח שוק, קהילה' },
   product: { emoji:'🛠️', label:'בניית מוצר', desc:'אתרים, כלי AI, מצגות' },

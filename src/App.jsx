@@ -2,10 +2,10 @@ import { useState, useEffect, useMemo, useCallback } from 'react'
 import { PIPELINES } from './data/pipelines.js'
 import {
   CAT_LABELS, CAT_COLORS, CAT_ORDER, UC_LABELS, UC_ORDER, PIPELINE_GROUPS,
-  TYPE_LABELS, TYPE_COLORS,
+  TYPE_LABELS, TYPE_COLORS, TASKS,
 } from './data/config.js'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ALL_ITEMS, KINDS, hrefOf, findBySlug } from './data/items.js'
+import { ALL_ITEMS, KINDS, hrefOf, findBySlug, byTask, taskCounts as computeTaskCounts, tracks, recentlyIngested } from './data/items.js'
 import { useFavorites, useRecents, useToast, useTweaks, copy } from './lib/hooks.js'
 import { Ic } from './lib/icons.jsx'
 import ItemCard from './components/ItemCard.jsx'
@@ -15,6 +15,7 @@ import PipelineRunner from './components/PipelineRunner.jsx'
 import CommandPalette from './components/CommandPalette.jsx'
 import TweaksPanel from './components/TweaksPanel.jsx'
 import Toast from './components/Toast.jsx'
+import Home from './components/Home.jsx'
 
 const cx = (...args) => args.filter(Boolean).join(' ')
 
@@ -26,6 +27,7 @@ export default function App() {
   const [selUC, setSelUC] = useState(null)
   const [selPipe, setSelPipe] = useState(null)
   const [selKind, setSelKind] = useState(null)
+  const [selTask, setSelTask] = useState(null)
   const [collectedOnly, setCollectedOnly] = useState(false)
   const [favOnly, setFavOnly] = useState(false)
   const [runPipe, setRunPipe] = useState(null)
@@ -76,11 +78,16 @@ export default function App() {
     let items = ALL_ITEMS
     if (favOnly) items = items.filter(i => favs.includes(i.id))
     if (collectedOnly) items = items.filter(i => i.install_state === 'collected')
+    if (selTask) { const ids = new Set(byTask(selTask, items).map(i => i.id)); items = items.filter(i => ids.has(i.id)) }
     if (selKind) items = items.filter(i => i.kind === selKind)
     if (selCat) items = items.filter(i => i.cat === selCat)
     if (selUC) items = items.filter(i => (i.uc || []).includes(selUC))
     return items
-  }, [selKind, selCat, selUC, favOnly, collectedOnly, favs])
+  }, [selKind, selCat, selUC, selTask, favOnly, collectedOnly, favs])
+
+  const homeTaskCounts = useMemo(() => computeTaskCounts(ALL_ITEMS), [])
+  const tracksList = useMemo(() => tracks(ALL_ITEMS), [])
+  const recentlyIngestedItems = useMemo(() => recentlyIngested(ALL_ITEMS), [])
 
   const catCounts = useMemo(() => {
     const c = {}
@@ -103,10 +110,10 @@ export default function App() {
   )
 
   const clearFilters = () => {
-    setSelCat(null); setSelUC(null); setSelKind(null)
+    setSelCat(null); setSelUC(null); setSelKind(null); setSelTask(null)
     setFavOnly(false); setCollectedOnly(false); setSelPipe(null)
   }
-  const activeFilters = [selCat, selUC, selKind, favOnly && 'favs', collectedOnly && 'collected']
+  const activeFilters = [selCat, selUC, selKind, selTask, favOnly && 'favs', collectedOnly && 'collected']
     .filter(Boolean).length
 
   const resetAll = useCallback(() => {
@@ -114,6 +121,7 @@ export default function App() {
     setSelUC(null)
     setSelPipe(null)
     setSelKind(null)
+    setSelTask(null)
     setCollectedOnly(false)
     setFavOnly(false)
     navigate('/')
@@ -121,6 +129,14 @@ export default function App() {
     setPaletteOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [navigate])
+
+  const onTaskClick = useCallback((key) => {
+    setSelTask(prev => prev === key ? null : key)
+    setSelKind(null); setSelCat(null); setSelUC(null); setFavOnly(false); setCollectedOnly(false)
+    requestAnimationFrame(() => {
+      document.getElementById('items-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [])
 
   return (
     <div className="app-root">
@@ -192,7 +208,7 @@ export default function App() {
           <div className="aside-section">
             <div className="aside-title">
               <span>קטגוריות</span>
-              {(selCat || selUC || favOnly) && (
+              {(selCat || selUC || selTask || favOnly) && (
                 <span className="reset" onClick={clearFilters}>נקה</span>
               )}
             </div>
@@ -258,7 +274,15 @@ export default function App() {
             )
           ) : (
             <>
-              {/* Pipelines hero */}
+              <Home
+                recent={recentlyIngestedItems}
+                taskCounts={homeTaskCounts}
+                tracksList={tracksList}
+                onTaskClick={onTaskClick}
+                onOpen={onOpen}
+              />
+
+              {/* Pipelines hero — לא הדבר הראשון בעמוד יותר, ראה docs/PLAN.md */}
               <section className="pipeline-hero">
                 <div className="hero-canvas">
                   <div className="hero-orb orb1" />
@@ -324,7 +348,7 @@ export default function App() {
               </section>
 
               {/* Items section */}
-              <section>
+              <section id="items-section">
                 <div className="type-tabs">
                   <div className={cx('type-tab', !selKind && 'on')} onClick={() => setSelKind(null)}>
                     <span>הכל</span><span className="n">{ALL_ITEMS.length}</span>
@@ -345,6 +369,7 @@ export default function App() {
                     <h2>{
                       collectedOnly ? 'אספתי ולא התקנתי'
                         : favOnly ? 'מועדפים'
+                        : selTask ? TASKS[selTask].label
                         : selKind ? TYPE_LABELS[selKind]
                         : selCat ? CAT_LABELS[selCat]
                         : 'הכל'
@@ -360,8 +385,13 @@ export default function App() {
                   </div>
                 </div>
 
-                {(selCat || selUC || favOnly) && (
+                {(selCat || selUC || selTask || favOnly) && (
                   <div className="filterbar">
+                    {selTask && (
+                      <div className="chip on" onClick={() => setSelTask(null)}>
+                        {TASKS[selTask].label} <Ic.x width="11" height="11" />
+                      </div>
+                    )}
                     {selCat && (
                       <div className="chip on" onClick={() => setSelCat(null)}>
                         <span className="dot" style={{ background: CAT_COLORS[selCat] }}></span>
