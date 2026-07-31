@@ -26,3 +26,4 @@
   security-guidance
   stitch
 2026-07-31 00:21 | אין שינוי בתוכן
+2026-07-31 02:14 | OK | Guide-01-Meet-Claude.pdf → processed/2026-07-31/ · manifest recorded

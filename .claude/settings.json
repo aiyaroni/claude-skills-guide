@@ -26,7 +26,7 @@
       "Edit(./src/data/mcp.js)",
       "Edit(./src/data/pipelines.js)",
       "Edit(./backup/**)",
-      "Write(./src/data/generated/**)"
+      "Edit(./src/data/generated/**)"
     ]
   }
 }

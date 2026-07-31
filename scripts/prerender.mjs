@@ -22,7 +22,7 @@ import { createElement as h } from 'react'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
-const SITE = process.env.SITE_URL || 'https://claude-skills-guide.vercel.app'
+const SITE = process.env.SITE_URL || 'https://claude-skills-guide-psi.vercel.app'
 
 if (!existsSync(join(DIST, 'index.html'))) {
   console.error('✗ dist/index.html חסר — להריץ vite build קודם')

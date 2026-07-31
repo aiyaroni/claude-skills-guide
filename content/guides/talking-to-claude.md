@@ -11,12 +11,12 @@ ingested_at: 2026-07-30
 completeness: full
 private: false
 
-level: מתחילים
+level: not-found
 part_of: האקדמיה של טל לעבודה עם קלוד
 order: 2
 
 provenance:
-  level:   { from: source, loc: "מדריך 2 בסדרה, אחרי מדריך ההיכרות" }
+  level:   { from: not-found, reason: "המדריך לא מציין רמת קושי בשום מקום" }
   part_of: { from: source, loc: "כותרת עליונה בכל עמוד" }
 ---
 

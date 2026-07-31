@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
-const SITE = (process.env.SITE_URL || 'https://claude-skills-guide.vercel.app').replace(/\/$/, '')
+const SITE = (process.env.SITE_URL || 'https://claude-skills-guide-psi.vercel.app').replace(/\/$/, '')
 
 const { ALL_ITEMS, hrefOf, KIND_PATH } = await import(join(ROOT, 'src/data/items.js'))
 const TYPE_HE = { guide: 'מדריכים', prompt: 'פרומפטים', skill: 'סקילים', mcp: 'חיבורי MCP' }
